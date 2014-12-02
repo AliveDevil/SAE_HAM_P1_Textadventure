@@ -3,31 +3,34 @@
  */
 
 using System;
+using TextAdventure.Attributes;
 
 namespace TextAdventure.Scenes
 {
 	public sealed class MainMenuScene : Scene
 	{
-		private const string introText =
-			"+------------------------+\n" +
-			"|     TextAdventure      |\n" +
-			"| Aktionen               |\n" +
-			"| Play       Spiel start |\n" +
-			"| Credits    Credits     |\n" +
-			"| Exit       Beenden     |\n" +
-			"+------------------------+\n";
-
+		public override string Title { get { return "TextAdventure"; } }
 
 		public override void Initialize()
 		{
-			RegisterAction("Exit", ExitAction);
+			RegisterAction(StartAdventureAction);
+			RegisterAction(CreditAction);
+			RegisterAction(ExitAction);
 		}
 
-		public override void Write()
+		[Action("start", "Starte das Abenteuer")]
+		private void StartAdventureAction()
 		{
-			Console.WriteLine(introText);
+
 		}
 
+		[Action("credits", "Credits anzeigen")]
+		private void CreditAction()
+		{
+			SceneManager.LoadScene<CreditsScene>();
+		}
+
+		[Action("exit", "Beenden")]
 		private void ExitAction()
 		{
 			SceneManager.Exit();

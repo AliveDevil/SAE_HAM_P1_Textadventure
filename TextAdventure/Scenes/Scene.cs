@@ -2,27 +2,35 @@
  * Author: Jöran Malek
  */
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using TextAdventure.Attributes;
 
 namespace TextAdventure.Scenes
 {
 	public abstract class Scene
 	{
-		protected delegate void HandleAction();
-		private Dictionary<string, HandleAction> actions = new Dictionary<string, HandleAction>();
+		private Dictionary<string, Action> actions = new Dictionary<string, Action>();
 
-		protected void RegisterAction(string key, HandleAction action)
+		public virtual string Title { get { return "Scene"; } }
+		public virtual bool DrawActions { get { return true; } }
+
+		protected void RegisterAction(Action method)
 		{
-			actions[key.ToLower()] = action;
+			string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault();
+			if (!string.IsNullOrEmpty(key))
+			{
+				actions[key] = method;
+			}
 		}
-
-		public abstract void Write();
 
 		public virtual void Initialize() { }
 
 		public void PerformAction(string key)
 		{
-			HandleAction handle;
+			Action handle;
 			if (actions.TryGetValue(key.ToLower(), out handle))
 			{
 				handle();
