@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Author: Jöran Malek
+ */
+
+using System.Collections.Generic;
 
 namespace TextAdventure.Scenes
 {
