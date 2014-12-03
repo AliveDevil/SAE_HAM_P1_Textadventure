@@ -27,6 +27,7 @@ namespace TextAdventure.Scenes
 		}
 
 		public virtual void Initialize() { }
+		public virtual string Description() { return string.Empty; }
 
 		public void PerformAction(string key)
 		{
