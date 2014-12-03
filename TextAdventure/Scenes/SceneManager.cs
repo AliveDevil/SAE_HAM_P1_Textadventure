@@ -15,7 +15,7 @@ namespace TextAdventure.Scenes
 		public const int GameWidth = 48;
 		public const int BufferWidth = GameWidth + 2;
 		public const int GameHeight = 27;
-		public const int BufferHeight = GameHeight + 3;
+		public const int BufferHeight = GameHeight + 4;
 
 		private static bool exit = false;
 		private static Scene currentScene;
@@ -69,22 +69,20 @@ namespace TextAdventure.Scenes
 
 		private static void PerformWrite()
 		{
-			ClearConsole();
-			DrawScene();
+			using (HideCursor hideCursor = new HideCursor())
+			{
+				ClearConsole();
+				DrawScene();
+			}
 		}
 		private static void PerformInput()
 		{
 			SetCursorPosition(-1, GameHeight + 1);
-			Console.Write("Aktion> ");
+			Console.Write("Action> ");
 			currentScene.PerformAction(Console.ReadLine());
 		}
 
-		private static void DrawChar(int x, int y, char @char)
-		{
-			SetCursorPosition(x, y);
-			Console.Write(@char);
-		}
-
+		#region Draw Stuff
 		private static void ClearConsole()
 		{
 			for (int x = -1; x <= GameWidth; x++)
@@ -136,6 +134,14 @@ namespace TextAdventure.Scenes
 
 			}
 		}
+		private static void DrawChar(int x, int y, char @char)
+		{
+			SetCursorPosition(x, y);
+			Console.Write(@char);
+		}
+		#endregion
+
+		#region Postioning Stuff
 		private static void SetCursorPosition(int x, int y)
 		{
 			Console.SetCursorPosition(ResolveX(x), ResolveY(y));
@@ -172,5 +178,6 @@ namespace TextAdventure.Scenes
 		{
 			return val > min ? val < max ? val : max : min;
 		}
+		#endregion
 	}
 }
