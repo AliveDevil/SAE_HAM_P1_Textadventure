@@ -1,4 +1,8 @@
-﻿namespace TextAdventure.Scenes
+﻿/*
+ * Author: Jöran Malek
+ */
+
+namespace TextAdventure.Scenes
 {
 	enum CellType
 	{

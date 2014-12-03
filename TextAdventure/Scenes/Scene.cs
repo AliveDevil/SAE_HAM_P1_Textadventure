@@ -19,7 +19,7 @@ namespace TextAdventure.Scenes
 
 		protected void RegisterAction(Action method)
 		{
-			string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault();
+			string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToLower();
 			if (!string.IsNullOrEmpty(key))
 			{
 				actions[key] = method;
