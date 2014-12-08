@@ -97,6 +97,15 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You interacted with {0}. ähnelt.
+        /// </summary>
+        internal static string DefaultInteract {
+            get {
+                return ResourceManager.GetString("DefaultInteract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Show me credits. ähnelt.
         /// </summary>
         internal static string MainMenu_Credits {

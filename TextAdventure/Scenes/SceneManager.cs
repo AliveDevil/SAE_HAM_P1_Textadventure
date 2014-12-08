@@ -21,14 +21,14 @@ namespace TextAdventure.Scenes
 		public const char BorderVerticalChar = '|';
 
 		private static bool exit = false;
-		private static Scene currentScene;
+		private static int messageY = 0;
 
+		private static Scene currentScene;
 		public static void LoadScene<T>() where T : Scene, new()
 		{
 			currentScene = new T();
 			currentScene.Initialize();
 		}
-
 		public static void Run()
 		{
 			SetResolution();
@@ -38,10 +38,14 @@ namespace TextAdventure.Scenes
 				PerformInput();
 			}
 		}
-
 		public static void Exit()
 		{
 			exit = true;
+		}
+		public static void Message(string message)
+		{
+			DrawTextBlock(message, messageY);
+			messageY += message.Length / GameWidth + 1;
 		}
 
 		private static void SetResolution()
@@ -84,6 +88,7 @@ namespace TextAdventure.Scenes
 		#region Draw Stuff
 		private static void ClearConsole()
 		{
+			messageY = 0;
 			for (int x = -1; x <= GameWidth; x++)
 			{
 				for (int y = -1; y <= GameHeight + 1; y++)
@@ -117,14 +122,12 @@ namespace TextAdventure.Scenes
 		{
 			Console.Title = currentScene.Title;
 			DrawCenteredText(currentScene.Title, 0);
+			messageY++;
 		}
 		private static void DrawDescription()
 		{
-			int y = 1;
-			for (int x = 0; x < currentScene.Description.Length; x++)
-			{
-				DrawChar(x % GameWidth, x / GameWidth + 1, currentScene.Description[x]);
-			}
+			DrawTextBlock(currentScene.Description, 1);
+			messageY += currentScene.Description.Length / GameWidth + 1;
 		}
 		private static void DrawActions()
 		{
@@ -200,6 +203,13 @@ namespace TextAdventure.Scenes
 			for (int i = 0; i < text.Length; i++)
 			{
 				DrawChar(centeredX + i, y, text[i]);
+			}
+		}
+		private static void DrawTextBlock(string text, int y)
+		{
+			for (int x = 0; x < text.Length; x++)
+			{
+				DrawChar(x % GameWidth, x / GameWidth + 1, text[x]);
 			}
 		}
 		#endregion
