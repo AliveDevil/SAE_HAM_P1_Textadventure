@@ -3,19 +3,22 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace TextAdventure.Scenes
 {
 	static class SceneManager
 	{
+		public const int GameWidth = 64;
+		public const int GameHeight = 36;
+		public const int BufferWidth = GameWidth + 2;
+		public const int BufferHeight = GameHeight + 4;
 		public const char EmptyChar = ' ';
 		public const char CornerChar = '+';
 		public const char BorderHorizontalChar = '-';
 		public const char BorderVerticalChar = '|';
-		public const int GameWidth = 48;
-		public const int BufferWidth = GameWidth + 2;
-		public const int GameHeight = 27;
-		public const int BufferHeight = GameHeight + 4;
 
 		private static bool exit = false;
 		private static Scene currentScene;
@@ -43,28 +46,9 @@ namespace TextAdventure.Scenes
 
 		private static void SetResolution()
 		{
-			PrefixResolution();
+			Console.SetWindowSize(1, 1);
 			Console.SetBufferSize(BufferWidth, BufferHeight);
 			Console.SetWindowSize(BufferWidth, BufferHeight);
-		}
-		private static void PrefixResolution()
-		{
-			if (Console.WindowHeight > BufferHeight)
-			{
-				Console.WindowHeight = BufferHeight;
-			}
-			else
-			{
-				Console.BufferHeight = BufferHeight;
-			}
-			if (Console.WindowWidth > BufferWidth)
-			{
-				Console.WindowWidth = BufferWidth;
-			}
-			else
-			{
-				Console.BufferHeight = BufferWidth;
-			}
 		}
 
 		private static void PerformWrite()
@@ -79,7 +63,22 @@ namespace TextAdventure.Scenes
 		{
 			SetCursorPosition(-1, GameHeight + 1);
 			Console.Write("Action> ");
-			currentScene.PerformAction(Console.ReadLine());
+			ConsoleKeyInfo key;
+			string input = "";
+			while ((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
+			{
+				if (key.Key == ConsoleKey.Backspace && input.Length > 0)
+				{
+					input = input.Substring(0, input.Length - 1);
+				}
+				else
+				{
+					input += key.KeyChar;
+				}
+				SetCursorPosition(7, GameHeight + 1);
+				Console.Write(input);
+			}
+			currentScene.PerformAction(input);
 		}
 
 		#region Draw Stuff
@@ -87,7 +86,7 @@ namespace TextAdventure.Scenes
 		{
 			for (int x = -1; x <= GameWidth; x++)
 			{
-				for (int y = -2; y <= GameHeight; y++)
+				for (int y = -1; y <= GameHeight + 1; y++)
 				{
 					switch (ResolveCellType(x, y))
 					{
@@ -116,28 +115,92 @@ namespace TextAdventure.Scenes
 		}
 		private static void DrawTitle()
 		{
-			int centeredLength = currentScene.Title.Length / 2;
-			int centeredX = GameWidth / 2 - centeredLength;
-			for (int i = 0; i < currentScene.Title.Length; i++)
-			{
-				DrawChar(centeredX + i, 0, currentScene.Title[i]);
-			}
+			Console.Title = currentScene.Title;
+			DrawCenteredText(currentScene.Title, 0);
 		}
 		private static void DrawDescription()
 		{
-			int y = GameHeight - 3;
+			int y = 1;
+			for (int x = 0; x < currentScene.Description.Length; x++)
+			{
+				DrawChar(x % GameWidth, x / GameWidth + 1, currentScene.Description[x]);
+			}
 		}
 		private static void DrawActions()
 		{
 			if (currentScene.DrawActions)
 			{
+				List<Line> lines = EnumerateActions();
+				int maxHeight = lines.Sum(line => line.Lines.Count);
+				int startY = GameHeight - maxHeight;
 
+				int currentY = startY;
+
+				foreach (Line line in lines)
+				{
+					for (int i = 0; i < line.Key.Length; i++)
+					{
+						DrawChar(i, currentY, line.Key[i]);
+					}
+					for (int i = 0; i < line.Lines.Count; i++)
+					{
+						for (int j = 0; j < line.Lines[i].Length; j++)
+						{
+							DrawChar(GameWidth - line.Lines[i].Length + j, currentY, line.Lines[i][j]);
+						}
+						currentY++;
+					}
+				}
+
+				DrawCenteredText("Actions", GameHeight - maxHeight - 1);
 			}
 		}
 		private static void DrawChar(int x, int y, char @char)
 		{
 			SetCursorPosition(x, y);
 			Console.Write(@char);
+		}
+		private static List<Line> EnumerateActions()
+		{
+			Dictionary<string, string> actions = currentScene.GetActions();
+			List<Line> lines = new List<Line>();
+			int maxKeyLength = actions.Max(pair => pair.Key.Length);
+			int startX = maxKeyLength + 1;
+			int maxLength = GameWidth - startX;
+
+			foreach (KeyValuePair<string, string> pair in actions)
+			{
+				Line line = new Line(pair.Key, startX);
+				string lineString = "";
+				for (int i = 0; i < pair.Value.Length; i++)
+				{
+					if (lineString.Length < maxLength)
+					{
+						lineString += pair.Value[i];
+					}
+					else
+					{
+						line.Lines.Add(lineString);
+						lineString = pair.Value[i].ToString();
+					}
+				}
+				if (!string.IsNullOrEmpty(lineString))
+				{
+					line.Lines.Add(lineString);
+				}
+				lines.Add(line);
+			}
+
+			return lines;
+		}
+		private static void DrawCenteredText(string text, int y)
+		{
+			int centeredLength = text.Length / 2;
+			int centeredX = GameWidth / 2 - centeredLength;
+			for (int i = 0; i < text.Length; i++)
+			{
+				DrawChar(centeredX + i, y, text[i]);
+			}
 		}
 		#endregion
 
@@ -148,15 +211,18 @@ namespace TextAdventure.Scenes
 		}
 		private static CellType ResolveCellType(int x, int y)
 		{
-			if ((x == -1 && y == -1) || (x == -1 && y == GameHeight) || (x == GameWidth && y == -1) || (x == GameWidth && y == GameHeight))
+			if ((x == -1 && y == -1)
+				|| (x == -1 && y == GameHeight)
+				|| (x == GameWidth && y == -1)
+				|| (x == GameWidth && y == GameHeight))
 			{
 				return CellType.Corner;
 			}
-			if (x == -1 || x == GameWidth)
+			if ((x == -1 || x == GameWidth) && y < GameHeight)
 			{
 				return CellType.BorderVertical;
 			}
-			if (y == -1 || y == GameHeight)
+			if ((y == -1 || y == GameHeight) && x < GameWidth)
 			{
 				return CellType.BorderHorizontal;
 			}

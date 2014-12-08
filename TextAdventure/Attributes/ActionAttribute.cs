@@ -3,6 +3,7 @@
  */
 
 using System;
+using TextAdventure.Properties;
 
 namespace TextAdventure.Attributes
 {
@@ -13,7 +14,13 @@ namespace TextAdventure.Attributes
 		private string description = "";
 
 		public string Key { get { return key; } }
-		public string Description { get { return description; } }
+		public string Description
+		{
+			get
+			{
+				return Resources.ResourceManager.GetString(description);
+			}
+		}
 
 		public ActionAttribute(string key, string description)
 		{

@@ -3,19 +3,20 @@
  */
 
 using TextAdventure.Attributes;
+using TextAdventure.Properties;
 
 namespace TextAdventure.Scenes
 {
 	public sealed class CreditsScene : Scene
 	{
-		public override string Title { get { return Properties.Resources.Credits_Title; } }
+		public override string Title { get { return Resources.Credits_Title; } }
 
 		public override void Initialize()
 		{
 			RegisterAction(BackAction);
 		}
 
-		[Action("back", Properties.Resources.Credits_Back)]
+		[Action("back", "Credits_Back")]
 		private void BackAction()
 		{
 			SceneManager.LoadScene<MainMenuScene>();

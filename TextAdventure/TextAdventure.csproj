@@ -54,6 +54,7 @@
     <Compile Include="Scenes\Components\Component.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\Levels\Level01Scene.cs" />
+    <Compile Include="Scenes\Line.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\SceneManager.cs" />

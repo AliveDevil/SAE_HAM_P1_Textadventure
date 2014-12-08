@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using TextAdventure.Attributes;
@@ -12,10 +13,19 @@ namespace TextAdventure.Scenes
 {
 	public abstract class Scene
 	{
-		private Dictionary<string, Action> actions = new Dictionary<string, Action>();
+		private Dictionary<string, Action> actions;
+
+		public ReadOnlyDictionary<string, Action> Actions;
 
 		public virtual string Title { get { return "Scene"; } }
+		public virtual string Description { get { return string.Empty; } }
 		public virtual bool DrawActions { get { return true; } }
+
+		public Scene()
+		{
+			actions = new Dictionary<string, Action>();
+			Actions = new ReadOnlyDictionary<string, Action>(actions);
+		}
 
 		protected void RegisterAction(Action method)
 		{
@@ -27,7 +37,6 @@ namespace TextAdventure.Scenes
 		}
 
 		public virtual void Initialize() { }
-		public virtual string Description() { return string.Empty; }
 
 		public void PerformAction(string key)
 		{

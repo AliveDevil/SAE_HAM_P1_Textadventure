@@ -61,6 +61,15 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die What do you want to do? ähnelt.
+        /// </summary>
+        internal static string Actions {
+            get {
+                return ResourceManager.GetString("Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Back to menu. ähnelt.
         /// </summary>
         internal static string Credits_Back {
@@ -70,7 +79,7 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die This game has been made by Jöran Malek (GPBP914) as first project at SAE Institute Hamburg. ähnelt.
         /// </summary>
         internal static string Credits_Description {
             get {

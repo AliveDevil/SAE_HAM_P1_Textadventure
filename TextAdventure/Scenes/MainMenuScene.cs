@@ -4,13 +4,16 @@
 
 using System;
 using TextAdventure.Attributes;
+using TextAdventure.Properties;
 using TextAdventure.Scenes.Levels;
 
 namespace TextAdventure.Scenes
 {
 	public sealed class MainMenuScene : Scene
 	{
-		public override string Title { get { return Properties.Resources.MainMenu_Title; } }
+		public override string Title { get { return Resources.MainMenu_Title; } }
+		public override bool DrawActions { get { return true; } }
+		public override string Description { get { return Resources.MainMenu_Description; } }
 
 		public override void Initialize()
 		{
@@ -19,24 +22,19 @@ namespace TextAdventure.Scenes
 			RegisterAction(ExitAction);
 		}
 
-		public override string Description()
-		{
-			return Properties.Resources.MainMenu_Description;
-		}
-
-		[Action("start", Properties.Resources.MainMenu_Start)]
+		[Action("start", "MainMenu_Start")]
 		private void StartAdventureAction()
 		{
 			SceneManager.LoadScene<Level01Scene>();
 		}
 
-		[Action("credits", Properties.Resources.MainMenu_Credits)]
+		[Action("credits", "MainMenu_Credits")]
 		private void CreditsAction()
 		{
 			SceneManager.LoadScene<CreditsScene>();
 		}
 
-		[Action("exit", Properties.Resources.MainMenu_Exit)]
+		[Action("exit", "MainMenu_Exit")]
 		private void ExitAction()
 		{
 			SceneManager.Exit();
