@@ -4,7 +4,10 @@
 
 namespace TextAdventure.Scenes
 {
-	enum CellType
+	/// <summary>
+	/// Parts the map is built of.
+	/// </summary>
+	public enum CellType
 	{
 		Content,
 		Corner,

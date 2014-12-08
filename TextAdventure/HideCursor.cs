@@ -6,6 +6,9 @@ using System;
 
 namespace TextAdventure
 {
+	/// <summary>
+	/// <para>Hides the cursor on construct and shows it on using-block-end.</para>
+	/// </summary>
 	public sealed class HideCursor : IDisposable
 	{
 		public HideCursor()

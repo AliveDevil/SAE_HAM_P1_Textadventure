@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using TextAdventure.Scenes.Components;
 namespace TextAdventure.Scenes.Levels
 {
+	/// <summary>
+	/// First scene the player will see.
+	/// </summary>
 	public sealed class Level01Scene : Scene
 	{
 		private List<Component> components = new List<Component>() { };

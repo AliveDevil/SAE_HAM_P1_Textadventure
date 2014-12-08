@@ -9,6 +9,9 @@ using TextAdventure.Scenes.Levels;
 
 namespace TextAdventure.Scenes
 {
+	/// <summary>
+	/// It's the main menu.
+	/// </summary>
 	public sealed class MainMenuScene : Scene
 	{
 		public override string Title { get { return Resources.MainMenu_Title; } }

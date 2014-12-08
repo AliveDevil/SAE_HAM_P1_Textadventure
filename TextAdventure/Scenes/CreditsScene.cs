@@ -7,6 +7,9 @@ using TextAdventure.Properties;
 
 namespace TextAdventure.Scenes
 {
+	/// <summary>
+	/// Some credits.
+	/// </summary>
 	public sealed class CreditsScene : Scene
 	{
 		public override string Title { get { return Resources.Credits_Title; } }

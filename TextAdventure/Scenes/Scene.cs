@@ -11,6 +11,9 @@ using TextAdventure.Attributes;
 
 namespace TextAdventure.Scenes
 {
+	/// <summary>
+	/// Base class for scenes the player might see.
+	/// </summary>
 	public abstract class Scene
 	{
 		private Dictionary<string, Action> actions;

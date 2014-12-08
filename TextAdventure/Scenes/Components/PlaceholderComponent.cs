@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TextAdventure.Scenes.Components
 {
+	/// <summary>
+	/// Some things.
+	/// </summary>
 	public sealed class PlaceholderComponent
 	{
 	}

@@ -6,11 +6,14 @@ using System.Collections.Generic;
 
 namespace TextAdventure.Scenes
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public struct Line
 	{
 		public string Key;
-		public List<string> Lines;
 		public int StartX;
+		public List<string> Lines;
 
 		public Line(string key, int startX)
 		{

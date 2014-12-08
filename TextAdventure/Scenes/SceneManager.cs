@@ -9,7 +9,10 @@ using System.Text;
 
 namespace TextAdventure.Scenes
 {
-	static class SceneManager
+	/// <summary>
+	/// Things one might want to ignore.
+	/// </summary>
+	public static class SceneManager
 	{
 		public const int GameWidth = 64;
 		public const int GameHeight = 36;
