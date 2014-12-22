@@ -27,7 +27,7 @@ namespace TextAdventure.Scenes.Levels
 		{
 			components.Add(component);
 		}
-		protected override void HandleInput(List<string> arguments)
+		protected override bool HandleInput(List<string> arguments)
 		{
 			Component interactComponent = null;
 
@@ -44,12 +44,13 @@ namespace TextAdventure.Scenes.Levels
 
 			if (interactComponent != null)
 			{
-				interactComponent.Interact();
+				return interactComponent.Interact();
 			}
 			else
 			{
 				Message(OnNoActionFound());
 			}
+			return false;
 		}
 
 		protected abstract string OnNoActionFound();

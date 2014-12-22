@@ -6,6 +6,9 @@ using System;
 
 namespace TextAdventure.Scenes.Components
 {
+	/// <summary>
+	/// Represents a glass.
+	/// </summary>
 	public sealed class GlassComponent : Component
 	{
 		private static readonly string[] activators = {

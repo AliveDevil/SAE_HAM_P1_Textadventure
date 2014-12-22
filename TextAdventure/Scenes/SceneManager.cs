@@ -4,8 +4,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using TextAdventure.Scenes.Components;
 
 namespace TextAdventure.Scenes
 {
@@ -23,11 +25,13 @@ namespace TextAdventure.Scenes
 		public const char BorderHorizontalChar = '-';
 		public const char BorderVerticalChar = '|';
 
+		private static List<Component> registeredComponents = new List<Component>();
 		private static bool exit = false;
 		private static int messageY = 0;
 		private static Scene currentScene;
 
 		public static Scene CurrentScene { get { return currentScene; } }
+		public static ReadOnlyCollection<Component> RegisteredComponents { get { return registeredComponents.AsReadOnly(); } }
 
 		public static void LoadScene<T>(params string[] arguments) where T : Scene
 		{
@@ -51,6 +55,17 @@ namespace TextAdventure.Scenes
 		{
 			DrawTextBlock(message, messageY);
 			messageY += message.Length / GameWidth + 1;
+		}
+		public static void RegisterGlobalComponent(Component component)
+		{
+			if (!registeredComponents.Contains(component))
+			{
+				registeredComponents.Add(component);
+			}
+		}
+		public static IEnumerable<Component> GetComponentByType<T>() where T:Component
+		{
+			return RegisteredComponents.OfType<T>();
 		}
 
 		#region Draw Stuff

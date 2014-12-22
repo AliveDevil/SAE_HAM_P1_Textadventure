@@ -15,7 +15,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public abstract class Component
 	{
-		public delegate void ComponentCallback(Component component);
+		public delegate bool ComponentCallback(Component component);
 
 		private ComponentCallback callback;
 		private string name;
@@ -53,9 +53,9 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Executes current callback.
 		/// </summary>
-		public void Interact()
+		public bool Interact()
 		{
-			callback(this);
+			return callback(this);
 		}
 	}
 }

@@ -21,9 +21,10 @@ namespace TextAdventure.Scenes
 		}
 
 		[Action("back", "Credits_Back")]
-		private void BackAction()
+		private bool BackAction()
 		{
 			SceneManager.LoadScene<MainMenuScene>();
+			return true;
 		}
 	}
 }

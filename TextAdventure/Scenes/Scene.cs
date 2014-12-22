@@ -17,13 +17,15 @@ namespace TextAdventure.Scenes
 	/// </summary>
 	public abstract class Scene
 	{
-		private Dictionary<string, Action> actions;
-		private List<string> messages;
+		public delegate bool ExecuteAction();
+
+		public ReadOnlyDictionary<string, ExecuteAction> Actions;
+		public ReadOnlyCollection<string> Messages;
 
 		protected readonly ReadOnlyCollection<string> Arguments;
 
-		public ReadOnlyDictionary<string, Action> Actions;
-		public ReadOnlyCollection<string> Messages;
+		private Dictionary<string, ExecuteAction> actions;
+		private List<string> messages;
 
 		public virtual string Title { get { return "Scene"; } }
 		public virtual string Description { get { return string.Empty; } }
@@ -31,9 +33,9 @@ namespace TextAdventure.Scenes
 
 		public Scene(params string[] arguments)
 		{
-			actions = new Dictionary<string, Action>();
+			actions = new Dictionary<string, ExecuteAction>();
 			messages = new List<string>();
-			Actions = new ReadOnlyDictionary<string, Action>(actions);
+			Actions = new ReadOnlyDictionary<string, ExecuteAction>(actions);
 			Messages = new ReadOnlyCollection<string>(messages);
 			Arguments = new ReadOnlyCollection<string>(arguments);
 		}
@@ -42,7 +44,7 @@ namespace TextAdventure.Scenes
 		{
 			messages.Add(message);
 		}
-		protected void RegisterAction(Action method)
+		protected void RegisterAction(ExecuteAction method)
 		{
 			string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToLower();
 			if (!string.IsNullOrEmpty(key))
@@ -50,27 +52,29 @@ namespace TextAdventure.Scenes
 				actions[key] = method;
 			}
 		}
-		protected virtual void HandleInput(List<string> arguments)
+		protected virtual bool HandleInput(List<string> arguments)
 		{
 			Message(string.Format(Resources.InvalidAction, string.Join(" ", arguments)));
+			return true;
 		}
 
 		public virtual void Initialize() { }
 
-		public void PerformAction(List<string> arguments)
+		public bool PerformAction(List<string> arguments)
 		{
 			if (arguments.Count > 0)
 			{
-				Action executeAction;
+				ExecuteAction executeAction;
 				if (actions.TryGetValue(arguments[0], out executeAction))
 				{
-					executeAction();
+					return executeAction();
 				}
 				else
 				{
-					HandleInput(arguments);
+					return HandleInput(arguments);
 				}
 			}
+			return false;
 		}
 	}
 }

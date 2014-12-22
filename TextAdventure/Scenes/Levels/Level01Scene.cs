@@ -38,22 +38,25 @@ namespace TextAdventure.Scenes.Levels
 			return Resources.Room1_Fail;
 		}
 
-		private void OpenDoor(Component component)
+		private bool OpenDoor(Component component)
 		{
 			SceneManager.LoadScene<Level02Scene>();
+			return true;
 		}
-		private void TurnLightSwitch(Component component)
+		private bool TurnLightSwitch(Component component)
 		{
 			SwitchComponent @switch = component as SwitchComponent;
 			@switch.Switched = true;
 			@switch.Enabled = false;
 			Message(Resources.Room1_LightSwitch_TurnOn);
 			AddComponent(new GlassComponent("glass", DrinkGlass));
+			return true;
 		}
 
-		private void DrinkGlass(Component component)
+		private bool DrinkGlass(Component component)
 		{
 			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_Glass);
+			return true;
 		}
 	}
 }

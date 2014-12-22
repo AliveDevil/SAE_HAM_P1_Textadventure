@@ -5,6 +5,7 @@
 using System;
 using TextAdventure.Attributes;
 using TextAdventure.Properties;
+using TextAdventure.Scenes.Components.Entities;
 using TextAdventure.Scenes.Levels;
 
 namespace TextAdventure.Scenes
@@ -26,21 +27,25 @@ namespace TextAdventure.Scenes
 		}
 
 		[Action("start", "MainMenu_Start")]
-		private void StartAdventureAction()
+		private bool StartAdventureAction()
 		{
+			SceneManager.RegisterGlobalComponent(new Player("player"));
 			SceneManager.LoadScene<Level01Scene>();
+			return true;
 		}
 
 		[Action("credits", "MainMenu_Credits")]
-		private void CreditsAction()
+		private bool CreditsAction()
 		{
 			SceneManager.LoadScene<CreditsScene>();
+			return true;
 		}
 
 		[Action("exit", "MainMenu_Exit")]
-		private void ExitAction()
+		private bool ExitAction()
 		{
 			SceneManager.Exit();
+			return true;
 		}
 	}
 }

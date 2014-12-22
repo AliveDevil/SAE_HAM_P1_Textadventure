@@ -6,6 +6,9 @@ using System;
 
 namespace TextAdventure.Scenes.Components
 {
+	/// <summary>
+	/// Represents a switch.
+	/// </summary>
 	public sealed class SwitchComponent : Component
 	{
 		private static readonly string[] activators = {
