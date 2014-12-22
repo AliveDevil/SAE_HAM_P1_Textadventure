@@ -24,7 +24,7 @@ namespace TextAdventure.Scenes.Components
 		/// </summary>
 		public bool Enabled { get; set; }
 		/// <summary>
-		/// 
+		/// Returns current components name.
 		/// </summary>
 		public string Name { get { return name; } }
 

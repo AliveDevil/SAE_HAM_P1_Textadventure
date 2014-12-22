@@ -4,10 +4,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
-using TextAdventure.Scenes;
+using System.Reflection;
 using TextAdventure.Attributes;
+using TextAdventure.Scenes;
 
 namespace TextAdventure
 {

@@ -2,8 +2,6 @@
  * Author: Jöran Malek
  */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;

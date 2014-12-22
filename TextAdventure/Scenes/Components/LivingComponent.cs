@@ -1,6 +1,8 @@
-﻿using System;
-using System.Linq;
-using TextAdventure.Scenes.Levels;
+﻿/*
+ * Author: Jöran Malek
+ */
+
+using System;
 
 namespace TextAdventure.Scenes.Components
 {
