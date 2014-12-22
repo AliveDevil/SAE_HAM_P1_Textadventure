@@ -61,6 +61,7 @@
     <Compile Include="Scenes\GameOverScene.cs" />
     <Compile Include="Scenes\Levels\Level01Scene.cs" />
     <Compile Include="Scenes\Levels\Level02Scene.cs" />
+    <Compile Include="Scenes\Levels\Level03Scene.cs" />
     <Compile Include="Scenes\Levels\LevelScene.cs" />
     <Compile Include="Scenes\Line.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />

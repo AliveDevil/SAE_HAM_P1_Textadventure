@@ -14,6 +14,6 @@ namespace TextAdventure.Scenes.Components
 														  "drink"
 													  };
 
-		public GlassComponent(string name, Action<Component> callback) : base(name, activators, callback) { }
+		public GlassComponent(string name, ComponentCallback callback) : base(name, activators, callback) { }
 	}
 }

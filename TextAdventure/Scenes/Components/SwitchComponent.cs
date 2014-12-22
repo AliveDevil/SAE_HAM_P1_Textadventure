@@ -17,7 +17,7 @@ namespace TextAdventure.Scenes.Components
 
 		public bool Switched { get; set; }
 
-		public SwitchComponent(string name, bool switched, Action<Component> callback)
+		public SwitchComponent(string name, bool switched, ComponentCallback callback)
 			: base(name, activators, callback)
 		{
 			Switched = switched;

@@ -11,7 +11,7 @@ namespace TextAdventure.Scenes.Components
 		public int Damage { get; protected set; }
 		public int Health { get; protected set; }
 
-		public LivingComponent(string name, int damage, int health, string[] activateOn, Action<Component> callback)
+		public LivingComponent(string name, int damage, int health, string[] activateOn, ComponentCallback callback)
 			: base(name, activateOn, callback)
 		{
 			this.Damage = damage;

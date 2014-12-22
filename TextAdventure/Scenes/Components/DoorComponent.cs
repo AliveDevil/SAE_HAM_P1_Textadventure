@@ -13,6 +13,6 @@ namespace TextAdventure.Scenes.Components
 														  "open"
 													  };
 
-		public DoorComponent(string name, Action<Component> callback) : base(name, activators, callback) { }
+		public DoorComponent(string name, ComponentCallback callback) : base(name, activators, callback) { }
 	}
 }

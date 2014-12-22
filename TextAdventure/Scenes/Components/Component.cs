@@ -15,7 +15,9 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public abstract class Component
 	{
-		private Action<Component> callback;
+		public delegate void ComponentCallback(Component component);
+
+		private ComponentCallback callback;
 		private string name;
 		private string[] activateOn;
 
@@ -28,7 +30,7 @@ namespace TextAdventure.Scenes.Components
 		/// </summary>
 		public string Name { get { return name; } }
 
-		public Component(string name, string[] activateOn, Action<Component> callback)
+		public Component(string name, string[] activateOn, ComponentCallback callback)
 		{
 			this.name = name;
 			this.callback = callback;
