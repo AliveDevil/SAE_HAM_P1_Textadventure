@@ -25,11 +25,13 @@ namespace TextAdventure.Scenes
 
 		private static bool exit = false;
 		private static int messageY = 0;
-
 		private static Scene currentScene;
-		public static void LoadScene<T>() where T : Scene, new()
+
+		public static Scene CurrentScene { get { return currentScene; } }
+
+		public static void LoadScene<T>(params string[] arguments) where T : Scene
 		{
-			currentScene = new T();
+			currentScene = (T)Activator.CreateInstance(typeof(T), arguments);
 			currentScene.Initialize();
 		}
 		public static void Run()
@@ -51,13 +53,13 @@ namespace TextAdventure.Scenes
 			messageY += message.Length / GameWidth + 1;
 		}
 
+		#region Draw Stuff
 		private static void SetResolution()
 		{
 			Console.SetWindowSize(1, 1);
 			Console.SetBufferSize(BufferWidth, BufferHeight);
 			Console.SetWindowSize(BufferWidth, BufferHeight);
 		}
-
 		private static void PerformWrite()
 		{
 			using (HideCursor hideCursor = new HideCursor())
@@ -66,29 +68,6 @@ namespace TextAdventure.Scenes
 				DrawScene();
 			}
 		}
-		private static void PerformInput()
-		{
-			SetCursorPosition(-1, GameHeight + 1);
-			Console.Write("Action> ");
-			ConsoleKeyInfo key;
-			string input = "";
-			while ((key = Console.ReadKey(true)).Key != ConsoleKey.Enter)
-			{
-				if (key.Key == ConsoleKey.Backspace && input.Length > 0)
-				{
-					input = input.Substring(0, input.Length - 1);
-				}
-				else
-				{
-					input += key.KeyChar;
-				}
-				SetCursorPosition(7, GameHeight + 1);
-				Console.Write(input);
-			}
-			currentScene.PerformAction(input);
-		}
-
-		#region Draw Stuff
 		private static void ClearConsole()
 		{
 			messageY = 0;
@@ -119,6 +98,7 @@ namespace TextAdventure.Scenes
 		{
 			DrawTitle();
 			DrawDescription();
+			DrawMessages();
 			DrawActions();
 		}
 		private static void DrawTitle()
@@ -131,6 +111,14 @@ namespace TextAdventure.Scenes
 		{
 			DrawTextBlock(currentScene.Description, 1);
 			messageY += currentScene.Description.Length / GameWidth + 1;
+		}
+		private static void DrawMessages()
+		{
+			foreach (string message in currentScene.Messages)
+			{
+				DrawTextBlock(message, messageY);
+				messageY += message.Length / GameWidth + 1;
+			}
 		}
 		private static void DrawActions()
 		{
@@ -170,31 +158,35 @@ namespace TextAdventure.Scenes
 		{
 			Dictionary<string, string> actions = currentScene.GetActions();
 			List<Line> lines = new List<Line>();
-			int maxKeyLength = actions.Max(pair => pair.Key.Length);
-			int startX = maxKeyLength + 1;
-			int maxLength = GameWidth - startX;
 
-			foreach (KeyValuePair<string, string> pair in actions)
+			if (actions.Any())
 			{
-				Line line = new Line(pair.Key, startX);
-				string lineString = "";
-				for (int i = 0; i < pair.Value.Length; i++)
+				int maxKeyLength = actions.Max(pair => pair.Key.Length);
+				int startX = maxKeyLength + 1;
+				int maxLength = GameWidth - startX;
+
+				foreach (KeyValuePair<string, string> pair in actions)
 				{
-					if (lineString.Length < maxLength)
+					Line line = new Line(pair.Key, startX);
+					string lineString = "";
+					for (int i = 0; i < pair.Value.Length; i++)
 					{
-						lineString += pair.Value[i];
+						if (lineString.Length < maxLength)
+						{
+							lineString += pair.Value[i];
+						}
+						else
+						{
+							line.Lines.Add(lineString);
+							lineString = pair.Value[i].ToString();
+						}
 					}
-					else
+					if (!string.IsNullOrEmpty(lineString))
 					{
 						line.Lines.Add(lineString);
-						lineString = pair.Value[i].ToString();
 					}
+					lines.Add(line);
 				}
-				if (!string.IsNullOrEmpty(lineString))
-				{
-					line.Lines.Add(lineString);
-				}
-				lines.Add(line);
 			}
 
 			return lines;
@@ -210,10 +202,48 @@ namespace TextAdventure.Scenes
 		}
 		private static void DrawTextBlock(string text, int y)
 		{
-			for (int x = 0; x < text.Length; x++)
+			foreach (string line in SplitLines(text))
 			{
-				DrawChar(x % GameWidth, x / GameWidth + 1, text[x]);
+				for (int i = 0; i < line.Length; i++)
+				{
+					DrawChar(i, y, line[i]);
+				}
+				y += 1;
 			}
+		}
+		private static string[] SplitLines(string text)
+		{
+			List<string> lines = new List<string>();
+
+			int x = 0;
+			StringBuilder currentLine = new StringBuilder();
+			for (int i = 0; i < text.Length; i++)
+			{
+				if (text[i] == '\n')
+				{
+					x = 0;
+					WriteLineToStringBuilder(lines, currentLine);
+					continue;
+				}
+				else if (x >= GameWidth)
+				{
+					x = 0;
+					WriteLineToStringBuilder(lines, currentLine);
+				}
+				currentLine.Append(text[i]);
+				x += 1;
+			}
+			if (currentLine.Length > 0)
+			{
+				lines.Add(currentLine.ToString());
+			}
+
+			return lines.ToArray();
+		}
+		private static void WriteLineToStringBuilder(List<string> lines, StringBuilder builder)
+		{
+			lines.Add(builder.ToString());
+			builder.Clear();
 		}
 		#endregion
 
@@ -256,6 +286,46 @@ namespace TextAdventure.Scenes
 		private static int Clamp(int val, int min, int max)
 		{
 			return val > min ? val < max ? val : max : min;
+		}
+		#endregion
+
+		#region Input Stuff
+		private static void PerformInput()
+		{
+			SetCursorPosition(-1, GameHeight + 1);
+			Console.Write("Action> ");
+			string input = Console.ReadLine();
+
+			currentScene.PerformAction(ExtractArguments(input));
+		}
+		private static List<string> ExtractArguments(string input)
+		{
+			List<string> arguments = new List<string>();
+
+			string argument = "";
+			for (int i = 0; i < input.Length; i++)
+			{
+				char c = input[i];
+				if (IsArgumentPart(c))
+				{
+					argument += c;
+				}
+				else if (!string.IsNullOrEmpty(argument))
+				{
+					arguments.Add(argument);
+					argument = "";
+				}
+			}
+			if (!string.IsNullOrEmpty(argument))
+			{
+				arguments.Add(argument);
+			}
+
+			return arguments;
+		}
+		private static bool IsArgumentPart(char c)
+		{
+			return !(char.IsControl(c) || char.IsPunctuation(c) || char.IsSymbol(c) || char.IsWhiteSpace(c));
 		}
 		#endregion
 	}

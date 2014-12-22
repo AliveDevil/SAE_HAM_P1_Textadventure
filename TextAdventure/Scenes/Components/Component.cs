@@ -3,7 +3,9 @@
  */
 
 using System;
+using System.Linq;
 using TextAdventure.Properties;
+
 namespace TextAdventure.Scenes.Components
 {
 	/// <summary>
@@ -13,20 +15,25 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public abstract class Component
 	{
-		private Action callback;
+		private Action<Component> callback;
+		private string name;
+		private string[] activateOn;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual string Name { get { return this.GetType().Name; } }
+		public bool Enabled { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual string Action { get { return "interact"; } }
+		public string Name { get { return name; } }
 
-		public Component(Action callback)
+		public Component(string name, string[] activateOn, Action<Component> callback)
 		{
+			this.name = name;
 			this.callback = callback;
+			this.activateOn = activateOn;
+			this.Enabled = true;
 		}
 
 		/// <summary>
@@ -37,7 +44,8 @@ namespace TextAdventure.Scenes.Components
 		/// <returns></returns>
 		public bool CanInteract(string action, string name)
 		{
-			return action.Equals(Action, StringComparison.InvariantCultureIgnoreCase) && name.Equals(Name, StringComparison.InvariantCultureIgnoreCase);
+			return name.Equals(Name, StringComparison.InvariantCultureIgnoreCase) &&
+				activateOn.Any(item => item.Equals(action, StringComparison.InvariantCultureIgnoreCase));
 		}
 
 		/// <summary>
@@ -45,7 +53,7 @@ namespace TextAdventure.Scenes.Components
 		/// </summary>
 		public void Interact()
 		{
-			callback();
+			callback(this);
 		}
 	}
 }

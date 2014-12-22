@@ -106,6 +106,34 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You just finished the game. The following has been added to your finish:
+        ///{0} ähnelt.
+        /// </summary>
+        internal static string GameOver_Description {
+            get {
+                return ResourceManager.GetString("GameOver_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You just finished the game. ähnelt.
+        /// </summary>
+        internal static string GameOver_Title {
+            get {
+                return ResourceManager.GetString("GameOver_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Input {0} is unknown. ähnelt.
+        /// </summary>
+        internal static string InvalidAction {
+            get {
+                return ResourceManager.GetString("InvalidAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Show me credits. ähnelt.
         /// </summary>
         internal static string MainMenu_Credits {
@@ -147,6 +175,96 @@ namespace TextAdventure.Properties {
         internal static string MainMenu_Title {
             get {
                 return ResourceManager.GetString("MainMenu_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape. ähnelt.
+        /// </summary>
+        internal static string Room1_Description_Dark {
+            get {
+                return ResourceManager.GetString("Room1_Description_Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You switched on the light. You are able to see every corner of this room. It is not large. There is a door on the other side. The round silhouette turns out to be a table. There is a glass with green and fluid content on the table. ähnelt.
+        /// </summary>
+        internal static string Room1_Description_Light {
+            get {
+                return ResourceManager.GetString("Room1_Description_Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You drunk the glass with red content. You do not feel well and slowly start faltering. ähnelt.
+        /// </summary>
+        internal static string Room1_Died_Glass {
+            get {
+                return ResourceManager.GetString("Room1_Died_Glass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You tried everything, but nothing happened. ähnelt.
+        /// </summary>
+        internal static string Room1_Fail {
+            get {
+                return ResourceManager.GetString("Room1_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You have toggled the light switch. ähnelt.
+        /// </summary>
+        internal static string Room1_LightSwitch_TurnOn {
+            get {
+                return ResourceManager.GetString("Room1_LightSwitch_TurnOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Entry Room ähnelt.
+        /// </summary>
+        internal static string Room1_Title {
+            get {
+                return ResourceManager.GetString("Room1_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You opened the door and went through it. Something got your attention. It&apos;s a small, grey thing. There in a corner of this room. After some time you recognize a mice in it. Right next to it is a door. On this door stands &quot;Mage&quot; in magical letters. ähnelt.
+        /// </summary>
+        internal static string Room2_Description {
+            get {
+                return ResourceManager.GetString("Room2_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Maybe .. &quot;attack&quot; or &quot;sneak&quot; are what you want to try? ähnelt.
+        /// </summary>
+        internal static string Room2_Fail {
+            get {
+                return ResourceManager.GetString("Room2_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Long Hall ähnelt.
+        /// </summary>
+        internal static string Room2_Title {
+            get {
+                return ResourceManager.GetString("Room2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die with ähnelt.
+        /// </summary>
+        internal static string StrikeWords {
+            get {
+                return ResourceManager.GetString("StrikeWords", resourceCulture);
             }
         }
     }

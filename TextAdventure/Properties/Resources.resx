@@ -132,6 +132,16 @@
   <data name="DefaultInteract" xml:space="preserve">
     <value>You interacted with {0}.</value>
   </data>
+  <data name="GameOver_Description" xml:space="preserve">
+    <value>You just finished the game. The following has been added to your finish:
+{0}</value>
+  </data>
+  <data name="GameOver_Title" xml:space="preserve">
+    <value>You just finished the game.</value>
+  </data>
+  <data name="InvalidAction" xml:space="preserve">
+    <value>Input {0} is unknown.</value>
+  </data>
   <data name="MainMenu_Credits" xml:space="preserve">
     <value>Show me credits.</value>
   </data>
@@ -146,5 +156,35 @@
   </data>
   <data name="MainMenu_Title" xml:space="preserve">
     <value>TextAdventure</value>
+  </data>
+  <data name="Room1_Description_Dark" xml:space="preserve">
+    <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>
+  </data>
+  <data name="Room1_Description_Light" xml:space="preserve">
+    <value>You switched on the light. You are able to see every corner of this room. It is not large. There is a door on the other side. The round silhouette turns out to be a table. There is a glass with green and fluid content on the table.</value>
+  </data>
+  <data name="Room1_Died_Glass" xml:space="preserve">
+    <value>You drunk the glass with red content. You do not feel well and slowly start faltering.</value>
+  </data>
+  <data name="Room1_Fail" xml:space="preserve">
+    <value>You tried everything, but nothing happened.</value>
+  </data>
+  <data name="Room1_LightSwitch_TurnOn" xml:space="preserve">
+    <value>You have toggled the light switch.</value>
+  </data>
+  <data name="Room1_Title" xml:space="preserve">
+    <value>Entry Room</value>
+  </data>
+  <data name="Room2_Description" xml:space="preserve">
+    <value>You opened the door and went through it. Something got your attention. It's a small, grey thing. There in a corner of this room. After some time you recognize a mice in it. Right next to it is a door. On this door stands "Mage" in magical letters.</value>
+  </data>
+  <data name="Room2_Fail" xml:space="preserve">
+    <value>Maybe .. "attack" or "sneak" are what you want to try?</value>
+  </data>
+  <data name="Room2_Title" xml:space="preserve">
+    <value>Long Hall</value>
+  </data>
+  <data name="StrikeWords" xml:space="preserve">
+    <value>with</value>
   </data>
 </root>

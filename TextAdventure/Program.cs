@@ -13,6 +13,7 @@ namespace TextAdventure
 {
 	static class Program
 	{
+		public static readonly Random Random = new Random();
 		#region Helper Methods
 		public static Dictionary<string, string> GetActions(this Scene scene)
 		{

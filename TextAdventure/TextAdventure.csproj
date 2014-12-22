@@ -52,9 +52,16 @@
     </Compile>
     <Compile Include="Scenes\CellType.cs" />
     <Compile Include="Scenes\Components\Component.cs" />
+    <Compile Include="Scenes\Components\DoorComponent.cs" />
+    <Compile Include="Scenes\Components\GlassComponent.cs" />
+    <Compile Include="Scenes\Components\LivingComponent.cs" />
     <Compile Include="Scenes\Components\PlaceholderComponent.cs" />
+    <Compile Include="Scenes\Components\SwitchComponent.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
+    <Compile Include="Scenes\GameOverScene.cs" />
     <Compile Include="Scenes\Levels\Level01Scene.cs" />
+    <Compile Include="Scenes\Levels\Level02Scene.cs" />
+    <Compile Include="Scenes\Levels\LevelScene.cs" />
     <Compile Include="Scenes\Line.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\Scene.cs" />
