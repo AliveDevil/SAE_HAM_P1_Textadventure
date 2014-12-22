@@ -13,6 +13,7 @@ namespace TextAdventure.Scenes
 	public sealed class CreditsScene : Scene
 	{
 		public override string Title { get { return Resources.Credits_Title; } }
+		public override string Description { get { return Resources.Credits_Description; } }
 
 		public override void Initialize()
 		{

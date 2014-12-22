@@ -79,7 +79,11 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die This game has been made by Jöran Malek (GPBP914) as first project at SAE Institute Hamburg. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die This game has been made by Jöran Malek (GPBP914) as first project at SAE Institute Hamburg.
+        ///Rules: Console Game, Style of Zorg.
+        ///
+        ///Idea: Jöran Malek
+        ///Programming: Jöran Malek ähnelt.
         /// </summary>
         internal static string Credits_Description {
             get {

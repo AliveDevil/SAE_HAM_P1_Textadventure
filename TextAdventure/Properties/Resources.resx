@@ -124,7 +124,11 @@
     <value>Back to menu.</value>
   </data>
   <data name="Credits_Description" xml:space="preserve">
-    <value>This game has been made by Jöran Malek (GPBP914) as first project at SAE Institute Hamburg.</value>
+    <value>This game has been made by Jöran Malek (GPBP914) as first project at SAE Institute Hamburg.
+Rules: Console Game, Style of Zorg.
+
+Idea: Jöran Malek
+Programming: Jöran Malek</value>
   </data>
   <data name="Credits_Title" xml:space="preserve">
     <value>Credits</value>
