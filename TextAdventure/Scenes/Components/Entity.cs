@@ -14,8 +14,8 @@ namespace TextAdventure.Scenes.Components
 		public int Damage { get; protected set; }
 		public int Health { get; protected set; }
 
-		public Entity(string name, int damage, int health, string[] activateOn, ComponentCallback callback)
-			: base(name, activateOn, callback)
+		public Entity(string name, bool enabled, int damage, int health)
+			: base(name, enabled)
 		{
 			this.Damage = damage;
 			this.Health = health;

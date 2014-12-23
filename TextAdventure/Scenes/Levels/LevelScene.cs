@@ -18,9 +18,9 @@ namespace TextAdventure.Scenes.Levels
 
 		protected ReadOnlyCollection<Component> Components { get { return components.AsReadOnly(); } }
 
-		public IEnumerable<T> FindComponent<T>() where T : Component
+		public T FindComponent<T>() where T : Component
 		{
-			return components.OfType<T>();
+			return components.OfType<T>().FirstOrDefault();
 		}
 
 		protected void AddComponent(Component component)
@@ -44,7 +44,7 @@ namespace TextAdventure.Scenes.Levels
 
 			if (interactComponent != null)
 			{
-				return interactComponent.Interact();
+				return interactComponent.Interact(arguments[0]);
 			}
 			else
 			{
@@ -52,7 +52,6 @@ namespace TextAdventure.Scenes.Levels
 			}
 			return false;
 		}
-
 		protected abstract string OnNoActionFound();
 
 		private Component InteractableComponents(Func<Component, bool> comparer)

@@ -11,12 +11,15 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class GlassComponent : Component
 	{
-		private static readonly string[] activators = {
-														  "use",
-														  "take",
-														  "drink"
-													  };
+		public event ComponentCallback Take;
+		public event ComponentCallback Drink;
 
-		public GlassComponent(string name, ComponentCallback callback) : base(name, activators, callback) { }
+		public GlassComponent(string name, bool enabled)
+			: base(name, enabled)
+		{
+			RegisterCallback("take", Take);
+			RegisterCallback("drink", Drink);
+			RegisterCallback("use", Drink);
+		}
 	}
 }

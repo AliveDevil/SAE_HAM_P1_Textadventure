@@ -3,6 +3,7 @@
  */
 
 using System.Linq;
+using TextAdventure.Attributes;
 using TextAdventure.Properties;
 
 namespace TextAdventure.Scenes
@@ -21,10 +22,13 @@ namespace TextAdventure.Scenes
 			}
 		}
 
-		public GameOverScene(params string[] arguments)
-			: base(arguments)
-		{
+		public GameOverScene(params string[] arguments) : base(arguments) { }
 
+		[Action("back", null)]
+		private bool BackAction()
+		{
+			SceneManager.LoadScene<MainMenuScene>();
+			return false;
 		}
 	}
 }

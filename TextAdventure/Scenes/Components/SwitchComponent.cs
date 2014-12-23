@@ -11,19 +11,18 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class SwitchComponent : Component
 	{
-		private static readonly string[] activators = {
-														  "use",
-														  "turn",
-														  "toggle",
-														  "switch"
-													  };
+		public event ComponentCallback Switch;
 
 		public bool Switched { get; set; }
 
-		public SwitchComponent(string name, bool switched, ComponentCallback callback)
-			: base(name, activators, callback)
+		public SwitchComponent(string name, bool enabled, bool switched)
+			: base(name, enabled)
 		{
 			Switched = switched;
+			RegisterCallback("use", Switch);
+			RegisterCallback("turn", Switch);
+			RegisterCallback("toggle", Switch);
+			RegisterCallback("switch", Switch);
 		}
 	}
 }

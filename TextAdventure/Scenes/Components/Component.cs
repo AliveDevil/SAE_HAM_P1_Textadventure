@@ -3,11 +3,19 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TextAdventure.Properties;
 
 namespace TextAdventure.Scenes.Components
 {
+	/// <summary>
+	/// Replacement for Func&lt;Component, bool&gt;.
+	/// </summary>
+	/// <param name="component"></param>
+	/// <returns></returns>
+	public delegate bool ComponentCallback(Component component);
+
 	/// <summary>
 	/// <para>Base class for interacting components.</para>
 	/// <para>Default usage in case-insensitive input is [Action] [Name].</para>
@@ -15,8 +23,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public abstract class Component
 	{
-		public delegate bool ComponentCallback(Component component);
-
+		private Dictionary<string, ComponentCallback> callbacks;
 		private ComponentCallback callback;
 		private string name;
 		private string[] activateOn;
@@ -30,12 +37,11 @@ namespace TextAdventure.Scenes.Components
 		/// </summary>
 		public string Name { get { return name; } }
 
-		public Component(string name, string[] activateOn, ComponentCallback callback)
+		public Component(string name, bool enabled)
 		{
 			this.name = name;
-			this.callback = callback;
-			this.activateOn = activateOn;
-			this.Enabled = true;
+			this.Enabled = enabled;
+			this.callbacks = new Dictionary<string, ComponentCallback>();
 		}
 
 		/// <summary>
@@ -47,15 +53,30 @@ namespace TextAdventure.Scenes.Components
 		public bool CanInteract(string action, string name)
 		{
 			return name.Equals(Name, StringComparison.InvariantCultureIgnoreCase) &&
-				activateOn.Any(item => item.Equals(action, StringComparison.InvariantCultureIgnoreCase));
+				callbacks.ContainsKey(action.ToLower());
 		}
 
 		/// <summary>
 		/// Executes current callback.
 		/// </summary>
-		public bool Interact()
+		public bool Interact(string action)
 		{
-			return callback(this);
+			ComponentCallback callback;
+			if (callbacks.TryGetValue(action.ToLower(), out callback))
+			{
+				return callback(this);
+			}
+			return false;
+		}
+
+		protected Component RegisterCallback(string action, ComponentCallback callback)
+		{
+			action = action.ToLower();
+			if (!callbacks.ContainsKey(action))
+			{
+				callbacks.Add(action, callback);
+			}
+			return this;
 		}
 	}
 }

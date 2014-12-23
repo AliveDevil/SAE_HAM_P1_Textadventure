@@ -16,7 +16,6 @@ namespace TextAdventure.Scenes
 	public sealed class MainMenuScene : Scene
 	{
 		public override string Title { get { return Resources.MainMenu_Title; } }
-		public override bool DrawActions { get { return true; } }
 		public override string Description { get { return Resources.MainMenu_Description; } }
 
 		public override void Initialize()
@@ -29,7 +28,7 @@ namespace TextAdventure.Scenes
 		[Action("start", "MainMenu_Start")]
 		private bool StartAdventureAction()
 		{
-			SceneManager.RegisterGlobalComponent(new Player("player"));
+			SceneManager.RegisterGlobalComponent(new Player("player", true));
 			SceneManager.LoadScene<Level01Scene>();
 			return true;
 		}

@@ -12,13 +12,13 @@ using TextAdventure.Properties;
 
 namespace TextAdventure.Scenes
 {
+	public delegate bool ExecuteAction();
+
 	/// <summary>
 	/// Base class for scenes the player might see.
 	/// </summary>
 	public abstract class Scene
 	{
-		public delegate bool ExecuteAction();
-
 		public ReadOnlyDictionary<string, ExecuteAction> Actions;
 		public ReadOnlyCollection<string> Messages;
 

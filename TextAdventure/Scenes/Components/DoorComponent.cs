@@ -11,11 +11,13 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class DoorComponent : Component
 	{
-		private static readonly string[] activators = {
-														  "use",
-														  "open"
-													  };
+		public event ComponentCallback Open;
 
-		public DoorComponent(string name, ComponentCallback callback) : base(name, activators, callback) { }
+		public DoorComponent(string name, bool enabled)
+			: base(name, enabled)
+		{
+			RegisterCallback("open", Open);
+			RegisterCallback("use", Open);
+		}
 	}
 }

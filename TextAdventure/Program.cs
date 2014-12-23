@@ -17,10 +17,10 @@ namespace TextAdventure
 		#region Helper Methods
 		public static Dictionary<string, string> GetActions(this Scene scene)
 		{
-			IEnumerable<Action> actionValues = scene.Actions.Values.Cast<Action>();
+			IEnumerable<ExecuteAction> actionValues = scene.Actions.Values.Cast<ExecuteAction>();
 			Dictionary<string, string> actionPairs = new Dictionary<string, string>();
 
-			foreach (Action action in actionValues)
+			foreach (ExecuteAction action in actionValues)
 			{
 				ActionAttribute attribute = action.Method.GetCustomAttribute<ActionAttribute>();
 				if (attribute != null)

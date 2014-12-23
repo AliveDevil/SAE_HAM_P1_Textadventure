@@ -5,6 +5,7 @@
 using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
+using TextAdventure.Scenes.Components.Entities;
 
 namespace TextAdventure.Scenes.Levels
 {
@@ -14,7 +15,6 @@ namespace TextAdventure.Scenes.Levels
 	public sealed class Level01Scene : LevelScene
 	{
 		public override string Title { get { return Resources.Room1_Title; } }
-		public override bool DrawActions { get { return false; } }
 		public override string Description
 		{
 			get
@@ -29,8 +29,16 @@ namespace TextAdventure.Scenes.Levels
 
 		public Level01Scene()
 		{
-			AddComponent(new SwitchComponent("switch", false, TurnLightSwitch));
-			AddComponent(new DoorComponent("door", OpenDoor));
+			SwitchComponent lightSwitch = new SwitchComponent("switch", true, false);
+			lightSwitch.Switch += TurnLightSwitch;
+			AddComponent(lightSwitch);
+			DoorComponent door = new DoorComponent("door", true);
+			door.Open += OpenDoor;
+			AddComponent(door);
+			GlassComponent glass = new GlassComponent("glass", false);
+			glass.Drink += DrinkGlass;
+			glass.Take += TakeGlass;
+			AddComponent(glass);
 		}
 
 		protected override string OnNoActionFound()
@@ -49,13 +57,18 @@ namespace TextAdventure.Scenes.Levels
 			@switch.Switched = true;
 			@switch.Enabled = false;
 			Message(Resources.Room1_LightSwitch_TurnOn);
-			AddComponent(new GlassComponent("glass", DrinkGlass));
+			FindComponent<GlassComponent>().Enabled = true;
 			return true;
 		}
-
 		private bool DrinkGlass(Component component)
 		{
-			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_Glass);
+			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_DrankGlass);
+			return true;
+		}
+		private bool TakeGlass(Component component)
+		{
+			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_TookGlass);
+			//SceneManager.GetComponentByType<Player>().
 			return true;
 		}
 	}

@@ -63,9 +63,9 @@ namespace TextAdventure.Scenes
 				registeredComponents.Add(component);
 			}
 		}
-		public static IEnumerable<Component> GetComponentByType<T>() where T:Component
+		public static Component GetComponentByType<T>() where T:Component
 		{
-			return RegisteredComponents.OfType<T>();
+			return RegisteredComponents.OfType<T>().FirstOrDefault();
 		}
 
 		#region Draw Stuff

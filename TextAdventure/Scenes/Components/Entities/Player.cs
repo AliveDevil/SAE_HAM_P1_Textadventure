@@ -14,9 +14,11 @@ namespace TextAdventure.Scenes.Components.Entities
 		private const int baseHealth = 100;
 		private const int baseDamage = 10;
 
-		public Player(string name)
-			: base(name, baseDamage, baseHealth, null, null)
+		public Player(string name, bool enabled) : base(name, enabled, baseDamage, baseHealth) { }
+
+		public void ComponentToInventory(Component component)
 		{
+
 		}
 	}
 }

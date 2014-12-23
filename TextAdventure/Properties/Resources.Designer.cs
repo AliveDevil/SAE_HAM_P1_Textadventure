@@ -192,7 +192,7 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die You switched on the light. You are able to see every corner of this room. It is not large. There is a door on the other side. The round silhouette turns out to be a table. There is a glass with green and fluid content on the table. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die You switched on the light. You are able to see every corner of this room. It is not large. There is a door on the other side. The round silhouette turns out to be a table. There is a glass with a red fluid inside on the table. ähnelt.
         /// </summary>
         internal static string Room1_Description_Light {
             get {
@@ -203,9 +203,18 @@ namespace TextAdventure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You drunk the glass with red content. You do not feel well and slowly start faltering. ähnelt.
         /// </summary>
-        internal static string Room1_Died_Glass {
+        internal static string Room1_Died_DrankGlass {
             get {
-                return ResourceManager.GetString("Room1_Died_Glass", resourceCulture);
+                return ResourceManager.GetString("Room1_Died_DrankGlass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You took the glass and you smell something intense.  ähnelt.
+        /// </summary>
+        internal static string Room1_Died_TookGlass {
+            get {
+                return ResourceManager.GetString("Room1_Died_TookGlass", resourceCulture);
             }
         }
         
@@ -260,6 +269,33 @@ namespace TextAdventure.Properties {
         internal static string Room2_Title {
             get {
                 return ResourceManager.GetString("Room2_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        internal static string Room3_Description {
+            get {
+                return ResourceManager.GetString("Room3_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The mage did not understand you. ähnelt.
+        /// </summary>
+        internal static string Room3_Fail {
+            get {
+                return ResourceManager.GetString("Room3_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mages Room ähnelt.
+        /// </summary>
+        internal static string Room3_Title {
+            get {
+                return ResourceManager.GetString("Room3_Title", resourceCulture);
             }
         }
         
