@@ -11,7 +11,21 @@ namespace TextAdventure.Scenes.Levels
 	public sealed class Level03Scene : LevelScene
 	{
 		public override string Title { get { return Resources.Room3_Title; } }
-		public override string Description { get { return Resources.Room3_Description_AskForName; } }
+		public override string Description
+		{
+			get
+			{
+				if (!SceneManager.GetComponentByType<Player>().HasName)
+				{
+					return Resources.Room3_Description_AskForName;
+				}
+				else
+				{
+
+				}
+				return "";
+			}
+		}
 
 		public Level03Scene()
 		{

@@ -21,9 +21,9 @@ namespace TextAdventure.Scenes.Components
 			this.Health = health;
 		}
 
-		public void Attack(Entity living)
+		public void Attack(Entity enemy)
 		{
-			living.ReceiveDamage(this);
+			enemy.ReceiveDamage(this);
 		}
 
 		protected void ReceiveDamage(Entity attacker)

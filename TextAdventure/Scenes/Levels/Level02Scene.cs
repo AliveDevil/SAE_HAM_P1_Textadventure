@@ -18,7 +18,7 @@ namespace TextAdventure.Scenes.Levels
 
 		public Level02Scene()
 		{
-			DoorComponent door = new DoorComponent("door", false);
+			DoorComponent door = new DoorComponent("door", true);
 			door.Open += OpenDoor;
 			AddComponent(door);
 		}

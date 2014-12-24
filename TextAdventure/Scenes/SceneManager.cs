@@ -125,15 +125,13 @@ namespace TextAdventure.Scenes
 		}
 		private static void DrawDescription()
 		{
-			DrawTextBlock(currentScene.Description, 1);
-			messageY += currentScene.Description.Length / GameWidth + 1;
+			messageY += DrawTextBlock(currentScene.Description, 1);
 		}
 		private static void DrawMessages()
 		{
 			foreach (string message in currentScene.Messages)
 			{
-				DrawTextBlock(message, messageY);
-				messageY += message.Length / GameWidth + 1;
+				messageY += DrawTextBlock(message, messageY);
 			}
 		}
 		private static void DrawActions()
@@ -216,9 +214,10 @@ namespace TextAdventure.Scenes
 				DrawChar(centeredX + i, y, text[i]);
 			}
 		}
-		private static void DrawTextBlock(string text, int y)
+		private static int DrawTextBlock(string text, int y)
 		{
-			foreach (string line in SplitLines(text))
+			string[] lines = SplitLines(text);
+			foreach (string line in lines)
 			{
 				for (int i = 0; i < line.Length; i++)
 				{
@@ -226,6 +225,7 @@ namespace TextAdventure.Scenes
 				}
 				y += 1;
 			}
+			return lines.Length;
 		}
 		private static string[] SplitLines(string text)
 		{
