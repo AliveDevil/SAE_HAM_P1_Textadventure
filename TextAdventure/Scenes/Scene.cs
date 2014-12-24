@@ -19,13 +19,13 @@ namespace TextAdventure.Scenes
 	/// </summary>
 	public abstract class Scene
 	{
-		public ReadOnlyDictionary<string, ExecuteAction> Actions;
 		public ReadOnlyCollection<string> Messages;
+		public ReadOnlyDictionary<string, ExecuteAction> Actions;
 
 		protected readonly ReadOnlyCollection<string> Arguments;
 
-		private Dictionary<string, ExecuteAction> actions;
 		private List<string> messages;
+		private Dictionary<string, ExecuteAction> actions;
 
 		public virtual string Title { get { return "Scene"; } }
 		public virtual string Description { get { return string.Empty; } }

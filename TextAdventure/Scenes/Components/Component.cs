@@ -14,7 +14,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	/// <param name="component"></param>
 	/// <returns></returns>
-	public delegate bool ComponentCallback(Component component);
+	public delegate bool ComponentCallback(Component component, string parameter);
 
 	/// <summary>
 	/// <para>Base class for interacting components.</para>
@@ -24,9 +24,6 @@ namespace TextAdventure.Scenes.Components
 	public abstract class Component
 	{
 		private Dictionary<string, ComponentCallback> callbacks;
-		private ComponentCallback callback;
-		private string name;
-		private string[] activateOn;
 
 		/// <summary>
 		/// 
@@ -35,11 +32,13 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Returns current components name.
 		/// </summary>
-		public string Name { get { return name; } }
+		public string Name { get; protected set; }
+
+		protected virtual bool CheckName { get { return true; } }
 
 		public Component(string name, bool enabled)
 		{
-			this.name = name;
+			this.Name = name;
 			this.Enabled = enabled;
 			this.callbacks = new Dictionary<string, ComponentCallback>();
 		}
@@ -52,23 +51,33 @@ namespace TextAdventure.Scenes.Components
 		/// <returns></returns>
 		public bool CanInteract(string action, string name)
 		{
-			return name.Equals(Name, StringComparison.InvariantCultureIgnoreCase) &&
+			/*
+			 * Return true if either not CheckName or components name equals given name invariant culture ignore case.
+			 * and if callbacks contains given actions key.
+			 */
+			return (!CheckName || name.Equals(Name, StringComparison.InvariantCultureIgnoreCase)) &&
 				callbacks.ContainsKey(action.ToLower());
 		}
 
 		/// <summary>
 		/// Executes current callback.
 		/// </summary>
-		public bool Interact(string action)
+		public bool Interact(string action, string parameter)
 		{
 			ComponentCallback callback;
 			if (callbacks.TryGetValue(action.ToLower(), out callback))
 			{
-				return callback(this);
+				return callback(this, parameter);
 			}
 			return false;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="action"></param>
+		/// <param name="callback"></param>
+		/// <returns></returns>
 		protected Component RegisterCallback(string action, ComponentCallback callback)
 		{
 			action = action.ToLower();

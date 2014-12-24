@@ -30,14 +30,14 @@ namespace TextAdventure.Scenes.Levels
 		public Level01Scene()
 		{
 			SwitchComponent lightSwitch = new SwitchComponent("switch", true, false);
-			lightSwitch.Switch += TurnLightSwitch;
+			lightSwitch.Switch = TurnLightSwitch;
 			AddComponent(lightSwitch);
 			DoorComponent door = new DoorComponent("door", true);
-			door.Open += OpenDoor;
+			door.Open = OpenDoor;
 			AddComponent(door);
 			GlassComponent glass = new GlassComponent("glass", false);
-			glass.Drink += DrinkGlass;
-			glass.Take += TakeGlass;
+			glass.Drink = DrinkGlass;
+			glass.Take = TakeGlass;
 			AddComponent(glass);
 		}
 
@@ -46,12 +46,12 @@ namespace TextAdventure.Scenes.Levels
 			return Resources.Room1_Fail;
 		}
 
-		private bool OpenDoor(Component component)
+		private bool OpenDoor(Component component, string parameter)
 		{
 			SceneManager.LoadScene<Level02Scene>();
 			return true;
 		}
-		private bool TurnLightSwitch(Component component)
+		private bool TurnLightSwitch(Component component, string parameter)
 		{
 			SwitchComponent @switch = component as SwitchComponent;
 			@switch.Switched = true;
@@ -60,12 +60,12 @@ namespace TextAdventure.Scenes.Levels
 			FindComponent<GlassComponent>().Enabled = true;
 			return true;
 		}
-		private bool DrinkGlass(Component component)
+		private bool DrinkGlass(Component component, string parameter)
 		{
 			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_DrankGlass);
 			return true;
 		}
-		private bool TakeGlass(Component component)
+		private bool TakeGlass(Component component, string parameter)
 		{
 			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_TookGlass);
 			//SceneManager.GetComponentByType<Player>().

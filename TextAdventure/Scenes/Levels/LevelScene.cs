@@ -23,6 +23,7 @@ namespace TextAdventure.Scenes.Levels
 			return components.OfType<T>().FirstOrDefault();
 		}
 
+		protected abstract string OnNoActionFound();
 		protected void AddComponent(Component component)
 		{
 			components.Add(component);
@@ -44,7 +45,7 @@ namespace TextAdventure.Scenes.Levels
 
 			if (interactComponent != null)
 			{
-				return interactComponent.Interact(arguments[0]);
+				return interactComponent.Interact(arguments[0], string.Join(" ", arguments.Skip(1)));
 			}
 			else
 			{
@@ -52,9 +53,8 @@ namespace TextAdventure.Scenes.Levels
 			}
 			return false;
 		}
-		protected abstract string OnNoActionFound();
 
-		private Component InteractableComponents(Func<Component, bool> comparer)
+		private Component InteractableComponents(Predicate<Component> comparer)
 		{
 			return components.Where(item => item.Enabled && comparer(item)).FirstOrDefault();
 		}

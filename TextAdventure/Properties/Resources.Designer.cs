@@ -273,11 +273,12 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die You enter the room called &quot;Mages room&quot;. It is bright and filled with lots of books and wood and stuff. Under a huge amount of books you see a long, blue hat. You move the books away and a mage sees into your eyes.
+        ///&quot;Hey, you must be&quot; ähnelt.
         /// </summary>
-        internal static string Room3_Description {
+        internal static string Room3_Description_AskForName {
             get {
-                return ResourceManager.GetString("Room3_Description", resourceCulture);
+                return ResourceManager.GetString("Room3_Description_AskForName", resourceCulture);
             }
         }
         
@@ -300,7 +301,7 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die with ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die with,me ähnelt.
         /// </summary>
         internal static string StrikeWords {
             get {

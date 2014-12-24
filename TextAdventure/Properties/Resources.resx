@@ -191,8 +191,9 @@ Programming: Jöran Malek</value>
   <data name="Room2_Title" xml:space="preserve">
     <value>Long Hall</value>
   </data>
-  <data name="Room3_Description" xml:space="preserve">
-    <value />
+  <data name="Room3_Description_AskForName" xml:space="preserve">
+    <value>You enter the room called "Mages room". It is bright and filled with lots of books and wood and stuff. Under a huge amount of books you see a long, blue hat. You move the books away and a mage sees into your eyes.
+"Hey, you must be"</value>
   </data>
   <data name="Room3_Fail" xml:space="preserve">
     <value>The mage did not understand you.</value>
@@ -201,6 +202,6 @@ Programming: Jöran Malek</value>
     <value>Mages Room</value>
   </data>
   <data name="StrikeWords" xml:space="preserve">
-    <value>with</value>
+    <value>with,me</value>
   </data>
 </root>

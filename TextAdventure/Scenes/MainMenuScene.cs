@@ -28,7 +28,7 @@ namespace TextAdventure.Scenes
 		[Action("start", "MainMenu_Start")]
 		private bool StartAdventureAction()
 		{
-			SceneManager.RegisterGlobalComponent(new Player("player", true));
+			SceneManager.RegisterGlobalComponent(new Player(true));
 			SceneManager.LoadScene<Level01Scene>();
 			return true;
 		}

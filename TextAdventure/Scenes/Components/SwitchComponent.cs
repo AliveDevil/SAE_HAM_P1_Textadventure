@@ -11,7 +11,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class SwitchComponent : Component
 	{
-		public event ComponentCallback Switch;
+		public ComponentCallback Switch;
 
 		public bool Switched { get; set; }
 
@@ -19,10 +19,19 @@ namespace TextAdventure.Scenes.Components
 			: base(name, enabled)
 		{
 			Switched = switched;
-			RegisterCallback("use", Switch);
-			RegisterCallback("turn", Switch);
-			RegisterCallback("toggle", Switch);
-			RegisterCallback("switch", Switch);
+			RegisterCallback("use", OnSwitch);
+			RegisterCallback("turn", OnSwitch);
+			RegisterCallback("toggle", OnSwitch);
+			RegisterCallback("switch", OnSwitch);
+		}
+
+		private bool OnSwitch(Component component, string parameter)
+		{
+			if (Switch != null)
+			{
+				return Switch(component, parameter);
+			}
+			return false;
 		}
 	}
 }

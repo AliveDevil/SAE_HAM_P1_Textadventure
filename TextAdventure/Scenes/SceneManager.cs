@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 
 namespace TextAdventure.Scenes
@@ -63,9 +64,9 @@ namespace TextAdventure.Scenes
 				registeredComponents.Add(component);
 			}
 		}
-		public static Component GetComponentByType<T>() where T:Component
+		public static T GetComponentByType<T>() where T : Component
 		{
-			return RegisteredComponents.OfType<T>().FirstOrDefault();
+			return RegisteredComponents.OfType<T>().FirstOrDefault() as T;
 		}
 
 		#region Draw Stuff
@@ -313,8 +314,13 @@ namespace TextAdventure.Scenes
 
 			currentScene.PerformAction(ExtractArguments(input));
 		}
+		private static List<string> ExcludedParts()
+		{
+			return Resources.StrikeWords.Split(',').ToList();
+		}
 		private static List<string> ExtractArguments(string input)
 		{
+			List<string> excludedArguments = ExcludedParts();
 			List<string> arguments = new List<string>();
 
 			string argument = "";
@@ -327,16 +333,28 @@ namespace TextAdventure.Scenes
 				}
 				else if (!string.IsNullOrEmpty(argument))
 				{
-					arguments.Add(argument);
-					argument = "";
+					AddToArguments(ref argument, excludedArguments, arguments);
 				}
 			}
 			if (!string.IsNullOrEmpty(argument))
 			{
-				arguments.Add(argument);
+				AddToArguments(ref argument, excludedArguments, arguments);
 			}
 
 			return arguments;
+		}
+		private static void AddToArguments(ref string argument, List<string> exclude, List<string> arguments)
+		{
+			bool inExcluded = false;
+			foreach (var item in exclude)
+			{
+				inExcluded = inExcluded | argument.Equals(item, StringComparison.InvariantCultureIgnoreCase);
+			}
+			if (!inExcluded)
+			{
+				arguments.Add(argument);
+			}
+			argument = "";
 		}
 		private static bool IsArgumentPart(char c)
 		{

@@ -28,7 +28,7 @@ namespace TextAdventure.Scenes.Levels
 			return Resources.Room2_Fail;
 		}
 
-		private bool OpenDoor(Component component)
+		private bool OpenDoor(Component component, string parameter)
 		{
 			SceneManager.LoadScene<Level03Scene>();
 			return true;

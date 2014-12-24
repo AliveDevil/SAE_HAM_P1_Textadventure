@@ -14,11 +14,27 @@ namespace TextAdventure.Scenes.Components.Entities
 		private const int baseHealth = 100;
 		private const int baseDamage = 10;
 
-		public Player(string name, bool enabled) : base(name, enabled, baseDamage, baseHealth) { }
+		public event ComponentCallback Rename;
+		public event ComponentCallback Attack;
+
+		protected override bool CheckName { get { return false; } }
+
+		public Player(bool enabled)
+			: base(null, enabled, baseDamage, baseHealth)
+		{
+			RegisterCallback("call", Rename);
+			RegisterCallback("say", Rename);
+			RegisterCallback("attack", Attack);
+		}
 
 		public void ComponentToInventory(Component component)
 		{
 
+		}
+
+		public void SetName(string name)
+		{
+			Name = name;
 		}
 	}
 }
