@@ -11,7 +11,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class DoorComponent : Component
 	{
-		public ComponentCallback Open;
+		public event ComponentCallback Open;
 
 		public DoorComponent(string name, bool enabled)
 			: base(name, enabled)

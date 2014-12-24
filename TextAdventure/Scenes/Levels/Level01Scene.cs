@@ -30,14 +30,14 @@ namespace TextAdventure.Scenes.Levels
 		public Level01Scene()
 		{
 			SwitchComponent lightSwitch = new SwitchComponent("switch", true, false);
-			lightSwitch.Switch = TurnLightSwitch;
+			lightSwitch.Switch += TurnLightSwitch;
 			AddComponent(lightSwitch);
 			DoorComponent door = new DoorComponent("door", true);
-			door.Open = OpenDoor;
+			door.Open += OpenDoor;
 			AddComponent(door);
 			GlassComponent glass = new GlassComponent("glass", false);
-			glass.Drink = DrinkGlass;
-			glass.Take = TakeGlass;
+			glass.Drink += DrinkGlass;
+			glass.Take += TakeGlass;
 			AddComponent(glass);
 		}
 

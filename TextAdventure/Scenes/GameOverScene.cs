@@ -22,12 +22,24 @@ namespace TextAdventure.Scenes
 			}
 		}
 
-		public GameOverScene(params string[] arguments) : base(arguments) { }
+		public GameOverScene(params string[] arguments)
+			: base(arguments)
+		{
+			RegisterAction(BackAction);
+			RegisterAction(QuitAction);
+		}
 
-		[Action("back", null)]
+		[Action("back", "GameOver_Back")]
 		private bool BackAction()
 		{
 			SceneManager.LoadScene<MainMenuScene>();
+			return false;
+		}
+
+		[Action("quit", "GameOver_uit")]
+		private bool QuitAction()
+		{
+			SceneManager.Exit();
 			return false;
 		}
 	}

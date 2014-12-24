@@ -11,7 +11,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class SwitchComponent : Component
 	{
-		public ComponentCallback Switch;
+		public event ComponentCallback Switch;
 
 		public bool Switched { get; set; }
 

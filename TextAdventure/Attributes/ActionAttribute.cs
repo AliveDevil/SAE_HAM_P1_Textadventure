@@ -23,7 +23,7 @@ namespace TextAdventure.Attributes
 		/// <summary>
 		/// Returns the assigned description key and looks it up in current ResourceManager.
 		/// </summary>
-		public string Description { get { return Resources.ResourceManager.GetString(description); } }
+		public string Description { get { return string.IsNullOrEmpty(description) ? Resources.NotFound : Resources.ResourceManager.GetString(description); } }
 
 		/// <summary>
 		/// Creates a new instance of ActionAttribute.

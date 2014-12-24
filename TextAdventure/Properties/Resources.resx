@@ -136,9 +136,15 @@ Programming: Jöran Malek</value>
   <data name="DefaultInteract" xml:space="preserve">
     <value>You interacted with {0}.</value>
   </data>
+  <data name="GameOver_Back" xml:space="preserve">
+    <value>Start over in main menu.</value>
+  </data>
   <data name="GameOver_Description" xml:space="preserve">
     <value>You just finished the game. The following has been added to your finish:
 {0}</value>
+  </data>
+  <data name="GameOver_Quit" xml:space="preserve">
+    <value>Exit this game.</value>
   </data>
   <data name="GameOver_Title" xml:space="preserve">
     <value>You just finished the game.</value>
@@ -160,6 +166,9 @@ Programming: Jöran Malek</value>
   </data>
   <data name="MainMenu_Title" xml:space="preserve">
     <value>TextAdventure</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Nothing found in translation.</value>
   </data>
   <data name="Room1_Description_Dark" xml:space="preserve">
     <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>

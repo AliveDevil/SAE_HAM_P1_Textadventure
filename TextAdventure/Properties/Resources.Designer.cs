@@ -110,12 +110,30 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Start over in main menu. ähnelt.
+        /// </summary>
+        internal static string GameOver_Back {
+            get {
+                return ResourceManager.GetString("GameOver_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You just finished the game. The following has been added to your finish:
         ///{0} ähnelt.
         /// </summary>
         internal static string GameOver_Description {
             get {
                 return ResourceManager.GetString("GameOver_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exit this game. ähnelt.
+        /// </summary>
+        internal static string GameOver_Quit {
+            get {
+                return ResourceManager.GetString("GameOver_Quit", resourceCulture);
             }
         }
         
@@ -179,6 +197,15 @@ namespace TextAdventure.Properties {
         internal static string MainMenu_Title {
             get {
                 return ResourceManager.GetString("MainMenu_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nothing found in translation. ähnelt.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
             }
         }
         

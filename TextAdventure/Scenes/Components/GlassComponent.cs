@@ -11,8 +11,8 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class GlassComponent : Component
 	{
-		public ComponentCallback Take;
-		public ComponentCallback Drink;
+		public event ComponentCallback Take;
+		public event ComponentCallback Drink;
 
 		public GlassComponent(string name, bool enabled)
 			: base(name, enabled)
