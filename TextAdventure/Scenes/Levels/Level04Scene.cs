@@ -39,7 +39,6 @@ namespace TextAdventure.Scenes.Levels
 				AddMessage(Resources.Room4_Progress);
 				RemoveComponent(component);
 				FindComponent<ChangeRoomComponent>().Enabled = true;
-				e.Handled = true;
 			}
 		}
 

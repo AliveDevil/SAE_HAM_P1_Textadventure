@@ -17,7 +17,7 @@ namespace TextAdventure.Scenes
 		private int startX;
 		private List<string> lines;
 
-		public string Key { get { return Key; } }
+		public string Key { get { return key; } }
 		public int StartX { get { return startX; } }
 		public IList<string> Lines { get { return lines; } }
 

@@ -360,7 +360,7 @@ namespace TextAdventure.Scenes
 			}
 			if (!inExcluded)
 			{
-				arguments.Add(argument);
+				arguments.Add(argument.ToUpperInvariant());
 			}
 			argument = "";
 		}
