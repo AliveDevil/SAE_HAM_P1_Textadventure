@@ -28,16 +28,16 @@ namespace TextAdventure.Scenes.Levels
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
 		}
 
-		private bool PlayerRename(Component component, string parameter)
+		private bool PlayerRename(ComponentEventArgs e)
 		{
-			Player player = SceneManager.GetComponentByType<Player>();
+			Player player = e.Component as Player;
 
 			if (!string.IsNullOrEmpty(player.Name))
 			{
 				return false;
 			}
 
-			player.SetName(parameter);
+			player.SetName(e.Parameter);
 			return true;
 		}
 	}

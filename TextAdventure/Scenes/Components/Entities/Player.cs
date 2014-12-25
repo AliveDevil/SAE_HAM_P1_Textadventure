@@ -34,20 +34,20 @@ namespace TextAdventure.Scenes.Components.Entities
 			Name = name;
 		}
 
-		private bool OnAttack(Component component, string parameter)
+		private bool OnAttack(ComponentEventArgs e)
 		{
 			if (Attack != null)
 			{
-				return Attack(component, parameter);
+				return Attack(e);
 			}
 			return false;
 		}
 
-		private bool OnRename(Component component, string parameter)
+		private bool OnRename(ComponentEventArgs e)
 		{
 			if (Rename != null)
 			{
-				return Rename(component, parameter);
+				return Rename(e);
 			}
 			return false;
 		}

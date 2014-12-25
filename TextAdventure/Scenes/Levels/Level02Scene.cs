@@ -18,12 +18,12 @@ namespace TextAdventure.Scenes.Levels
 
 		public Level02Scene()
 		{
-			DoorComponent door = new DoorComponent("door", true);
+			ChangeRoomComponent door = new ChangeRoomComponent("door", true);
 			door.Open += OpenDoor;
 			AddComponent(door);
 		}
 
-		private bool OpenDoor(Component component, string parameter)
+		private bool OpenDoor(ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<Level03Scene>();
 			return true;

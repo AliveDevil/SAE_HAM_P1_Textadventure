@@ -9,22 +9,23 @@ namespace TextAdventure.Scenes.Components
 	/// <summary>
 	/// Represents a door.
 	/// </summary>
-	public sealed class DoorComponent : Component
+	public sealed class ChangeRoomComponent : Component
 	{
 		public event ComponentCallback Open;
 
-		public DoorComponent(string name, bool enabled)
+		public ChangeRoomComponent(string name, bool enabled)
 			: base(name, enabled)
 		{
 			RegisterCallback("open", OnOpen);
 			RegisterCallback("use", OnOpen);
+			RegisterCallback("take", OnOpen);
 		}
 
-		private bool OnOpen(Component component, string parameter)
+		private bool OnOpen(ComponentEventArgs e)
 		{
 			if (Open != null)
 			{
-				return Open(component, parameter);
+				return Open(e);
 			}
 			return false;
 		}

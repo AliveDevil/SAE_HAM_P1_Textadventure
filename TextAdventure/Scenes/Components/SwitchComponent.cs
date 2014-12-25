@@ -25,11 +25,11 @@ namespace TextAdventure.Scenes.Components
 			RegisterCallback("switch", OnSwitch);
 		}
 
-		private bool OnSwitch(Component component, string parameter)
+		private bool OnSwitch(ComponentEventArgs e)
 		{
 			if (Switch != null)
 			{
-				return Switch(component, parameter);
+				return Switch(e);
 			}
 			return false;
 		}

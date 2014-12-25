@@ -47,7 +47,8 @@
     </Compile>
     <Compile Include="Scenes\CellType.cs" />
     <Compile Include="Scenes\Components\Component.cs" />
-    <Compile Include="Scenes\Components\DoorComponent.cs" />
+    <Compile Include="Scenes\Components\ComponentEventArgs.cs" />
+    <Compile Include="Scenes\Components\ChangeRoomComponent.cs" />
     <Compile Include="Scenes\Components\Entities\Player.cs" />
     <Compile Include="Scenes\Components\GlassComponent.cs" />
     <Compile Include="Scenes\Components\Entity.cs" />

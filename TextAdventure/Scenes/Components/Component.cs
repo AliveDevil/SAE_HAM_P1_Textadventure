@@ -14,7 +14,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	/// <param name="component"></param>
 	/// <returns></returns>
-	public delegate bool ComponentCallback(Component component, string parameter);
+	public delegate bool ComponentCallback(ComponentEventArgs e);
 
 	/// <summary>
 	/// <para>Base class for interacting components.</para>
@@ -67,7 +67,7 @@ namespace TextAdventure.Scenes.Components
 			ComponentCallback callback;
 			if (callbacks.TryGetValue(action.ToLower(), out callback))
 			{
-				return callback(this, parameter);
+				return callback(new ComponentEventArgs(this, parameter));
 			}
 			return false;
 		}

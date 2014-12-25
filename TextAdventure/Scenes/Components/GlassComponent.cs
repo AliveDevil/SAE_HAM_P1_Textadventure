@@ -22,19 +22,19 @@ namespace TextAdventure.Scenes.Components
 			RegisterCallback("use", OnDrink);
 		}
 
-		private bool OnDrink(Component component, string parameter)
+		private bool OnDrink(ComponentEventArgs e)
 		{
 			if (Drink != null)
 			{
-				return Drink(component, parameter);
+				return Drink(e);
 			}
 			return false;
 		}
-		private bool OnTake(Component component, string parameter)
+		private bool OnTake(ComponentEventArgs e)
 		{
 			if (Take != null)
 			{
-				return Take(component, parameter);
+				return Take(e);
 			}
 			return false;
 		}
