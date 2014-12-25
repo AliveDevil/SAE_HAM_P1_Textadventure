@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Resources;
+using System;
 
 [assembly: AssemblyTitle("TextAdventure")]
 [assembly: AssemblyDescription("")]
@@ -17,3 +19,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("f65d8f07-77b2-4b37-a43a-f373706ea793")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: CLSCompliant(false)]

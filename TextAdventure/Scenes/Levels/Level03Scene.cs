@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using System.Globalization;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
@@ -20,7 +21,7 @@ namespace TextAdventure.Scenes.Levels
 				{
 					return Resources.Room3_Description_AskForName;
 				}
-				return string.Format(Resources.Room3_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
+				return string.Format(CultureInfo.CurrentCulture, Resources.Room3_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
 			}
 		}
 
@@ -32,21 +33,19 @@ namespace TextAdventure.Scenes.Levels
 			AddComponent(stairs);
 		}
 
-		private bool PlayerRename(ComponentEventArgs e)
+		private void PlayerRename(object sender, ComponentEventArgs e)
 		{
-			Player player = e.Component as Player;
+			Player player = sender as Player;
 
-			if (!string.IsNullOrEmpty(player.Name))
+			if (string.IsNullOrEmpty(player.Name))
 			{
-				return false;
+				player.SetName(e.Parameter);
+				FindComponent<ChangeRoomComponent>().Enabled = true;
+				e.Handled = true;
 			}
-
-			player.SetName(e.Parameter);
-			FindComponent<ChangeRoomComponent>().Enabled = true;
-			return true;
 		}
 
-		private bool TakeStairs(ComponentEventArgs e)
+		private void TakeStairs(object sender, ComponentEventArgs e)
 		{
 			SceneManager.GetComponentByType<Player>().AddItem(new LifePotion());
 			for (int i = 0; i < 5; i++)
@@ -56,7 +55,7 @@ namespace TextAdventure.Scenes.Levels
 			}
 			//SceneManager.GetComponentByType<Player>().AddItem(new )
 			SceneManager.LoadScene<Level04Scene>();
-			return true;
+			e.Handled = true;
 		}
 	}
 }

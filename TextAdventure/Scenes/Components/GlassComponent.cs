@@ -3,6 +3,7 @@
  */
 
 
+using System;
 namespace TextAdventure.Scenes.Components
 {
 	/// <summary>
@@ -10,8 +11,8 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class GlassComponent : Component
 	{
-		public event ComponentCallback Take;
-		public event ComponentCallback Drink;
+		public event EventHandler<ComponentEventArgs> Take;
+		public event EventHandler<ComponentEventArgs> Drink;
 
 		public GlassComponent(string name, bool enabled)
 			: base(name, enabled)
@@ -21,21 +22,19 @@ namespace TextAdventure.Scenes.Components
 			RegisterCallback("use", OnDrink);
 		}
 
-		private bool OnDrink(ComponentEventArgs e)
+		private void OnDrink(object sender, ComponentEventArgs e)
 		{
 			if (Drink != null)
 			{
-				return Drink(e);
+				Drink(sender, e);
 			}
-			return false;
 		}
-		private bool OnTake(ComponentEventArgs e)
+		private void OnTake(object sender, ComponentEventArgs e)
 		{
 			if (Take != null)
 			{
-				return Take(e);
+				Take(sender, e);
 			}
-			return false;
 		}
 	}
 }

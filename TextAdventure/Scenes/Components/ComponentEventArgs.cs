@@ -8,12 +8,12 @@ namespace TextAdventure.Scenes.Components
 {
 	public class ComponentEventArgs : EventArgs
 	{
-		public Component Component { get; private set; }
+		public bool Handled { get; set; }
 		public string Parameter { get; private set; }
 
-		public ComponentEventArgs(Component component, string parameter)
+		public ComponentEventArgs(string parameter)
 		{
-			Component = component;
+			Handled = false;
 			Parameter = parameter;
 		}
 	}

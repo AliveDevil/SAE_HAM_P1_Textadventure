@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using TextAdventure.Properties;
@@ -25,8 +26,8 @@ namespace TextAdventure.Scenes.Components.Entities
 		const int baseHealth = 100;
 		const int baseDamage = 5;
 
-		public event ComponentCallback Attack;
-		public event ComponentCallback Rename;
+		public event EventHandler<ComponentEventArgs> Attack;
+		public event EventHandler<ComponentEventArgs> Rename;
 
 		private List<Item> inventory;
 
@@ -55,31 +56,35 @@ namespace TextAdventure.Scenes.Components.Entities
 			Name = name;
 		}
 
-		private bool UseInventory(ComponentEventArgs e)
+		private void UseInventory(object sender, ComponentEventArgs e)
 		{
-			if (string.IsNullOrEmpty(e.Parameter))
+			if (!string.IsNullOrEmpty(e.Parameter))
 			{
-				return false;
-			}
-			var query = inventory.Where(entry => entry.Name.Equals(e.Parameter, StringComparison.InvariantCultureIgnoreCase));
-			if (query.Any())
-			{
-				Item first = query.First();
-				inventory.Remove(first);
-				if (first is Potion)
+				var query = inventory.Where(entry => entry.Name.Equals(e.Parameter, StringComparison.OrdinalIgnoreCase));
+				if (query.Any())
 				{
-					(first as Potion).Apply(this);
+					Item first = query.First();
+					inventory.Remove(first);
+					UsePotion(first as Potion);
+					e.Handled = true;
 				}
-				return true;
 			}
-			return false;
 		}
-		private bool ShowStats(ComponentEventArgs e)
+		private void ShowStats(object sender, ComponentEventArgs e)
 		{
-			SceneManager.CurrentScene.Message(string.Format(StatsFormat, Resources.Generic_Stats, Resources.Generic_Health, Resources.Generic_Strength, Health, Strength));
-			return true;
+			SceneManager.CurrentScene.AddMessage(
+				string.Format(
+					CultureInfo.CurrentCulture,
+					Resources.Generic_StatsFormat,
+					Resources.Generic_Stats,
+					Resources.Generic_Health,
+					Health,
+					Resources.Generic_Strength,
+					Strength)
+				);
+			e.Handled = true;
 		}
-		private bool ShowInventory(ComponentEventArgs e)
+		private void ShowInventory(object sender, ComponentEventArgs e)
 		{
 			// anonymous types incoming.
 
@@ -91,30 +96,36 @@ namespace TextAdventure.Scenes.Components.Entities
 					Count = enumerable.Count() // just return an enumerable with key and count.
 				});
 			StringBuilder builder = new StringBuilder();
-			builder.AppendLine(string.Format(HeaderFormat, Resources.Generic_Inventory));
+			builder.AppendLine(string.Format(CultureInfo.CurrentCulture, HeaderFormat, Resources.Generic_Inventory));
 			foreach (var group in groupedInventory)
 			{
-				builder.AppendFormat(InventoryFormat, group.Key, group.Count);
+				builder.AppendFormat(CultureInfo.CurrentCulture, InventoryFormat, group.Key, group.Count);
 			}
-			SceneManager.CurrentScene.Message(builder.ToString());
+			SceneManager.CurrentScene.AddMessage(builder.ToString());
 			builder.Clear();
-			return true;
+			e.Handled = true;
 		}
-		private bool OnAttack(ComponentEventArgs e)
+		private void OnAttack(object sender, ComponentEventArgs e)
 		{
 			if (Attack != null)
 			{
-				return Attack(e);
+				Attack(sender, e);
 			}
-			return false;
 		}
-		private bool OnRename(ComponentEventArgs e)
+		private void OnRename(object sender, ComponentEventArgs e)
 		{
 			if (Rename != null)
 			{
-				return Rename(e);
+				Rename(sender, e);
 			}
-			return false;
+		}
+
+		private void UsePotion(Potion potion)
+		{
+			if (potion != null)
+			{
+				potion.Apply(this);
+			}
 		}
 	}
 }

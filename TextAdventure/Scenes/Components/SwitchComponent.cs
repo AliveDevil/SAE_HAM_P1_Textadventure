@@ -3,6 +3,7 @@
  */
 
 
+using System;
 namespace TextAdventure.Scenes.Components
 {
 	/// <summary>
@@ -10,7 +11,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class SwitchComponent : Component
 	{
-		public event ComponentCallback Switch;
+		public event EventHandler<ComponentEventArgs> Switch;
 
 		public bool Switched { get; set; }
 
@@ -24,13 +25,12 @@ namespace TextAdventure.Scenes.Components
 			RegisterCallback("switch", OnSwitch);
 		}
 
-		private bool OnSwitch(ComponentEventArgs e)
+		private void OnSwitch(object sender, ComponentEventArgs e)
 		{
 			if (Switch != null)
 			{
-				return Switch(e);
+				Switch(sender, e);
 			}
-			return false;
 		}
 	}
 }

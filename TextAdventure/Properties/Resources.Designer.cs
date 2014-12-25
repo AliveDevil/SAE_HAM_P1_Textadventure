@@ -147,6 +147,24 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Action ähnelt.
+        /// </summary>
+        internal static string Generic_Action {
+            get {
+                return ResourceManager.GetString("Generic_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Actions ähnelt.
+        /// </summary>
+        internal static string Generic_Actions {
+            get {
+                return ResourceManager.GetString("Generic_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die {0} got {1} damage. Health remaining: {2}. ähnelt.
         /// </summary>
         internal static string Generic_GotDamage {
@@ -161,6 +179,15 @@ namespace TextAdventure.Properties {
         internal static string Generic_Health {
             get {
                 return ResourceManager.GetString("Generic_Health", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0}&gt;  ähnelt.
+        /// </summary>
+        internal static string Generic_InputFormat {
+            get {
+                return ResourceManager.GetString("Generic_InputFormat", resourceCulture);
             }
         }
         
@@ -188,6 +215,17 @@ namespace TextAdventure.Properties {
         internal static string Generic_Stats {
             get {
                 return ResourceManager.GetString("Generic_Stats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0}
+        ///{1}: {2}
+        ///{3}: {4} ähnelt.
+        /// </summary>
+        internal static string Generic_StatsFormat {
+            get {
+                return ResourceManager.GetString("Generic_StatsFormat", resourceCulture);
             }
         }
         
@@ -382,7 +420,7 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;Okay {0}. There are some rumours that goblins are in the western forests. Please take a look and tell me if they are true.&quot;
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;Okay {0}. There are some rumors that goblins are in the western forests. Please take a look and tell me if they are true.&quot;
         ///You ask him why you are here and where he comes from but the mage answers &quot;You will find out, hopefully&quot;.
         ///&quot;Now go down the stairs. It will bring you straight to the forest. And .. before I forget: You might want to open your inventory and revisit your stats some time.&quot; ähnelt.
         /// </summary>
@@ -412,7 +450,7 @@ namespace TextAdventure.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die On your way down to the forest you pass some weapons. Some letters are on the wall telling, that you should take them.
-        ///Right after you leave the tower a small goblin falls on your feet. He stands up, takes his sword and swings it infront of you. ähnelt.
+        ///Right after you leave the tower a small goblin falls on your feet. He stands up, takes his sword and swings it in front of you. ähnelt.
         /// </summary>
         internal static string Room4_Description {
             get {

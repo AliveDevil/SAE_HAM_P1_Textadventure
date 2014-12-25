@@ -22,10 +22,10 @@ namespace TextAdventure.Scenes.Levels
 			AddComponent(door);
 		}
 
-		private bool OpenDoor(ComponentEventArgs e)
+		private void OpenDoor(object sender, ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<Level03Scene>();
-			return true;
+			e.Handled = true;
 		}
 	}
 }

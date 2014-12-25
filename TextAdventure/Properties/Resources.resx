@@ -149,11 +149,20 @@ Programming: Jöran Malek</value>
   <data name="GameOver_Title" xml:space="preserve">
     <value>You just finished the game.</value>
   </data>
+  <data name="Generic_Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Generic_Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
   <data name="Generic_GotDamage" xml:space="preserve">
     <value>{0} got {1} damage. Health remaining: {2}.</value>
   </data>
   <data name="Generic_Health" xml:space="preserve">
     <value>Health</value>
+  </data>
+  <data name="Generic_InputFormat" xml:space="preserve">
+    <value>{0}&gt; </value>
   </data>
   <data name="Generic_Inventory" xml:space="preserve">
     <value>Inventory</value>
@@ -163,6 +172,11 @@ Programming: Jöran Malek</value>
   </data>
   <data name="Generic_Stats" xml:space="preserve">
     <value>Stats</value>
+  </data>
+  <data name="Generic_StatsFormat" xml:space="preserve">
+    <value>{0}
+{1}: {2}
+{3}: {4}</value>
   </data>
   <data name="Generic_Strength" xml:space="preserve">
     <value>Strength</value>
@@ -229,7 +243,7 @@ Programming: Jöran Malek</value>
 "Hey, you must be"</value>
   </data>
   <data name="Room3_Description_Quest" xml:space="preserve">
-    <value>"Okay {0}. There are some rumours that goblins are in the western forests. Please take a look and tell me if they are true."
+    <value>"Okay {0}. There are some rumors that goblins are in the western forests. Please take a look and tell me if they are true."
 You ask him why you are here and where he comes from but the mage answers "You will find out, hopefully".
 "Now go down the stairs. It will bring you straight to the forest. And .. before I forget: You might want to open your inventory and revisit your stats some time."</value>
   </data>
@@ -241,7 +255,7 @@ You ask him why you are here and where he comes from but the mage answers "You w
   </data>
   <data name="Room4_Description" xml:space="preserve">
     <value>On your way down to the forest you pass some weapons. Some letters are on the wall telling, that you should take them.
-Right after you leave the tower a small goblin falls on your feet. He stands up, takes his sword and swings it infront of you.</value>
+Right after you leave the tower a small goblin falls on your feet. He stands up, takes his sword and swings it in front of you.</value>
   </data>
   <data name="Room4_Progress" xml:space="preserve">
     <value>After the goblin died you see a path into the forest which you have not seen before.</value>

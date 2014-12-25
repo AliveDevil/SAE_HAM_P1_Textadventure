@@ -17,34 +17,54 @@ namespace TextAdventure.Scenes
 	/// </summary>
 	public abstract class Scene
 	{
-		public ReadOnlyCollection<string> Messages;
-		public ReadOnlyDictionary<string, ExecuteAction> Actions;
-
-		protected readonly ReadOnlyCollection<string> Arguments;
-
 		private List<string> messages;
 		private Dictionary<string, ExecuteAction> actions;
+		private IReadOnlyList<string> readonlyArguments;
+		private IReadOnlyCollection<string> readonlyMessages;
+		private IReadOnlyDictionary<string, ExecuteAction> readonlyActions;
 
-		public virtual string Title { get { return "Scene"; } }
-		public virtual string Description { get { return string.Empty; } }
-		public virtual bool DrawActions { get { return true; } }
+		public IReadOnlyCollection<string> Messages
+		{
+			get { return readonlyMessages; }
+		}
+		public IReadOnlyDictionary<string, ExecuteAction> Actions
+		{
+			get { return readonlyActions; }
+		}
+		public virtual string Title
+		{
+			get { return "Scene"; }
+		}
+		public virtual string Description
+		{
+			get { return string.Empty; }
+		}
+		public virtual bool DrawActions
+		{
+			get { return true; }
+		}
 
-		public Scene(params string[] arguments)
+		protected IReadOnlyList<string> Arguments
+		{
+			get { return readonlyArguments; }
+		}
+
+		protected Scene(params string[] arguments)
 		{
 			actions = new Dictionary<string, ExecuteAction>();
 			messages = new List<string>();
-			Actions = new ReadOnlyDictionary<string, ExecuteAction>(actions);
-			Messages = new ReadOnlyCollection<string>(messages);
-			Arguments = new ReadOnlyCollection<string>(arguments);
+			readonlyActions = new ReadOnlyDictionary<string, ExecuteAction>(actions);
+			readonlyMessages = new ReadOnlyCollection<string>(messages);
+			readonlyArguments = new ReadOnlyCollection<string>(arguments);
 		}
 
-		public void Message(string message)
+		public void AddMessage(string message)
 		{
 			messages.Add(message);
 		}
-		public bool PerformAction(List<string> arguments)
+		public bool PerformAction(IList<string> arguments)
 		{
-			if (arguments.Count > 0)
+			if (arguments != null && arguments.Count > 0)
 			{
 				ExecuteAction executeAction;
 				if (actions.TryGetValue(arguments[0], out executeAction))
@@ -62,19 +82,22 @@ namespace TextAdventure.Scenes
 		{
 			string lastMessage = messages.Last();
 			messages.Clear();
-			Message(lastMessage);
+			AddMessage(lastMessage);
 		}
 		public virtual void Initialize() { }
-		
+
 		protected void RegisterAction(ExecuteAction method)
 		{
-			string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToLower();
-			if (!string.IsNullOrEmpty(key))
+			if (method != null)
 			{
-				actions[key] = method;
+				string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToUpperInvariant();
+				if (!string.IsNullOrEmpty(key))
+				{
+					actions[key] = method;
+				}
 			}
 		}
-		protected virtual bool HandleInput(List<string> arguments)
+		protected virtual bool HandleInput(IList<string> arguments)
 		{
 			return false;
 		}

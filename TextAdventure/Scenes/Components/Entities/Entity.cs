@@ -3,6 +3,8 @@
  */
 
 
+using System;
+using System.Globalization;
 using TextAdventure.Properties;
 namespace TextAdventure.Scenes.Components.Entities
 {
@@ -11,13 +13,13 @@ namespace TextAdventure.Scenes.Components.Entities
 	/// </summary>
 	public abstract class Entity : Component
 	{
-		public event ComponentCallback Died;
+		public event EventHandler<ComponentEventArgs> Died;
 
 		public int Strength { get; protected set; }
 		public int MaxHealth { get; protected set; }
 		public int Health { get; protected set; }
 
-		public Entity(string name, bool enabled, int damage, int health)
+		protected Entity(string name, bool enabled, int damage, int health)
 			: base(name, enabled)
 		{
 			this.Strength = damage;
@@ -39,12 +41,12 @@ namespace TextAdventure.Scenes.Components.Entities
 			}
 			return false;
 		}
-		public void RaiseDamage(int amount)
+		public void IncreaseDamage(int amount)
 		{
 			Strength += amount;
-			SceneManager.CurrentScene.Message(string.Format(Resources.Potion_Message, Resources.Generic_Strength, Strength));
+			SceneManager.CurrentScene.AddMessage(string.Format(CultureInfo.CurrentCulture, Resources.Potion_Message, Resources.Generic_Strength, Strength));
 		}
-		public void RaiseHealth(int amount)
+		public void IncreaseHealth(int amount)
 		{
 			float oldAmount = MaxHealth;
 			MaxHealth += amount;
@@ -52,11 +54,14 @@ namespace TextAdventure.Scenes.Components.Entities
 			PostMessage(Resources.Generic_MaxHealth, MaxHealth);
 			PostMessage(Resources.Generic_Health, Health);
 		}
-		
+
 		protected void ReceiveDamage(Entity attacker)
 		{
-			this.Health -= attacker.Strength;
-			SceneManager.CurrentScene.Message(string.Format(Resources.Generic_GotDamage, Name, attacker.Strength, this.Health));
+			if (attacker != null)
+			{
+				this.Health -= attacker.Strength;
+				SceneManager.CurrentScene.AddMessage(string.Format(CultureInfo.CurrentCulture, Resources.Generic_GotDamage, Name, attacker.Strength, this.Health));
+			}
 			CheckDeath();
 		}
 
@@ -71,12 +76,12 @@ namespace TextAdventure.Scenes.Components.Entities
 		{
 			if (Died != null)
 			{
-				Died(new ComponentEventArgs(this, null));
+				Died(this, null);
 			}
 		}
 		private static void PostMessage(string title, int amount)
 		{
-			SceneManager.CurrentScene.Message(string.Format(Resources.Potion_Message, title, amount));
+			SceneManager.CurrentScene.AddMessage(string.Format(CultureInfo.CurrentCulture, Resources.Potion_Message, title, amount));
 		}
 		private static int Clamp(float value, int min, int max)
 		{

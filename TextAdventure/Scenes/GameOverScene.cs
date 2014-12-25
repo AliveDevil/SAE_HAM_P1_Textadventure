@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using System.Globalization;
 using TextAdventure.Attributes;
 using TextAdventure.Properties;
 
@@ -14,7 +15,8 @@ namespace TextAdventure.Scenes
 		{
 			get
 			{
-				return string.Format(Resources.GameOver_Description,
+				return string.Format(CultureInfo.CurrentCulture,
+					Resources.GameOver_Description,
 					Arguments != null && Arguments.Count > 0
 					? Arguments[0]
 					: "How did you finish? There is no information about it.");

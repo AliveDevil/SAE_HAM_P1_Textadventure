@@ -40,30 +40,29 @@ namespace TextAdventure.Scenes.Levels
 			AddComponent(glass);
 		}
 
-		private bool OnFollow(ComponentEventArgs e)
+		private void OnFollow(object sender, ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<Level02Scene>();
-			return true;
+			e.Handled = true;
 		}
-		private bool TurnLightSwitch(ComponentEventArgs e)
+		private void TurnLightSwitch(object sender, ComponentEventArgs e)
 		{
-			SwitchComponent @switch = e.Component as SwitchComponent;
+			SwitchComponent @switch = sender as SwitchComponent;
 			@switch.Switched = true;
 			@switch.Enabled = false;
-			Message(Resources.Room1_LightSwitch_TurnOn);
+			AddMessage(Resources.Room1_LightSwitch_TurnOn);
 			FindComponent<GlassComponent>().Enabled = true;
-			return true;
+			e.Handled = true;
 		}
-		private bool DrinkGlass(ComponentEventArgs e)
+		private void DrinkGlass(object sender, ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_DrankGlass);
-			return true;
+			e.Handled = true;
 		}
-		private bool TakeGlass(ComponentEventArgs e)
+		private void TakeGlass(object sender, ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_TookGlass);
-			//SceneManager.GetComponentByType<Player>().
-			return true;
+			e.Handled = true;
 		}
 	}
 }

@@ -24,23 +24,29 @@ namespace TextAdventure.Scenes.Levels
 			AddComponent(path);
 		}
 
-		private bool FollowPath(ComponentEventArgs e)
+		private void FollowPath(object sender, ComponentEventArgs e)
 		{
-			return SceneManager.LoadScene<Level05Scene>();
+			SceneManager.LoadScene<Level05Scene>();
+			e.Handled = true;
 		}
 
-		private bool GoblinDied(ComponentEventArgs e)
+		private void GoblinDied(object sender, ComponentEventArgs e)
 		{
-			Message(Resources.Goblin_Died);
-			Message(Resources.Room4_Progress);
-			RemoveComponent(e.Component);
-			FindComponent<ChangeRoomComponent>().Enabled = true;
-			return true;
+			Component component = sender as Component;
+			if (component != null)
+			{
+				AddMessage(Resources.Goblin_Died);
+				AddMessage(Resources.Room4_Progress);
+				RemoveComponent(component);
+				FindComponent<ChangeRoomComponent>().Enabled = true;
+				e.Handled = true;
+			}
 		}
 
-		private bool PlayerAttack(ComponentEventArgs e)
+		private void PlayerAttack(object sender, ComponentEventArgs e)
 		{
-			return (e.Component as Entity).Attack(FindComponent(e.Parameter) as Entity); ;
+			(sender as Entity).Attack(FindComponent(e.Parameter) as Entity);
+			e.Handled = true;
 		}
 	}
 }

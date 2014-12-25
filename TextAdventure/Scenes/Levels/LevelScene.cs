@@ -25,7 +25,7 @@ namespace TextAdventure.Scenes.Levels
 
 		public Component FindComponent(string name)
 		{
-			return components.Where(component => component.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+			return components.Where(component => component.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 		}
 
 		public T FindComponent<T>() where T : Component
@@ -37,19 +37,22 @@ namespace TextAdventure.Scenes.Levels
 		{
 			components.Add(component);
 		}
-		protected override bool HandleInput(List<string> arguments)
+		protected override bool HandleInput(IList<string> arguments)
 		{
 			Component interactComponent = null;
 
-			if (arguments.Count > 1)
+			if (arguments != null)
 			{
-				interactComponent = InteractableComponents(component =>
-					component.CanInteract(arguments[0], arguments[1]));
-			}
-			else if (arguments.Count == 1)
-			{
-				interactComponent = InteractableComponents(component =>
-					component.Name.Equals(arguments[0], StringComparison.InvariantCultureIgnoreCase));
+				if (arguments.Count > 1)
+				{
+					interactComponent = InteractableComponents(component =>
+						component.CanInteract(arguments[0], arguments[1]));
+				}
+				else if (arguments.Count == 1)
+				{
+					interactComponent = InteractableComponents(component =>
+						component.Name.Equals(arguments[0], StringComparison.OrdinalIgnoreCase));
+				}
 			}
 
 			if (interactComponent != null)

@@ -3,6 +3,7 @@
  */
 
 
+using System;
 namespace TextAdventure.Scenes.Components
 {
 	/// <summary>
@@ -10,7 +11,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class ChangeRoomComponent : Component
 	{
-		public event ComponentCallback Follow;
+		public event EventHandler<ComponentEventArgs> Follow;
 
 		public ChangeRoomComponent(string name, bool enabled)
 			: base(name, enabled)
@@ -21,13 +22,12 @@ namespace TextAdventure.Scenes.Components
 			RegisterCallback("follow", OnFollow);
 		}
 
-		private bool OnFollow(ComponentEventArgs e)
+		private void OnFollow(object sender, ComponentEventArgs e)
 		{
 			if (Follow != null)
 			{
-				return Follow(e);
+				Follow(sender, e);
 			}
-			return false;
 		}
 	}
 }

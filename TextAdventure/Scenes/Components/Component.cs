@@ -4,16 +4,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace TextAdventure.Scenes.Components
 {
-	/// <summary>
-	/// Replacement for Func&lt;Component, bool&gt;.
-	/// </summary>
-	/// <param name="component"></param>
-	/// <returns></returns>
-	public delegate bool ComponentCallback(ComponentEventArgs e);
-
 	/// <summary>
 	/// <para>Base class for interacting components.</para>
 	/// <para>Default usage in case-insensitive input is [Action] [Name].</para>
@@ -21,7 +15,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public abstract class Component
 	{
-		private Dictionary<string, ComponentCallback> callbacks;
+		private Dictionary<string, EventHandler<ComponentEventArgs>> callbacks;
 
 		/// <summary>
 		/// 
@@ -34,11 +28,11 @@ namespace TextAdventure.Scenes.Components
 
 		protected virtual bool CheckName { get { return true; } }
 
-		public Component(string name, bool enabled)
+		protected Component(string name, bool enabled)
 		{
 			this.Name = name;
 			this.Enabled = enabled;
-			this.callbacks = new Dictionary<string, ComponentCallback>();
+			this.callbacks = new Dictionary<string, EventHandler<ComponentEventArgs>>();
 		}
 
 		/// <summary>
@@ -58,8 +52,8 @@ namespace TextAdventure.Scenes.Components
 			 *	and if callbacks contain given key.
 			 */
 			return Enabled &&
-				(!CheckName || name.Equals(Name, StringComparison.InvariantCultureIgnoreCase)) &&
-				callbacks.ContainsKey(action.ToLower());
+				(!CheckName || (!string.IsNullOrEmpty(name) && name.Equals(Name, StringComparison.OrdinalIgnoreCase))) &&
+				(!string.IsNullOrEmpty(action) && callbacks.ContainsKey(action.ToUpper(CultureInfo.InvariantCulture)));
 		}
 
 		/// <summary>
@@ -67,12 +61,15 @@ namespace TextAdventure.Scenes.Components
 		/// </summary>
 		public bool Interact(string action, string parameter)
 		{
-			ComponentCallback callback;
-			if (callbacks.TryGetValue(action.ToLower(), out callback))
+			EventHandler<ComponentEventArgs> callback;
+			ComponentEventArgs args = new ComponentEventArgs(parameter);
+
+			if (!string.IsNullOrEmpty(action) && callbacks.TryGetValue(action.ToUpperInvariant(), out callback))
 			{
-				return callback(new ComponentEventArgs(this, parameter));
+				callback(this, args);
 			}
-			return false;
+
+			return args.Handled;
 		}
 
 		/// <summary>
@@ -81,12 +78,15 @@ namespace TextAdventure.Scenes.Components
 		/// <param name="action"></param>
 		/// <param name="callback"></param>
 		/// <returns></returns>
-		protected Component RegisterCallback(string action, ComponentCallback callback)
+		protected Component RegisterCallback(string action, EventHandler<ComponentEventArgs> callback)
 		{
-			action = action.ToLower();
-			if (!callbacks.ContainsKey(action))
+			if (!string.IsNullOrEmpty(action))
 			{
-				callbacks.Add(action, callback);
+				action = action.ToUpperInvariant();
+				if (!callbacks.ContainsKey(action))
+				{
+					callbacks.Add(action, callback);
+				}
 			}
 			return this;
 		}

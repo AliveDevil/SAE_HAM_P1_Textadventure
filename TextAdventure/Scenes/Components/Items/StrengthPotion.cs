@@ -12,9 +12,10 @@ namespace TextAdventure.Scenes.Components.Items
 
 		public override void Apply(Component caller)
 		{
-			if (caller is Entity)
+			Entity entity = caller as Entity;
+			if (entity != null)
 			{
-				(caller as Entity).RaiseDamage(4);
+				entity.IncreaseDamage(4);
 			}
 		}
 	}

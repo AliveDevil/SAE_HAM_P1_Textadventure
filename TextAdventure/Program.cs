@@ -13,7 +13,7 @@ namespace TextAdventure
 {
 	static class Program
 	{
-		public static readonly Random Random = new Random();
+		//public static readonly Random Random = new Random();
 		#region Helper Methods
 		public static Dictionary<string, string> GetActions(this Scene scene)
 		{
@@ -33,7 +33,7 @@ namespace TextAdventure
 		}
 		#endregion
 
-		static void Main(string[] args)
+		static void Main()
 		{
 			Scenes.SceneManager.LoadScene<Scenes.MainMenuScene>();
 			Scenes.SceneManager.Run();

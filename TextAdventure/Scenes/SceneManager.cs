@@ -160,7 +160,7 @@ namespace TextAdventure.Scenes
 					}
 				}
 
-				DrawCenteredText("Actions", GameHeight - maxHeight - 1);
+				DrawCenteredText(Resources.Generic_Actions, GameHeight - maxHeight - 1);
 			}
 		}
 		private static void DrawChar(int x, int y, char @char)
@@ -179,31 +179,35 @@ namespace TextAdventure.Scenes
 				int startX = maxKeyLength + 1;
 				int maxLength = GameWidth - startX;
 
-				foreach (KeyValuePair<string, string> pair in actions)
-				{
-					Line line = new Line(pair.Key, startX);
-					string lineString = "";
-					for (int i = 0; i < pair.Value.Length; i++)
-					{
-						if (lineString.Length < maxLength)
-						{
-							lineString += pair.Value[i];
-						}
-						else
-						{
-							line.Lines.Add(lineString);
-							lineString = pair.Value[i].ToString();
-						}
-					}
-					if (!string.IsNullOrEmpty(lineString))
-					{
-						line.Lines.Add(lineString);
-					}
-					lines.Add(line);
-				}
+				ExportActionLines(actions, lines, startX, maxLength);
 			}
 
 			return lines;
+		}
+		private static void ExportActionLines(Dictionary<string, string> actions, List<Line> lines, int startX, int maxLength)
+		{
+			foreach (KeyValuePair<string, string> pair in actions)
+			{
+				Line line = new Line(pair.Key, startX);
+				string lineString = "";
+				for (int i = 0; i < pair.Value.Length; i++)
+				{
+					if (lineString.Length < maxLength)
+					{
+						lineString += pair.Value[i];
+					}
+					else
+					{
+						line.Lines.Add(lineString);
+						lineString = pair.Value[i].ToString();
+					}
+				}
+				if (!string.IsNullOrEmpty(lineString))
+				{
+					line.Lines.Add(lineString);
+				}
+				lines.Add(line);
+			}
 		}
 		private static void DrawCenteredText(string text, int y)
 		{
@@ -309,7 +313,7 @@ namespace TextAdventure.Scenes
 		private static void PerformInput()
 		{
 			SetCursorPosition(-1, GameHeight + 1);
-			Console.Write("Action> ");
+			Console.Write(Resources.Generic_InputFormat, Resources.Generic_Action);
 			string input = Console.ReadLine();
 
 			List<string> arguments = ExtractArguments(input);
@@ -352,7 +356,7 @@ namespace TextAdventure.Scenes
 			bool inExcluded = false;
 			foreach (var item in exclude)
 			{
-				inExcluded = inExcluded | argument.Equals(item, StringComparison.InvariantCultureIgnoreCase);
+				inExcluded = inExcluded | argument.Equals(item, StringComparison.OrdinalIgnoreCase);
 			}
 			if (!inExcluded)
 			{
