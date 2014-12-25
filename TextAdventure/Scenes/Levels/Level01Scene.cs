@@ -32,7 +32,7 @@ namespace TextAdventure.Scenes.Levels
 			lightSwitch.Switch += TurnLightSwitch;
 			AddComponent(lightSwitch);
 			ChangeRoomComponent door = new ChangeRoomComponent("door", true);
-			door.Open += OpenDoor;
+			door.Follow += OnFollow;
 			AddComponent(door);
 			GlassComponent glass = new GlassComponent("glass", false);
 			glass.Drink += DrinkGlass;
@@ -40,7 +40,7 @@ namespace TextAdventure.Scenes.Levels
 			AddComponent(glass);
 		}
 
-		private bool OpenDoor(ComponentEventArgs e)
+		private bool OnFollow(ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<Level02Scene>();
 			return true;

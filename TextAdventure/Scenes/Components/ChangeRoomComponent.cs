@@ -10,21 +10,22 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class ChangeRoomComponent : Component
 	{
-		public event ComponentCallback Open;
+		public event ComponentCallback Follow;
 
 		public ChangeRoomComponent(string name, bool enabled)
 			: base(name, enabled)
 		{
-			RegisterCallback("open", OnOpen);
-			RegisterCallback("use", OnOpen);
-			RegisterCallback("take", OnOpen);
+			RegisterCallback("open", OnFollow);
+			RegisterCallback("use", OnFollow);
+			RegisterCallback("take", OnFollow);
+			RegisterCallback("follow", OnFollow);
 		}
 
-		private bool OnOpen(ComponentEventArgs e)
+		private bool OnFollow(ComponentEventArgs e)
 		{
-			if (Open != null)
+			if (Follow != null)
 			{
-				return Open(e);
+				return Follow(e);
 			}
 			return false;
 		}

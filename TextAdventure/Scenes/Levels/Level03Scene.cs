@@ -28,7 +28,7 @@ namespace TextAdventure.Scenes.Levels
 		{
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
 			ChangeRoomComponent stairs = new ChangeRoomComponent("stairs", false);
-			stairs.Open += TakeStairs;
+			stairs.Follow += TakeStairs;
 			AddComponent(stairs);
 		}
 

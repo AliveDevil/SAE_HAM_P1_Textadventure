@@ -64,9 +64,15 @@ namespace TextAdventure.Scenes.Components.Entities
 			var query = inventory.Where(entry => entry.Name.Equals(e.Parameter, StringComparison.InvariantCultureIgnoreCase));
 			if (query.Any())
 			{
-
+				Item first = query.First();
+				inventory.Remove(first);
+				if (first is Potion)
+				{
+					(first as Potion).Apply(this);
+				}
+				return true;
 			}
-			return true;
+			return false;
 		}
 		private bool ShowStats(ComponentEventArgs e)
 		{

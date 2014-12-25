@@ -147,6 +147,15 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} got {1} damage. Health remaining: {2}. ähnelt.
+        /// </summary>
+        internal static string Generic_GotDamage {
+            get {
+                return ResourceManager.GetString("Generic_GotDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Health ähnelt.
         /// </summary>
         internal static string Generic_Health {

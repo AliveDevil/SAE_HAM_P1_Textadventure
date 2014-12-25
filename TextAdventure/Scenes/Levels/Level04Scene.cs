@@ -18,8 +18,10 @@ namespace TextAdventure.Scenes.Levels
 			SceneManager.GetComponentByType<Player>().Attack += PlayerAttack;
 			Goblin goblin = Goblin.SmallGoblin("goblin");
 			goblin.Died += GoblinDied;
+			AddComponent(goblin);
 			ChangeRoomComponent path = new ChangeRoomComponent("path", false);
-			path.Open += FollowPath;
+			path.Follow += FollowPath;
+			AddComponent(path);
 		}
 
 		private bool FollowPath(ComponentEventArgs e)
@@ -32,6 +34,7 @@ namespace TextAdventure.Scenes.Levels
 			Message(Resources.Goblin_Died);
 			Message(Resources.Room4_Progress);
 			RemoveComponent(e.Component);
+			FindComponent<ChangeRoomComponent>().Enabled = true;
 			return true;
 		}
 

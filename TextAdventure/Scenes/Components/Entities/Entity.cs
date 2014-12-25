@@ -21,6 +21,7 @@ namespace TextAdventure.Scenes.Components.Entities
 			: base(name, enabled)
 		{
 			this.Strength = damage;
+			this.MaxHealth = health;
 			this.Health = health;
 		}
 
@@ -55,6 +56,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		protected void ReceiveDamage(Entity attacker)
 		{
 			this.Health -= attacker.Strength;
+			SceneManager.CurrentScene.Message(string.Format(Resources.Generic_GotDamage, Name, attacker.Strength, this.Health));
 			CheckDeath();
 		}
 
