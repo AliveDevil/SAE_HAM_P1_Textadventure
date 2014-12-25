@@ -34,28 +34,28 @@ namespace TextAdventure.Scenes
 		public static Scene CurrentScene { get { return currentScene; } }
 		public static ReadOnlyCollection<Component> RegisteredComponents { get { return registeredComponents.AsReadOnly(); } }
 
-		public static void LoadScene<T>(params string[] arguments) where T : Scene
+		public static bool LoadScene<T>(params string[] arguments) where T : Scene
 		{
 			currentScene = (T)Activator.CreateInstance(typeof(T), arguments);
 			currentScene.Initialize();
+			return true;
 		}
 		public static void Run()
 		{
 			SetResolution();
 			while (!exit)
 			{
-				PerformWrite();
+				WriteScene();
 				PerformInput();
 			}
+		}
+		public static void WriteScene()
+		{
+			PerformWrite();
 		}
 		public static void Exit()
 		{
 			exit = true;
-		}
-		public static void Message(string message)
-		{
-			DrawTextBlock(message, messageY);
-			messageY += message.Length / GameWidth + 1;
 		}
 		public static void RegisterGlobalComponent(Component component)
 		{

@@ -18,6 +18,11 @@ namespace TextAdventure.Scenes.Levels
 
 		protected ReadOnlyCollection<Component> Components { get { return components.AsReadOnly(); } }
 
+		public void RemoveComponent(Component component)
+		{
+			components.Remove(component);
+		}
+
 		public Component FindComponent(string name)
 		{
 			return components.Where(component => component.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
@@ -51,7 +56,7 @@ namespace TextAdventure.Scenes.Levels
 			{
 				return interactComponent.Interact(arguments[0], string.Join(" ", arguments.Skip(1)));
 			}
-			
+
 			return false;
 		}
 

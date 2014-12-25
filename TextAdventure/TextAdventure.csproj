@@ -52,7 +52,12 @@
     <Compile Include="Scenes\Components\Entities\Goblin.cs" />
     <Compile Include="Scenes\Components\Entities\Player.cs" />
     <Compile Include="Scenes\Components\GlassComponent.cs" />
-    <Compile Include="Scenes\Components\Entity.cs" />
+    <Compile Include="Scenes\Components\Entities\Entity.cs" />
+    <Compile Include="Scenes\Components\Items\Item.cs" />
+    <Compile Include="Scenes\Components\Items\HealthPotion.cs" />
+    <Compile Include="Scenes\Components\Items\LifePotion.cs" />
+    <Compile Include="Scenes\Components\Items\Potion.cs" />
+    <Compile Include="Scenes\Components\Items\StrengthPotion.cs" />
     <Compile Include="Scenes\Components\PlaceholderComponent.cs" />
     <Compile Include="Scenes\Components\SwitchComponent.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
@@ -61,6 +66,7 @@
     <Compile Include="Scenes\Levels\Level02Scene.cs" />
     <Compile Include="Scenes\Levels\Level03Scene.cs" />
     <Compile Include="Scenes\Levels\Level04Scene.cs" />
+    <Compile Include="Scenes\Levels\Level05Scene.cs" />
     <Compile Include="Scenes\Levels\LevelScene.cs" />
     <Compile Include="Scenes\Line.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />

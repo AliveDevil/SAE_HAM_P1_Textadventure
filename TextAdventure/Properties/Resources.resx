@@ -149,6 +149,9 @@ Programming: Jöran Malek</value>
   <data name="GameOver_Title" xml:space="preserve">
     <value>You just finished the game.</value>
   </data>
+  <data name="Goblin_Died" xml:space="preserve">
+    <value>The goblin has died.</value>
+  </data>
   <data name="InvalidAction" xml:space="preserve">
     <value>Input {0} is unknown.</value>
   </data>
@@ -169,6 +172,18 @@ Programming: Jöran Malek</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Nothing found in translation.</value>
+  </data>
+  <data name="Potion_Health" xml:space="preserve">
+    <value>Health</value>
+  </data>
+  <data name="Potion_MaxHealth" xml:space="preserve">
+    <value>Max Health</value>
+  </data>
+  <data name="Potion_Message" xml:space="preserve">
+    <value>Your {0} has been increased to {1}.</value>
+  </data>
+  <data name="Potion_Strength" xml:space="preserve">
+    <value>Strength</value>
   </data>
   <data name="Room1_Description_Dark" xml:space="preserve">
     <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>
@@ -207,13 +222,23 @@ Programming: Jöran Malek</value>
   <data name="Room3_Description_Quest" xml:space="preserve">
     <value>"Okay {0}. There are some rumours that goblins are in the western forests. Please take a look and tell me if they are true."
 You ask him why you are here and where he comes from but the mage answers "You will find out, hopefully".
-"Now go down the stairs. It will bring you straight to the forest."</value>
+"Now go down the stairs. It will bring you straight to the forest. And .. before I forget: You might want to open your inventory and revisit your stats some time."</value>
   </data>
   <data name="Room3_Fail" xml:space="preserve">
     <value>The mage did not understand you.</value>
   </data>
   <data name="Room3_Title" xml:space="preserve">
     <value>Mages Room</value>
+  </data>
+  <data name="Room4_Description" xml:space="preserve">
+    <value>On your way down to the forest you pass some weapons. Some letters are on the wall telling, that you should take them.
+Right after you leave the tower a small goblin falls on your feet. He stands up, takes his sword and swings it infront of you.</value>
+  </data>
+  <data name="Room4_Progress" xml:space="preserve">
+    <value>After the goblin died you see a path into the forest which you have not seen before.</value>
+  </data>
+  <data name="Room4_Title" xml:space="preserve">
+    <value>Tower Ground</value>
   </data>
   <data name="StrikeWords" xml:space="preserve">
     <value>with,me</value>

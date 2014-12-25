@@ -147,6 +147,15 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The goblin has died. ähnelt.
+        /// </summary>
+        internal static string Goblin_Died {
+            get {
+                return ResourceManager.GetString("Goblin_Died", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Input {0} is unknown. ähnelt.
         /// </summary>
         internal static string InvalidAction {
@@ -206,6 +215,42 @@ namespace TextAdventure.Properties {
         internal static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Health ähnelt.
+        /// </summary>
+        internal static string Potion_Health {
+            get {
+                return ResourceManager.GetString("Potion_Health", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Max Health ähnelt.
+        /// </summary>
+        internal static string Potion_MaxHealth {
+            get {
+                return ResourceManager.GetString("Potion_MaxHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your {0} has been increased to {1}. ähnelt.
+        /// </summary>
+        internal static string Potion_Message {
+            get {
+                return ResourceManager.GetString("Potion_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Strength ähnelt.
+        /// </summary>
+        internal static string Potion_Strength {
+            get {
+                return ResourceManager.GetString("Potion_Strength", resourceCulture);
             }
         }
         
@@ -312,7 +357,7 @@ namespace TextAdventure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &quot;Okay {0}. There are some rumours that goblins are in the western forests. Please take a look and tell me if they are true.&quot;
         ///You ask him why you are here and where he comes from but the mage answers &quot;You will find out, hopefully&quot;.
-        ///&quot;Now go down the stairs. It will bring you straight to the forest.&quot; ähnelt.
+        ///&quot;Now go down the stairs. It will bring you straight to the forest. And .. before I forget: You might want to open your inventory and revisit your stats some time.&quot; ähnelt.
         /// </summary>
         internal static string Room3_Description_Quest {
             get {
@@ -335,6 +380,34 @@ namespace TextAdventure.Properties {
         internal static string Room3_Title {
             get {
                 return ResourceManager.GetString("Room3_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die On your way down to the forest you pass some weapons. Some letters are on the wall telling, that you should take them.
+        ///Right after you leave the tower a small goblin falls on your feet. He stands up, takes his sword and swings it infront of you. ähnelt.
+        /// </summary>
+        internal static string Room4_Description {
+            get {
+                return ResourceManager.GetString("Room4_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die After the goblin died you see a path into the forest which you have not seen before. ähnelt.
+        /// </summary>
+        internal static string Room4_Progress {
+            get {
+                return ResourceManager.GetString("Room4_Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tower Ground ähnelt.
+        /// </summary>
+        internal static string Room4_Title {
+            get {
+                return ResourceManager.GetString("Room4_Title", resourceCulture);
             }
         }
         

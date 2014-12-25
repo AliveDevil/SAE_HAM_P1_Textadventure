@@ -47,6 +47,7 @@ namespace TextAdventure.Scenes.Levels
 
 		private bool TakeStairs(ComponentEventArgs e)
 		{
+			//SceneManager.GetComponentByType<Player>().AddItem(new )
 			SceneManager.LoadScene<Level04Scene>();
 			return true;
 		}

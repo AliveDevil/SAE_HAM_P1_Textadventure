@@ -38,25 +38,10 @@ namespace TextAdventure.Scenes
 			Arguments = new ReadOnlyCollection<string>(arguments);
 		}
 
-		protected void Message(string message)
+		public void Message(string message)
 		{
 			messages.Add(message);
 		}
-		protected void RegisterAction(ExecuteAction method)
-		{
-			string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToLower();
-			if (!string.IsNullOrEmpty(key))
-			{
-				actions[key] = method;
-			}
-		}
-		protected virtual bool HandleInput(List<string> arguments)
-		{
-			return false;
-		}
-
-		public virtual void Initialize() { }
-
 		public bool PerformAction(List<string> arguments)
 		{
 			if (arguments.Count > 0)
@@ -71,6 +56,26 @@ namespace TextAdventure.Scenes
 					return HandleInput(arguments);
 				}
 			}
+			return false;
+		}
+		public void ClearMessages()
+		{
+			string lastMessage = messages.Last();
+			messages.Clear();
+			Message(lastMessage);
+		}
+		public virtual void Initialize() { }
+		
+		protected void RegisterAction(ExecuteAction method)
+		{
+			string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToLower();
+			if (!string.IsNullOrEmpty(key))
+			{
+				actions[key] = method;
+			}
+		}
+		protected virtual bool HandleInput(List<string> arguments)
+		{
 			return false;
 		}
 	}
