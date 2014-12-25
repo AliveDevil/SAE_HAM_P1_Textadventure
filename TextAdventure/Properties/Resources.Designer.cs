@@ -147,6 +147,51 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Health ähnelt.
+        /// </summary>
+        internal static string Generic_Health {
+            get {
+                return ResourceManager.GetString("Generic_Health", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Inventory ähnelt.
+        /// </summary>
+        internal static string Generic_Inventory {
+            get {
+                return ResourceManager.GetString("Generic_Inventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Max Health ähnelt.
+        /// </summary>
+        internal static string Generic_MaxHealth {
+            get {
+                return ResourceManager.GetString("Generic_MaxHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Stats ähnelt.
+        /// </summary>
+        internal static string Generic_Stats {
+            get {
+                return ResourceManager.GetString("Generic_Stats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Strength ähnelt.
+        /// </summary>
+        internal static string Generic_Strength {
+            get {
+                return ResourceManager.GetString("Generic_Strength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The goblin has died. ähnelt.
         /// </summary>
         internal static string Goblin_Died {
@@ -219,38 +264,11 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Health ähnelt.
-        /// </summary>
-        internal static string Potion_Health {
-            get {
-                return ResourceManager.GetString("Potion_Health", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Max Health ähnelt.
-        /// </summary>
-        internal static string Potion_MaxHealth {
-            get {
-                return ResourceManager.GetString("Potion_MaxHealth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Your {0} has been increased to {1}. ähnelt.
         /// </summary>
         internal static string Potion_Message {
             get {
                 return ResourceManager.GetString("Potion_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Strength ähnelt.
-        /// </summary>
-        internal static string Potion_Strength {
-            get {
-                return ResourceManager.GetString("Potion_Strength", resourceCulture);
             }
         }
         

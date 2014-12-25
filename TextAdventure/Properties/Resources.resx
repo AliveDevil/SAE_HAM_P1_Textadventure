@@ -149,6 +149,21 @@ Programming: Jöran Malek</value>
   <data name="GameOver_Title" xml:space="preserve">
     <value>You just finished the game.</value>
   </data>
+  <data name="Generic_Health" xml:space="preserve">
+    <value>Health</value>
+  </data>
+  <data name="Generic_Inventory" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="Generic_MaxHealth" xml:space="preserve">
+    <value>Max Health</value>
+  </data>
+  <data name="Generic_Stats" xml:space="preserve">
+    <value>Stats</value>
+  </data>
+  <data name="Generic_Strength" xml:space="preserve">
+    <value>Strength</value>
+  </data>
   <data name="Goblin_Died" xml:space="preserve">
     <value>The goblin has died.</value>
   </data>
@@ -173,17 +188,8 @@ Programming: Jöran Malek</value>
   <data name="NotFound" xml:space="preserve">
     <value>Nothing found in translation.</value>
   </data>
-  <data name="Potion_Health" xml:space="preserve">
-    <value>Health</value>
-  </data>
-  <data name="Potion_MaxHealth" xml:space="preserve">
-    <value>Max Health</value>
-  </data>
   <data name="Potion_Message" xml:space="preserve">
     <value>Your {0} has been increased to {1}.</value>
-  </data>
-  <data name="Potion_Strength" xml:space="preserve">
-    <value>Strength</value>
   </data>
   <data name="Room1_Description_Dark" xml:space="preserve">
     <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>

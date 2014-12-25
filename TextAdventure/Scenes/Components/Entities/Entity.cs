@@ -27,7 +27,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		public void Heal(int amount)
 		{
 			Health += amount;
-			PostMessage(Resources.Potion_Health, Health);
+			PostMessage(Resources.Generic_Health, Health);
 		}
 		public bool Attack(Entity enemy)
 		{
@@ -41,15 +41,15 @@ namespace TextAdventure.Scenes.Components.Entities
 		public void RaiseDamage(int amount)
 		{
 			Strength += amount;
-			SceneManager.CurrentScene.Message(string.Format(Resources.Potion_Message, Resources.Potion_Strength, Strength));
+			SceneManager.CurrentScene.Message(string.Format(Resources.Potion_Message, Resources.Generic_Strength, Strength));
 		}
 		public void RaiseHealth(int amount)
 		{
 			float oldAmount = MaxHealth;
 			MaxHealth += amount;
 			Health = Clamp(MaxHealth * (Health / oldAmount), 0, MaxHealth);
-			PostMessage(Resources.Potion_MaxHealth, MaxHealth);
-			PostMessage(Resources.Potion_Health, Health);
+			PostMessage(Resources.Generic_MaxHealth, MaxHealth);
+			PostMessage(Resources.Generic_Health, Health);
 		}
 		
 		protected void ReceiveDamage(Entity attacker)

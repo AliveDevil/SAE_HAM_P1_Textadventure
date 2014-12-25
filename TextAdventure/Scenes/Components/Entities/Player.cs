@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TextAdventure.Properties;
 using TextAdventure.Scenes.Components.Items;
 
 namespace TextAdventure.Scenes.Components.Entities
@@ -15,10 +16,11 @@ namespace TextAdventure.Scenes.Components.Entities
 	/// </summary>
 	public sealed class Player : Entity
 	{
+		const string HeaderFormat = "= {0} =";
 		const string StatsFormat =
-			"Stats\n" +
-			"Health: {0}\n" +
-			"Damage: {1}\n";
+			"{0}\n" +
+			"{1}: {3}\n" +
+			"{2}: {4}\n";
 		const string InventoryFormat = "{0}: {1}x\n";
 		const int baseHealth = 100;
 		const int baseDamage = 5;
@@ -68,7 +70,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		}
 		private bool ShowStats(ComponentEventArgs e)
 		{
-			SceneManager.CurrentScene.Message(string.Format(StatsFormat, Health, Strength));
+			SceneManager.CurrentScene.Message(string.Format(StatsFormat, Resources.Generic_Stats, Resources.Generic_Health, Resources.Generic_Strength, Health, Strength));
 			return true;
 		}
 		private bool ShowInventory(ComponentEventArgs e)
@@ -83,7 +85,7 @@ namespace TextAdventure.Scenes.Components.Entities
 					Count = enumerable.Count() // just return an enumerable with key and count.
 				});
 			StringBuilder builder = new StringBuilder();
-			builder.AppendLine("Inventory");
+			builder.AppendLine(string.Format(HeaderFormat, Resources.Generic_Inventory));
 			foreach (var group in groupedInventory)
 			{
 				builder.AppendFormat(InventoryFormat, group.Key, group.Count);

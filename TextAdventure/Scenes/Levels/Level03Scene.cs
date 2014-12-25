@@ -5,6 +5,7 @@
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
+using TextAdventure.Scenes.Components.Items;
 
 namespace TextAdventure.Scenes.Levels
 {
@@ -47,6 +48,12 @@ namespace TextAdventure.Scenes.Levels
 
 		private bool TakeStairs(ComponentEventArgs e)
 		{
+			SceneManager.GetComponentByType<Player>().AddItem(new LifePotion());
+			for (int i = 0; i < 5; i++)
+			{
+				SceneManager.GetComponentByType<Player>().AddItem(new HealthPotion());
+				SceneManager.GetComponentByType<Player>().AddItem(new StrengthPotion());
+			}
 			//SceneManager.GetComponentByType<Player>().AddItem(new )
 			SceneManager.LoadScene<Level04Scene>();
 			return true;
