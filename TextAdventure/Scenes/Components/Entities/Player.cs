@@ -1,8 +1,11 @@
-﻿using System;
+﻿/*
+ * Author: Jöran Malek
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TextAdventure.Scenes.Components.Items;
 
 namespace TextAdventure.Scenes.Components.Entities
