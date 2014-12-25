@@ -204,6 +204,11 @@ Programming: Jöran Malek</value>
     <value>You enter the room called "Mages room". It is bright and filled with lots of books and wood and stuff. Under a huge amount of books you see a long, blue hat. You move the books away and a mage sees into your eyes.
 "Hey, you must be"</value>
   </data>
+  <data name="Room3_Description_Quest" xml:space="preserve">
+    <value>"Okay {0}. There are some rumours that goblins are in the western forests. Please take a look and tell me if they are true."
+You ask him why you are here and where he comes from but the mage answers "You will find out, hopefully".
+"Now go down the stairs. It will bring you straight to the forest."</value>
+  </data>
   <data name="Room3_Fail" xml:space="preserve">
     <value>The mage did not understand you.</value>
   </data>

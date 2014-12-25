@@ -312,7 +312,11 @@ namespace TextAdventure.Scenes
 			Console.Write("Action> ");
 			string input = Console.ReadLine();
 
-			currentScene.PerformAction(ExtractArguments(input));
+			List<string> arguments = ExtractArguments(input);
+			if (!currentScene.PerformAction(arguments))
+			{
+				GlobalComponentInput(arguments);
+			}
 		}
 		private static List<string> ExcludedParts()
 		{
@@ -359,6 +363,19 @@ namespace TextAdventure.Scenes
 		private static bool IsArgumentPart(char c)
 		{
 			return !(char.IsControl(c) || char.IsPunctuation(c) || char.IsSymbol(c) || char.IsWhiteSpace(c));
+		}
+		private static void GlobalComponentInput(List<string> arguments)
+		{
+			if (arguments.Count > 0)
+			{
+				foreach (var item in registeredComponents)
+				{
+					if (item.CanInteract(arguments[0], null) && item.Interact(arguments[0], string.Join(", ", arguments.Skip(1))))
+					{
+						break;
+					}
+				}
+			}
 		}
 		#endregion
 	}

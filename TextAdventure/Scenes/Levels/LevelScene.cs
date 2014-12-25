@@ -23,7 +23,6 @@ namespace TextAdventure.Scenes.Levels
 			return components.OfType<T>().FirstOrDefault();
 		}
 
-		protected abstract string OnNoActionFound();
 		protected void AddComponent(Component component)
 		{
 			components.Add(component);
@@ -47,10 +46,7 @@ namespace TextAdventure.Scenes.Levels
 			{
 				return interactComponent.Interact(arguments[0], string.Join(" ", arguments.Skip(1)));
 			}
-			else
-			{
-				Message(OnNoActionFound());
-			}
+			
 			return false;
 		}
 

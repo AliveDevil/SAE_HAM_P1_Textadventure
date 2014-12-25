@@ -23,11 +23,6 @@ namespace TextAdventure.Scenes.Levels
 			AddComponent(door);
 		}
 
-		protected override string OnNoActionFound()
-		{
-			return Resources.Room2_Fail;
-		}
-
 		private bool OpenDoor(Component component, string parameter)
 		{
 			SceneManager.LoadScene<Level03Scene>();

@@ -310,6 +310,17 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;Okay {0}. There are some rumours that goblins are in the western forests. Please take a look and tell me if they are true.&quot;
+        ///You ask him why you are here and where he comes from but the mage answers &quot;You will find out, hopefully&quot;.
+        ///&quot;Now go down the stairs. It will bring you straight to the forest.&quot; ähnelt.
+        /// </summary>
+        internal static string Room3_Description_Quest {
+            get {
+                return ResourceManager.GetString("Room3_Description_Quest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The mage did not understand you. ähnelt.
         /// </summary>
         internal static string Room3_Fail {

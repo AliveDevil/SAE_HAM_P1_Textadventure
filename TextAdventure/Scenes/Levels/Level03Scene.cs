@@ -19,22 +19,13 @@ namespace TextAdventure.Scenes.Levels
 				{
 					return Resources.Room3_Description_AskForName;
 				}
-				else
-				{
-
-				}
-				return "";
+				return string.Format(Resources.Room3_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
 			}
 		}
 
 		public Level03Scene()
 		{
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
-		}
-
-		protected override string OnNoActionFound()
-		{
-			return Resources.Room3_Fail;
 		}
 
 		private bool PlayerRename(Component component, string parameter)

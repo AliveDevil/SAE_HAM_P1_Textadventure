@@ -54,8 +54,7 @@ namespace TextAdventure.Scenes
 		}
 		protected virtual bool HandleInput(List<string> arguments)
 		{
-			Message(string.Format(Resources.InvalidAction, string.Join(" ", arguments)));
-			return true;
+			return false;
 		}
 
 		public virtual void Initialize() { }

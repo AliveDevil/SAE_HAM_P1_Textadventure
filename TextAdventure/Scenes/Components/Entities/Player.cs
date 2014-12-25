@@ -24,14 +24,32 @@ namespace TextAdventure.Scenes.Components.Entities
 		public Player(bool enabled)
 			: base(null, enabled, baseDamage, baseHealth)
 		{
-			RegisterCallback("attack", Attack);
-			RegisterCallback("call", Rename);
-			RegisterCallback("say", Rename);
+			RegisterCallback("attack", OnAttack);
+			RegisterCallback("call", OnRename);
+			RegisterCallback("say", OnRename);
 		}
 
 		public void SetName(string name)
 		{
 			Name = name;
+		}
+
+		private bool OnAttack(Component component, string parameter)
+		{
+			if (Attack != null)
+			{
+				return Attack(component, parameter);
+			}
+			return false;
+		}
+
+		private bool OnRename(Component component, string parameter)
+		{
+			if (Rename != null)
+			{
+				return Rename(component, parameter);
+			}
+			return false;
 		}
 	}
 }

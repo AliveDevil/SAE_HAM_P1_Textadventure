@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using System;
 using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
@@ -39,11 +40,6 @@ namespace TextAdventure.Scenes.Levels
 			glass.Drink += DrinkGlass;
 			glass.Take += TakeGlass;
 			AddComponent(glass);
-		}
-
-		protected override string OnNoActionFound()
-		{
-			return Resources.Room1_Fail;
 		}
 
 		private bool OpenDoor(Component component, string parameter)
