@@ -2,7 +2,6 @@
  * Author: Jöran Malek
  */
 
-using System.Linq;
 using TextAdventure.Attributes;
 using TextAdventure.Properties;
 

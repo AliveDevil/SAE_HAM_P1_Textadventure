@@ -2,11 +2,9 @@
  * Author: Jöran Malek
  */
 
-using System;
 using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
-using TextAdventure.Scenes.Components.Entities;
 
 namespace TextAdventure.Scenes.Levels
 {

@@ -4,8 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using TextAdventure.Properties;
 
 namespace TextAdventure.Scenes.Components
 {
@@ -52,10 +50,15 @@ namespace TextAdventure.Scenes.Components
 		public bool CanInteract(string action, string name)
 		{
 			/*
-			 * Return true if either not CheckName or components name equals given name invariant culture ignore case.
-			 * and if callbacks contains given actions key.
+			 * Return true if
+			 *	Enabled
+			 *	and either
+			 *		not CheckName
+			 *		or components name equals given name invariant culture ignore case.
+			 *	and if callbacks contain given key.
 			 */
-			return (!CheckName || name.Equals(Name, StringComparison.InvariantCultureIgnoreCase)) &&
+			return Enabled &&
+				(!CheckName || name.Equals(Name, StringComparison.InvariantCultureIgnoreCase)) &&
 				callbacks.ContainsKey(action.ToLower());
 		}
 

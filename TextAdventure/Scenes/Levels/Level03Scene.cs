@@ -26,6 +26,9 @@ namespace TextAdventure.Scenes.Levels
 		public Level03Scene()
 		{
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
+			ChangeRoomComponent stairs = new ChangeRoomComponent("stairs", false);
+			stairs.Open += TakeStairs;
+			AddComponent(stairs);
 		}
 
 		private bool PlayerRename(ComponentEventArgs e)
@@ -38,6 +41,13 @@ namespace TextAdventure.Scenes.Levels
 			}
 
 			player.SetName(e.Parameter);
+			FindComponent<ChangeRoomComponent>().Enabled = true;
+			return true;
+		}
+
+		private bool TakeStairs(ComponentEventArgs e)
+		{
+			SceneManager.LoadScene<Level04Scene>();
 			return true;
 		}
 	}
