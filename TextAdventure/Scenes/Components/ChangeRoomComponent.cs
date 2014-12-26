@@ -2,8 +2,8 @@
  * Author: Jöran Malek
  */
 
-
 using System;
+
 namespace TextAdventure.Scenes.Components
 {
 	/// <summary>

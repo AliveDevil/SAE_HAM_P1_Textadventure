@@ -1,7 +1,7 @@
-﻿
-/*
+﻿/*
  * Author: Jöran Malek
  */
+
 using TextAdventure.Scenes.Components.Entities;
 
 namespace TextAdventure.Scenes.Components.Items

@@ -2,10 +2,10 @@
  * Author: Jöran Malek
  */
 
-
 using System;
 using System.Globalization;
 using TextAdventure.Properties;
+
 namespace TextAdventure.Scenes.Components.Entities
 {
 	/// <summary>

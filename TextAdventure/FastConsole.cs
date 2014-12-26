@@ -18,35 +18,51 @@ namespace TextAdventure
 		private static int bufferHeight;
 		private static char[] buffer;
 
+		/// <summary>
+		/// <para>Initializes internal buffer with consoles buffer width and height.</para>
+		/// </summary>
 		public static void Initialize()
 		{
 			bufferWidth = Console.BufferWidth;
 			bufferHeight = Console.BufferHeight;
-			buffer = new char[bufferWidth * (bufferHeight - 1)];
+			buffer = new char[bufferWidth * (bufferHeight - 1)]; // exclude last row in buffer to avoid funny effects.
 		}
-
-		public static void Write(int x, int y, char c)
+		/// <summary>
+		/// <para>Buffers given char at given position.</para>
+		/// </summary>
+		/// <param name="positionX">X coordinate (from left, starting from 0)</param>
+		/// <param name="positionY">Y coordinate (from top, starting from 0)</param>
+		/// <param name="value">Saved char</param>
+		public static void Write(int positionX, int positionY, char value)
 		{
-			int index = GetIndex(x, y);
-			if (!char.IsWhiteSpace(c))
+			int index = GetIndex(positionX, positionY);
+			if (!char.IsWhiteSpace(value))
 			{
-				buffer[index] = c;
+				buffer[index] = value;
 			}
 			else
 			{
 				buffer[index] = Empty;
 			}
 		}
-
+		/// <summary>
+		/// <para>Prints current buffer beginning at (0|0).</para>
+		/// </summary>
 		public static void Print()
 		{
 			Console.SetCursorPosition(0, 0);
 			Console.Write(buffer, 0, buffer.Length);
 		}
 
-		private static int GetIndex(int x, int y)
+		/// <summary>
+		/// Returns one dimensional index for two dimensional position.
+		/// </summary>
+		/// <param name="positionX">X coordinate (from left, starting from 0)</param>
+		/// <param name="positionY">Y coordinate (from top, starting from 0)</param>
+		/// <returns>One dimensional index for given position.</returns>
+		private static int GetIndex(int positionX, int positionY)
 		{
-			return y * bufferWidth + x;
+			return positionY * bufferWidth + positionX;
 		}
 	}
 }

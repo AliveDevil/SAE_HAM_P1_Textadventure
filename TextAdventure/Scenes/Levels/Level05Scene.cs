@@ -2,7 +2,6 @@
  * Author: Jöran Malek
  */
 
-
 namespace TextAdventure.Scenes.Levels
 {
 	public sealed class Level05Scene : LevelScene
