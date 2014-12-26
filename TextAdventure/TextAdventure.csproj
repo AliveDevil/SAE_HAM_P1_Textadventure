@@ -67,7 +67,6 @@
     <Compile Include="Scenes\Components\Items\LifePotion.cs" />
     <Compile Include="Scenes\Components\Items\Potion.cs" />
     <Compile Include="Scenes\Components\Items\StrengthPotion.cs" />
-    <Compile Include="Scenes\Components\PlaceholderComponent.cs" />
     <Compile Include="Scenes\Components\SwitchComponent.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\GameOverScene.cs" />

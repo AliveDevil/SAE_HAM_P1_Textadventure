@@ -6,16 +6,25 @@ using TextAdventure.Scenes.Components.Entities;
 
 namespace TextAdventure.Scenes.Components.Items
 {
+	/// <summary>
+	/// Heals the caller.
+	/// </summary>
 	public class HealthPotion : Potion
 	{
+		/// <summary>
+		/// Default constructor for potions.
+		/// </summary>
 		public HealthPotion() : base("healthpotion") { }
 
-		public override void Apply(Component caller)
+		/// <summary>
+		/// Applies healing effect.
+		/// </summary>
+		/// <param name="caller">This one should be healed.</param>
+		public override void Apply(Entity caller)
 		{
-			Entity entity = caller as Entity;
-			if (entity != null)
+			if (caller != null)
 			{
-				entity.Heal(10);
+				caller.Heal(10);
 			}
 		}
 	}

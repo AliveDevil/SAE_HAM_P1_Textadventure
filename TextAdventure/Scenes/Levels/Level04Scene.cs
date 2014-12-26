@@ -35,8 +35,8 @@ namespace TextAdventure.Scenes.Levels
 			Component component = sender as Component;
 			if (component != null)
 			{
-				AddMessage(Resources.Goblin_Died);
-				AddMessage(Resources.Room4_Progress);
+				PostMessage(Resources.Goblin_Died);
+				PostMessage(Resources.Room4_Progress);
 				RemoveComponent(component);
 				FindComponent<ChangeRoomComponent>().Enabled = true;
 			}

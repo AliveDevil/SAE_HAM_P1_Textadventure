@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -58,9 +59,13 @@ namespace TextAdventure.Scenes
 			readonlyArguments = new ReadOnlyCollection<string>(arguments);
 		}
 
-		public void AddMessage(string message)
+		public void PostMessage(string message)
 		{
 			messages.Add(message);
+		}
+		public void PostMessage(IFormatProvider formatProvider, string format, params object[] args)
+		{
+			PostMessage(string.Format(formatProvider, format, args));
 		}
 		public bool PerformAction(IList<string> arguments)
 		{
@@ -82,7 +87,7 @@ namespace TextAdventure.Scenes
 		{
 			string lastMessage = messages.Last();
 			messages.Clear();
-			AddMessage(lastMessage);
+			PostMessage(lastMessage);
 		}
 		public virtual void Initialize() { }
 

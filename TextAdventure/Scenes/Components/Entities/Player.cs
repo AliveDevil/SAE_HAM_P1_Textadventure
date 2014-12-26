@@ -72,7 +72,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		}
 		private void ShowStats(object sender, ComponentEventArgs e)
 		{
-			SceneManager.CurrentScene.AddMessage(
+			SceneManager.CurrentScene.PostMessage(
 				string.Format(
 					CultureInfo.CurrentCulture,
 					Resources.Generic_StatsFormat,
@@ -101,7 +101,7 @@ namespace TextAdventure.Scenes.Components.Entities
 			{
 				builder.AppendFormat(CultureInfo.CurrentCulture, InventoryFormat, group.Key, group.Count);
 			}
-			SceneManager.CurrentScene.AddMessage(builder.ToString());
+			SceneManager.CurrentScene.PostMessage(builder.ToString());
 			builder.Clear();
 			e.Handled = true;
 		}

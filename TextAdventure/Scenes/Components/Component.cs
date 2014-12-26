@@ -18,7 +18,7 @@ namespace TextAdventure.Scenes.Components
 		private Dictionary<string, EventHandler<ComponentEventArgs>> callbacks;
 
 		/// <summary>
-		/// 
+		/// Is this component enabled?
 		/// </summary>
 		public bool Enabled { get; set; }
 		/// <summary>
@@ -26,8 +26,16 @@ namespace TextAdventure.Scenes.Components
 		/// </summary>
 		public string Name { get; protected set; }
 
+		/// <summary>
+		/// Should name be checked?
+		/// </summary>
 		protected virtual bool CheckName { get { return true; } }
 
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
+		/// <param name="name">Lookup name.</param>
+		/// <param name="enabled">Is this component enabled.</param>
 		protected Component(string name, bool enabled)
 		{
 			this.Name = name;
@@ -73,11 +81,11 @@ namespace TextAdventure.Scenes.Components
 		}
 
 		/// <summary>
-		/// 
+		/// Adds callback to callbacks.
 		/// </summary>
-		/// <param name="action"></param>
-		/// <param name="callback"></param>
-		/// <returns></returns>
+		/// <param name="action">Action key.</param>
+		/// <param name="callback">Function called.</param>
+		/// <returns>Current component.</returns>
 		protected Component RegisterCallback(string action, EventHandler<ComponentEventArgs> callback)
 		{
 			if (!string.IsNullOrEmpty(action))

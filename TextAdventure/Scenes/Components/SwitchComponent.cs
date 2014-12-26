@@ -11,10 +11,22 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class SwitchComponent : Component
 	{
+		/// <summary>
+		/// Raised if this switch is used.
+		/// </summary>
 		public event EventHandler<ComponentEventArgs> Switch;
 
+		/// <summary>
+		/// Is this switch active?
+		/// </summary>
 		public bool Switched { get; set; }
-
+		
+		/// <summary>
+		/// Constructor for switch.
+		/// </summary>
+		/// <param name="name">Lookup name.</param>
+		/// <param name="enabled">Is this component enabled?</param>
+		/// <param name="switched">Is this switch switched on?</param>
 		public SwitchComponent(string name, bool enabled, bool switched)
 			: base(name, enabled)
 		{
@@ -25,6 +37,9 @@ namespace TextAdventure.Scenes.Components
 			RegisterCallback("switch", OnSwitch);
 		}
 
+		/// <summary>
+		/// Called on use, turn, toggle and switch.
+		/// </summary>
 		private void OnSwitch(object sender, ComponentEventArgs e)
 		{
 			if (Switch != null)

@@ -50,7 +50,7 @@ namespace TextAdventure.Scenes.Levels
 			SwitchComponent @switch = sender as SwitchComponent;
 			@switch.Switched = true;
 			@switch.Enabled = false;
-			AddMessage(Resources.Room1_LightSwitch_TurnOn);
+			PostMessage(Resources.Room1_LightSwitch_TurnOn);
 			FindComponent<GlassComponent>().Enabled = true;
 			e.Handled = true;
 		}

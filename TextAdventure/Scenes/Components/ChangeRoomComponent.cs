@@ -11,8 +11,16 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public sealed class ChangeRoomComponent : Component
 	{
+		/// <summary>
+		/// Thrown if this component is called.
+		/// </summary>
 		public event EventHandler<ComponentEventArgs> Follow;
 
+		/// <summary>
+		/// Single constructor for 
+		/// </summary>
+		/// <param name="name">Current components name.</param>
+		/// <param name="enabled">Is this component enabled.</param>
 		public ChangeRoomComponent(string name, bool enabled)
 			: base(name, enabled)
 		{
@@ -22,6 +30,9 @@ namespace TextAdventure.Scenes.Components
 			RegisterCallback("follow", OnFollow);
 		}
 
+		/// <summary>
+		/// Callback for using.
+		/// </summary>
 		private void OnFollow(object sender, ComponentEventArgs e)
 		{
 			if (Follow != null)

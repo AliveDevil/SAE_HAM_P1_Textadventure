@@ -6,16 +6,25 @@ using TextAdventure.Scenes.Components.Entities;
 
 namespace TextAdventure.Scenes.Components.Items
 {
+	/// <summary>
+	/// Increases maxhealth.
+	/// </summary>
 	public sealed class LifePotion : Potion
 	{
+		/// <summary>
+		/// Default constructor for lifepotion.
+		/// </summary>
 		public LifePotion() : base("lifepotion") { }
 
-		public override void Apply(Component caller)
+		/// <summary>
+		/// Increases maxhealth of caller.
+		/// </summary>
+		/// <param name="caller"></param>
+		public override void Apply(Entity caller)
 		{
-			Entity entity = caller as Entity;
-			if (entity != null)
+			if (caller != null)
 			{
-				entity.IncreaseHealth(15);
+				caller.IncreaseHealth(15);
 			}
 		}
 	}

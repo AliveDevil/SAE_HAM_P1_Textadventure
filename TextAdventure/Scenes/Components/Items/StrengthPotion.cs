@@ -6,16 +6,25 @@ using TextAdventure.Scenes.Components.Entities;
 
 namespace TextAdventure.Scenes.Components.Items
 {
+	/// <summary>
+	/// Increases entities strength.
+	/// </summary>
 	public sealed class StrengthPotion : Potion
 	{
+		/// <summary>
+		/// Default constructor for strengthpotion.
+		/// </summary>
 		public StrengthPotion() : base("strengthpotion") { }
 
-		public override void Apply(Component caller)
+		/// <summary>
+		/// Increases strength of caller.
+		/// </summary>
+		/// <param name="caller">Some caller entity.</param>
+		public override void Apply(Entity caller)
 		{
-			Entity entity = caller as Entity;
-			if (entity != null)
+			if (caller != null)
 			{
-				entity.IncreaseStrength(4);
+				caller.IncreaseStrength(4);
 			}
 		}
 	}
