@@ -19,10 +19,10 @@ namespace TextAdventure.Scenes.Components.Entities
 		public int MaxHealth { get; protected set; }
 		public int Health { get; protected set; }
 
-		protected Entity(string name, bool enabled, int damage, int health)
+		protected Entity(string name, bool enabled, int strength, int health)
 			: base(name, enabled)
 		{
-			this.Strength = damage;
+			this.Strength = strength;
 			this.MaxHealth = health;
 			this.Health = health;
 		}
@@ -41,7 +41,7 @@ namespace TextAdventure.Scenes.Components.Entities
 			}
 			return false;
 		}
-		public void IncreaseDamage(int amount)
+		public void IncreaseStrength(int amount)
 		{
 			Strength += amount;
 			SceneManager.CurrentScene.AddMessage(string.Format(CultureInfo.CurrentCulture, Resources.Potion_Message, Resources.Generic_Strength, Strength));
@@ -55,19 +55,24 @@ namespace TextAdventure.Scenes.Components.Entities
 			PostMessage(Resources.Generic_Health, Health);
 		}
 
-		protected void ReceiveDamage(Entity attacker)
+		protected virtual void ReceiveDamage(Entity attacker)
 		{
 			if (attacker != null)
 			{
-				this.Health -= attacker.Strength;
-				SceneManager.CurrentScene.AddMessage(string.Format(CultureInfo.CurrentCulture, Resources.Generic_GotDamage, Name, attacker.Strength, this.Health));
+				int damage = (int)Math.Ceiling(attacker.Strength * (SceneManager.RandomNumberGenerator.NextDouble() + 0.5));
+				this.Health -= damage;
+				SceneManager.CurrentScene.AddMessage(string.Format(CultureInfo.CurrentCulture, Resources.Generic_GotDamage, Name, damage, this.Health));
 			}
 			CheckDeath();
+		}
+		protected bool IsDead()
+		{
+			return this.Health <= 0;
 		}
 
 		private void CheckDeath()
 		{
-			if (this.Health <= 0)
+			if (IsDead())
 			{
 				OnDied();
 			}
@@ -79,6 +84,7 @@ namespace TextAdventure.Scenes.Components.Entities
 				Died(this, null);
 			}
 		}
+
 		private static void PostMessage(string title, int amount)
 		{
 			SceneManager.CurrentScene.AddMessage(string.Format(CultureInfo.CurrentCulture, Resources.Potion_Message, title, amount));

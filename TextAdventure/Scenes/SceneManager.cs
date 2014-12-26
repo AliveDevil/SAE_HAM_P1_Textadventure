@@ -30,8 +30,10 @@ namespace TextAdventure.Scenes
 		private static bool exit = false;
 		private static int messageY = 0;
 		private static Scene currentScene;
+		private static Random randomNumberGenerator = new Random();
 
 		public static Scene CurrentScene { get { return currentScene; } }
+		public static Random RandomNumberGenerator { get { return randomNumberGenerator; } }
 		public static ReadOnlyCollection<Component> RegisteredComponents { get { return registeredComponents.AsReadOnly(); } }
 
 		public static bool LoadScene<T>(params string[] arguments) where T : Scene

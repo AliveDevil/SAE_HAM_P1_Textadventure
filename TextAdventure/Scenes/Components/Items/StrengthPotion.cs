@@ -15,7 +15,7 @@ namespace TextAdventure.Scenes.Components.Items
 			Entity entity = caller as Entity;
 			if (entity != null)
 			{
-				entity.IncreaseDamage(4);
+				entity.IncreaseStrength(4);
 			}
 		}
 	}
