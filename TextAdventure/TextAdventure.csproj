@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ActionAttribute.cs" />
+    <Compile Include="FastConsole.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HideCursor.cs" />
     <Compile Include="Program.cs" />

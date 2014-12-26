@@ -45,6 +45,7 @@ namespace TextAdventure.Scenes
 		public static void Run()
 		{
 			SetResolution();
+			FastConsole.Initialize();
 			while (!exit)
 			{
 				WriteScene();
@@ -118,6 +119,7 @@ namespace TextAdventure.Scenes
 			DrawDescription();
 			DrawMessages();
 			DrawActions();
+			FastConsole.Print();
 		}
 		private static void DrawTitle()
 		{
@@ -167,8 +169,7 @@ namespace TextAdventure.Scenes
 		}
 		private static void DrawChar(int x, int y, char @char)
 		{
-			SetCursorPosition(x, y);
-			Console.Write(@char);
+			FastConsole.Write(ResolveX(x), ResolveY(y), @char);
 		}
 		private static List<Line> EnumerateActions()
 		{
