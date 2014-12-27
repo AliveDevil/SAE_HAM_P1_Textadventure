@@ -145,6 +145,10 @@ Programming: Jöran Malek</value>
     <value>Start over in main menu.</value>
     <comment>Back action in GameOver-Scene.</comment>
   </data>
+  <data name="GameOver_Default" xml:space="preserve">
+    <value>How did you finish? There is no information about it.</value>
+    <comment>Nothing passed as argument.</comment>
+  </data>
   <data name="GameOver_Description" xml:space="preserve">
     <value>You just finished the game. The following has been added to your finish:
 {0}</value>

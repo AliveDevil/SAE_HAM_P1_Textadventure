@@ -19,6 +19,12 @@ namespace TextAdventure.Scenes.Components.Entities
 			return new Goblin(name, 1, 10);
 		}
 
+		/// <summary>
+		/// Private constructor. Nothing should ever create an instance from this.
+		/// </summary>
+		/// <param name="name">Components name.</param>
+		/// <param name="damage">Entities damage.</param>
+		/// <param name="health">Entities health.</param>
 		private Goblin(string name, int damage, int health) : base(name, true, damage, health) { }
 
 		/// <summary>

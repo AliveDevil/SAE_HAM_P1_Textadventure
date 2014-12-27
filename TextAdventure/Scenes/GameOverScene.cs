@@ -8,9 +8,18 @@ using TextAdventure.Properties;
 
 namespace TextAdventure.Scenes
 {
+	/// <summary>
+	/// Game over man.
+	/// </summary>
 	public sealed class GameOverScene : Scene
 	{
+		/// <summary>
+		/// Returns a title. Think it's "Game finished".
+		/// </summary>
 		public override string Title { get { return Resources.GameOver_Title; } }
+		/// <summary>
+		/// A message that current game is finished and player exited with given arguments.
+		/// </summary>
 		public override string Description
 		{
 			get
@@ -19,10 +28,13 @@ namespace TextAdventure.Scenes
 					Resources.GameOver_Description,
 					Arguments != null && Arguments.Count > 0
 					? Arguments[0]
-					: "How did you finish? There is no information about it.");
+					: Resources.GameOver_Default);
 			}
 		}
 
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
 		public GameOverScene(params string[] arguments)
 			: base(arguments)
 		{
@@ -30,13 +42,20 @@ namespace TextAdventure.Scenes
 			RegisterAction(QuitAction);
 		}
 
+		/// <summary>
+		/// Returns to main menu.
+		/// </summary>
+		/// <returns>True.</returns>
 		[Action("back", "GameOver_Back")]
 		private bool BackAction()
 		{
 			SceneManager.LoadScene<MainMenuScene>();
 			return false;
 		}
-
+		/// <summary>
+		/// Quits current application.
+		/// </summary>
+		/// <returns>True.</returns>
 		[Action("quit", "GameOver_uit")]
 		private bool QuitAction()
 		{

@@ -12,7 +12,13 @@ namespace TextAdventure.Scenes.Levels.Tower
 	/// </summary>
 	public sealed class Hall : LevelScene
 	{
+		/// <summary>
+		/// Halls title.
+		/// </summary>
 		public override string Title { get { return Resources.Room2_Title; } }
+		/// <summary>
+		/// Returns current rooms description.
+		/// </summary>
 		public override string Description { get { return Resources.Room2_Description; } }
 
 		public Hall()

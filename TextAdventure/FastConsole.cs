@@ -8,7 +8,7 @@ namespace TextAdventure
 {
 	/// <summary>
 	/// <para>This fixes some flickering and rewriting of console.</para>
-	/// <para>Uses Console.Write(char[]) to draw internal buffer.</para> 
+	/// <para>Uses Console.Write(char[]) to draw internal buffer.</para>
 	/// </summary>
 	public static class FastConsole
 	{
@@ -27,6 +27,7 @@ namespace TextAdventure
 			bufferHeight = Console.BufferHeight;
 			buffer = new char[bufferWidth * (bufferHeight - 1)]; // exclude last row in buffer to avoid funny effects.
 		}
+
 		/// <summary>
 		/// <para>Buffers given char at given position.</para>
 		/// </summary>
@@ -45,6 +46,7 @@ namespace TextAdventure
 				buffer[index] = Empty;
 			}
 		}
+
 		/// <summary>
 		/// <para>Prints current buffer beginning at (0|0).</para>
 		/// </summary>

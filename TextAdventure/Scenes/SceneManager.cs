@@ -17,31 +17,87 @@ namespace TextAdventure.Scenes
 	/// </summary>
 	public static class SceneManager
 	{
+		/// <summary>
+		/// Games ratio is 16/9. So 64 is a multiple of 16.
+		/// </summary>
 		public const int GameWidth = 64;
+		/// <summary>
+		/// Games ratio is 16/9. So 36 is a multiple of 9.
+		/// </summary>
 		public const int GameHeight = 36;
+		/// <summary>
+		/// There are borders around the game. Please consider them in the buffer.
+		/// </summary>
 		public const int BufferWidth = GameWidth + 2;
+		/// <summary>
+		/// There are borders around the game. Please consider them in the buffer.
+		/// </summary>
 		public const int BufferHeight = GameHeight + 4;
+		/// <summary>
+		/// This is nothing.
+		/// </summary>
 		public const char EmptyChar = ' ';
+		/// <summary>
+		/// Char for four corners.
+		/// </summary>
 		public const char CornerChar = '+';
+		/// <summary>
+		/// Horizontal lines on border.
+		/// </summary>
 		public const char BorderHorizontalChar = '-';
+		/// <summary>
+		/// Vertical lines on border.
+		/// </summary>
 		public const char BorderVerticalChar = '|';
 
+		/// <summary>
+		/// Components that are globally registered (like the player).
+		/// </summary>
 		private static List<Component> registeredComponents = new List<Component>();
+		/// <summary>
+		/// Do we want to exit?
+		/// </summary>
 		private static bool exit = false;
+		/// <summary>
+		/// Y-axis offset for messages (default after Title and Description before Actions, right there in the middle.).
+		/// </summary>
 		private static int messageY = 0;
+		/// <summary>
+		/// Store for current scene.
+		/// </summary>
 		private static Scene currentScene;
+		/// <summary>
+		/// A simple random number generator.
+		/// </summary>
 		private static Random randomNumberGenerator = new Random();
 
+		/// <summary>
+		/// Gives readonly access to current scene.
+		/// </summary>
 		public static Scene CurrentScene { get { return currentScene; } }
+		/// <summary>
+		/// Gives readonly access to random number generator.
+		/// </summary>
 		public static Random RandomNumberGenerator { get { return randomNumberGenerator; } }
+		/// <summary>
+		/// Gives readonly access to registered components.
+		/// </summary>
 		public static ReadOnlyCollection<Component> RegisteredComponents { get { return registeredComponents.AsReadOnly(); } }
 
+		/// <summary>
+		/// Generically load a scene.
+		/// </summary>
+		/// <typeparam name="T">Scene to be loaded.</typeparam>
+		/// <param name="arguments">Some arguments passed to the constructor of the scene.</param>
+		/// <returns>True</returns>
 		public static bool LoadScene<T>(params string[] arguments) where T : Scene
 		{
 			currentScene = (T)Activator.CreateInstance(typeof(T), arguments);
-			currentScene.Initialize();
 			return true;
 		}
+		/// <summary>
+		/// Infinite loop.
+		/// </summary>
 		public static void Run()
 		{
 			SetResolution();
@@ -52,14 +108,24 @@ namespace TextAdventure.Scenes
 				PerformInput();
 			}
 		}
+		/// <summary>
+		/// Just write everything. This is publicly available and only calls PerformWrite (which is private).
+		/// </summary>
 		public static void WriteScene()
 		{
 			PerformWrite();
 		}
+		/// <summary>
+		/// Prepare for exit.
+		/// </summary>
 		public static void Exit()
 		{
 			exit = true;
 		}
+		/// <summary>
+		/// Register a global component.
+		/// </summary>
+		/// <param name="component">Component to be registered.</param>
 		public static void RegisterGlobalComponent(Component component)
 		{
 			if (!registeredComponents.Contains(component))
@@ -67,18 +133,29 @@ namespace TextAdventure.Scenes
 				registeredComponents.Add(component);
 			}
 		}
+		/// <summary>
+		/// Find a component by given generic type.
+		/// </summary>
+		/// <typeparam name="T">Some component type.</typeparam>
+		/// <returns>First found component or null.</returns>
 		public static T GetComponentByType<T>() where T : Component
 		{
-			return RegisteredComponents.OfType<T>().FirstOrDefault() as T;
+			return RegisteredComponents.OfType<T>().FirstOrDefault();
 		}
 
 		#region Draw Stuff
+		/// <summary>
+		/// Set console dimension to specified buffer.
+		/// </summary>
 		private static void SetResolution()
 		{
 			Console.SetWindowSize(1, 1);
 			Console.SetBufferSize(BufferWidth, BufferHeight);
 			Console.SetWindowSize(BufferWidth, BufferHeight);
 		}
+		/// <summary>
+		/// Hide cursor and draw the scene.
+		/// </summary>
 		private static void PerformWrite()
 		{
 			using (HideCursor hideCursor = new HideCursor())
@@ -87,6 +164,9 @@ namespace TextAdventure.Scenes
 				DrawScene();
 			}
 		}
+		/// <summary>
+		/// Fills FastConsole with some empty content.
+		/// </summary>
 		private static void ClearConsole()
 		{
 			messageY = 0;
@@ -113,6 +193,9 @@ namespace TextAdventure.Scenes
 				}
 			}
 		}
+		/// <summary>
+		/// Draws every single text area.
+		/// </summary>
 		private static void DrawScene()
 		{
 			DrawTitle();
@@ -121,16 +204,25 @@ namespace TextAdventure.Scenes
 			DrawActions();
 			FastConsole.Print();
 		}
+		/// <summary>
+		/// Draws a title. Top. Centered.
+		/// </summary>
 		private static void DrawTitle()
 		{
 			Console.Title = currentScene.Title;
 			DrawCenteredText(currentScene.Title, 0);
 			messageY++;
 		}
+		/// <summary>
+		/// Draws the description. Right below the title.
+		/// </summary>
 		private static void DrawDescription()
 		{
 			messageY += DrawTextBlock(currentScene.Description, 1);
 		}
+		/// <summary>
+		/// Draw every scenes message. After description.
+		/// </summary>
 		private static void DrawMessages()
 		{
 			foreach (string message in currentScene.Messages)
@@ -138,11 +230,14 @@ namespace TextAdventure.Scenes
 				messageY += DrawTextBlock(message, messageY);
 			}
 		}
+		/// <summary>
+		/// Draw every registered action (if actions should be drawn). Anchored at bottom.
+		/// </summary>
 		private static void DrawActions()
 		{
 			if (currentScene.DrawActions)
 			{
-				List<Line> lines = EnumerateActions();
+				List<Line> lines = EnumerateActionDescriptions();
 				int maxHeight = lines.Sum(line => line.Lines.Count);
 				int startY = GameHeight - maxHeight;
 
@@ -167,11 +262,21 @@ namespace TextAdventure.Scenes
 				DrawCenteredText(Resources.Generic_Actions, GameHeight - maxHeight - 1);
 			}
 		}
+		/// <summary>
+		/// Draws a single char at given position to FastConsole.
+		/// </summary>
+		/// <param name="x">X-location</param>
+		/// <param name="y">Y-location</param>
+		/// <param name="char">Some char.</param>
 		private static void DrawChar(int x, int y, char @char)
 		{
 			FastConsole.Write(ResolveX(x), ResolveY(y), @char);
 		}
-		private static List<Line> EnumerateActions()
+		/// <summary>
+		/// Enumerates
+		/// </summary>
+		/// <returns></returns>
+		private static List<Line> EnumerateActionDescriptions()
 		{
 			Dictionary<string, string> actions = currentScene.GetActions();
 			List<Line> lines = new List<Line>();
@@ -212,6 +317,11 @@ namespace TextAdventure.Scenes
 				lines.Add(line);
 			}
 		}
+		/// <summary>
+		/// Draws a text centered at current y-location.
+		/// </summary>
+		/// <param name="text">Some text.</param>
+		/// <param name="y">Some y-offset.</param>
 		private static void DrawCenteredText(string text, int y)
 		{
 			int centeredLength = text.Length / 2;
@@ -221,6 +331,12 @@ namespace TextAdventure.Scenes
 				DrawChar(centeredX + i, y, text[i]);
 			}
 		}
+		/// <summary>
+		/// Draws a block of text.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="y"></param>
+		/// <returns>Lines that are used.</returns>
 		private static int DrawTextBlock(string text, int y)
 		{
 			string[] lines = SplitLines(text);
@@ -234,6 +350,11 @@ namespace TextAdventure.Scenes
 			}
 			return lines.Length;
 		}
+		/// <summary>
+		/// Splits lines by width and \n.
+		/// </summary>
+		/// <param name="text">Some text.</param>
+		/// <returns>Every single line.</returns>
 		private static string[] SplitLines(string text)
 		{
 			List<string> lines = new List<string>();
@@ -263,7 +384,12 @@ namespace TextAdventure.Scenes
 
 			return lines.ToArray();
 		}
-		private static void WriteLineToStringBuilder(List<string> lines, StringBuilder builder)
+		/// <summary>
+		/// Appends StringBuilders content to a list of string and clears it.
+		/// </summary>
+		/// <param name="lines">Collection of string the builder content should be added to.</param>
+		/// <param name="builder">Some stringbuilder.</param>
+		private static void WriteLineToStringBuilder(ICollection<string> lines, StringBuilder builder)
 		{
 			lines.Add(builder.ToString());
 			builder.Clear();

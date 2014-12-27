@@ -10,9 +10,18 @@ using TextAdventure.Scenes.Components.Items;
 
 namespace TextAdventure.Scenes.Levels.Tower
 {
+	/// <summary>
+	/// Represents the mage room.
+	/// </summary>
 	public sealed class MageRoom : LevelScene
 	{
+		/// <summary>
+		/// Mages room title. See Room3_Title in Resources.
+		/// </summary>
 		public override string Title { get { return Resources.Room3_Title; } }
+		/// <summary>
+		/// Asks player for name and gives first quest.
+		/// </summary>
 		public override string Description
 		{
 			get
@@ -25,6 +34,9 @@ namespace TextAdventure.Scenes.Levels.Tower
 			}
 		}
 
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
 		public MageRoom()
 		{
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
@@ -33,6 +45,9 @@ namespace TextAdventure.Scenes.Levels.Tower
 			AddComponent(stairs);
 		}
 
+		/// <summary>
+		/// Renames current player (using Players Rename Event).
+		/// </summary>
 		private void PlayerRename(object sender, ComponentEventArgs e)
 		{
 			Player player = sender as Player;
@@ -44,7 +59,9 @@ namespace TextAdventure.Scenes.Levels.Tower
 				e.Handled = true;
 			}
 		}
-
+		/// <summary>
+		/// Goes down stairs.
+		/// </summary>
 		private void TakeStairs(object sender, ComponentEventArgs e)
 		{
 			SceneManager.GetComponentByType<Player>().AddItem(new LifePotion());
@@ -53,7 +70,6 @@ namespace TextAdventure.Scenes.Levels.Tower
 				SceneManager.GetComponentByType<Player>().AddItem(new HealthPotion());
 				SceneManager.GetComponentByType<Player>().AddItem(new StrengthPotion());
 			}
-			//SceneManager.GetComponentByType<Player>().AddItem(new )
 			SceneManager.LoadScene<TowerEntrance>();
 			e.Handled = true;
 		}

@@ -119,6 +119,15 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How did you finish? There is no information about it. ähnelt.
+        /// </summary>
+        internal static string GameOver_Default {
+            get {
+                return ResourceManager.GetString("GameOver_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You just finished the game. The following has been added to your finish:
         ///{0} ähnelt.
         /// </summary>
