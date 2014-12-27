@@ -56,6 +56,15 @@ namespace TextAdventure.Scenes.Components.Entities
 			Name = name;
 		}
 
+		protected override void ReceiveDamage(Entity attacker)
+		{
+			base.ReceiveDamage(attacker);
+			if (IsDead())
+			{
+				SceneManager.LoadScene<GameOverScene>(string.Format(CultureInfo.CurrentCulture, Resources.Player_Died, attacker.Name, SceneManager.CurrentScene.Title));
+			}
+		}
+
 		private void UseInventory(object sender, ComponentEventArgs e)
 		{
 			if (!string.IsNullOrEmpty(e.Parameter))
@@ -119,7 +128,6 @@ namespace TextAdventure.Scenes.Components.Entities
 				Rename(sender, e);
 			}
 		}
-
 		private void UsePotion(Potion potion)
 		{
 			if (potion != null)

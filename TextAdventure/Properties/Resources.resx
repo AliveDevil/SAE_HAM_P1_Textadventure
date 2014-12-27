@@ -232,6 +232,9 @@ Programming: Jöran Malek</value>
     <value>Nothing found in translation.</value>
     <comment>Unknown translation.</comment>
   </data>
+  <data name="Player_Died" xml:space="preserve">
+    <value>This thing {0} killed me in {1}. Farewell world.</value>
+  </data>
   <data name="Potion_Message" xml:space="preserve">
     <value>Your {0} has been increased to {1}.</value>
     <comment>Potion message. Property and amount.</comment>
