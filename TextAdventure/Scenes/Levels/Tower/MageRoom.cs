@@ -16,10 +16,6 @@ namespace TextAdventure.Scenes.Levels.Tower
 	public sealed class MageRoom : LevelScene
 	{
 		/// <summary>
-		/// Mages room title. See Room3_Title in Resources.
-		/// </summary>
-		public override string Title { get { return Resources.Room3_Title; } }
-		/// <summary>
 		/// Asks player for name and gives first quest.
 		/// </summary>
 		public override string Description
@@ -33,6 +29,11 @@ namespace TextAdventure.Scenes.Levels.Tower
 				return string.Format(CultureInfo.CurrentCulture, Resources.Room3_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
 			}
 		}
+
+		/// <summary>
+		/// Mages room title. See Room3_Title in Resources.
+		/// </summary>
+		public override string Title { get { return Resources.Room3_Title; } }
 
 		/// <summary>
 		/// Default constructor.
@@ -59,6 +60,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 				e.Handled = true;
 			}
 		}
+
 		/// <summary>
 		/// Goes down stairs.
 		/// </summary>

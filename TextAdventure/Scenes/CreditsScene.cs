@@ -13,13 +13,14 @@ namespace TextAdventure.Scenes
 	public sealed class CreditsScene : Scene
 	{
 		/// <summary>
-		/// Credits Title. Unspectacular "Credits".
-		/// </summary>
-		public override string Title { get { return Resources.Credits_Title; } }
-		/// <summary>
 		/// Some text by me.
 		/// </summary>
 		public override string Description { get { return Resources.Credits_Description; } }
+
+		/// <summary>
+		/// Credits Title. Unspectacular "Credits".
+		/// </summary>
+		public override string Title { get { return Resources.Credits_Title; } }
 
 		/// <summary>
 		/// Default constructor.

@@ -13,17 +13,18 @@ namespace TextAdventure.Attributes
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 	public sealed class ActionAttribute : Attribute
 	{
-		private string key = "";
 		private string description = "";
+		private string key = "";
+
+		/// <summary>
+		/// Returns the assigned description key and looks it up in current ResourceManager.
+		/// </summary>
+		public string Description { get { return string.IsNullOrEmpty(description) ? Resources.NotFound : Resources.ResourceManager.GetString(description); } }
 
 		/// <summary>
 		/// Returns the assigned key.
 		/// </summary>
 		public string Key { get { return key; } }
-		/// <summary>
-		/// Returns the assigned description key and looks it up in current ResourceManager.
-		/// </summary>
-		public string Description { get { return string.IsNullOrEmpty(description) ? Resources.NotFound : Resources.ResourceManager.GetString(description); } }
 
 		/// <summary>
 		/// Creates a new instance of ActionAttribute.

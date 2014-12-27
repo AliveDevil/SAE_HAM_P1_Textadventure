@@ -20,7 +20,7 @@ namespace TextAdventure.Scenes.Components
 		/// Is this switch active?
 		/// </summary>
 		public bool Switched { get; set; }
-		
+
 		/// <summary>
 		/// Constructor for switch.
 		/// </summary>

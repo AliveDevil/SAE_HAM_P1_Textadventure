@@ -21,6 +21,7 @@ namespace TextAdventure.Scenes.Components
 		/// Is this component enabled?
 		/// </summary>
 		public bool Enabled { get; set; }
+
 		/// <summary>
 		/// Returns current components name.
 		/// </summary>

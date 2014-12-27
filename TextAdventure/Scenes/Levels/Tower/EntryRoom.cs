@@ -14,10 +14,6 @@ namespace TextAdventure.Scenes.Levels.Tower
 	public sealed class EntryRoom : LevelScene
 	{
 		/// <summary>
-		/// Entry rooms title. Used from Resources. See Room1_Title.
-		/// </summary>
-		public override string Title { get { return Resources.Room1_Title; } }
-		/// <summary>
 		/// Shows some description to user.
 		/// </summary>
 		public override string Description
@@ -31,6 +27,11 @@ namespace TextAdventure.Scenes.Levels.Tower
 				return Resources.Room1_Description_Dark;
 			}
 		}
+
+		/// <summary>
+		/// Entry rooms title. Used from Resources. See Room1_Title.
+		/// </summary>
+		public override string Title { get { return Resources.Room1_Title; } }
 
 		/// <summary>
 		/// Default constructor.
@@ -50,6 +51,15 @@ namespace TextAdventure.Scenes.Levels.Tower
 		}
 
 		/// <summary>
+		/// Kills player.
+		/// </summary>
+		private void DrinkGlass(object sender, ComponentEventArgs e)
+		{
+			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_DrankGlass);
+			e.Handled = true;
+		}
+
+		/// <summary>
 		/// Loads Hall-Scene on opening door.
 		/// </summary>
 		private void OnFollow(object sender, ComponentEventArgs e)
@@ -57,6 +67,16 @@ namespace TextAdventure.Scenes.Levels.Tower
 			SceneManager.LoadScene<Hall>();
 			e.Handled = true;
 		}
+
+		/// <summary>
+		/// Kills player.
+		/// </summary>
+		private void TakeGlass(object sender, ComponentEventArgs e)
+		{
+			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_TookGlass);
+			e.Handled = true;
+		}
+
 		/// <summary>
 		/// Switches current description.
 		/// </summary>
@@ -67,22 +87,6 @@ namespace TextAdventure.Scenes.Levels.Tower
 			@switch.Enabled = false;
 			PostMessage(Resources.Room1_LightSwitch_TurnOn);
 			FindComponent<GlassComponent>().Enabled = true;
-			e.Handled = true;
-		}
-		/// <summary>
-		/// Kills player.
-		/// </summary>
-		private void DrinkGlass(object sender, ComponentEventArgs e)
-		{
-			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_DrankGlass);
-			e.Handled = true;
-		}
-		/// <summary>
-		/// Kills player.
-		/// </summary>
-		private void TakeGlass(object sender, ComponentEventArgs e)
-		{
-			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_TookGlass);
 			e.Handled = true;
 		}
 	}

@@ -15,13 +15,13 @@ namespace TextAdventure.Scenes.Components
 		/// Is this already handled? (If at all).
 		/// </summary>
 		public bool Handled { get; set; }
+
 		/// <summary>
 		/// Additional parameter.
 		/// </summary>
 		public string Parameter { get; private set; }
 
 		/// <summary>
-		/// 
 		/// </summary>
 		/// <param name="parameter"></param>
 		public ComponentEventArgs(string parameter)

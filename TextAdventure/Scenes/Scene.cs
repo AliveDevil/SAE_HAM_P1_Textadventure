@@ -23,25 +23,53 @@ namespace TextAdventure.Scenes
 	public abstract class Scene
 	{
 		/// <summary>
-		/// A list holding every message posted over time.
-		/// </summary>
-		private List<string> messages;
-		/// <summary>
 		/// A store for registered actions. Like "back" or somthing like that.
 		/// </summary>
 		private Dictionary<string, ExecuteAction> actions;
+
 		/// <summary>
-		/// A readonly store for constructor arguments.
+		/// A list holding every message posted over time.
 		/// </summary>
-		private IReadOnlyList<string> readonlyArguments;
-		/// <summary>
-		/// Readonly store for messages.
-		/// </summary>
-		private IReadOnlyCollection<string> readonlyMessages;
+		private List<string> messages;
+
 		/// <summary>
 		/// Readonly store for actions.
 		/// </summary>
 		private IReadOnlyDictionary<string, ExecuteAction> readonlyActions;
+
+		/// <summary>
+		/// A readonly store for constructor arguments.
+		/// </summary>
+		private IReadOnlyList<string> readonlyArguments;
+
+		/// <summary>
+		/// Readonly store for messages.
+		/// </summary>
+		private IReadOnlyCollection<string> readonlyMessages;
+
+		/// <summary>
+		/// Returns current actions.
+		/// </summary>
+		public IReadOnlyDictionary<string, ExecuteAction> Actions
+		{
+			get { return readonlyActions; }
+		}
+
+		/// <summary>
+		/// Returns current scenes description.
+		/// </summary>
+		public virtual string Description
+		{
+			get { return string.Empty; }
+		}
+
+		/// <summary>
+		/// Whether this scene should draw actions or not.
+		/// </summary>
+		public virtual bool DrawActions
+		{
+			get { return true; }
+		}
 
 		/// <summary>
 		/// Returns current messages.
@@ -50,33 +78,13 @@ namespace TextAdventure.Scenes
 		{
 			get { return readonlyMessages; }
 		}
-		/// <summary>
-		/// Returns current actions.
-		/// </summary>
-		public IReadOnlyDictionary<string, ExecuteAction> Actions
-		{
-			get { return readonlyActions; }
-		}
+
 		/// <summary>
 		/// Returns current scenes title.
 		/// </summary>
 		public virtual string Title
 		{
 			get { return "Scene"; }
-		}
-		/// <summary>
-		/// Returns current scenes description.
-		/// </summary>
-		public virtual string Description
-		{
-			get { return string.Empty; }
-		}
-		/// <summary>
-		/// Whether this scene should draw actions or not.
-		/// </summary>
-		public virtual bool DrawActions
-		{
-			get { return true; }
 		}
 
 		/// <summary>
@@ -101,23 +109,15 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
-		/// Adds a message to current messages list.
+		/// Just clear every message except last.
 		/// </summary>
-		/// <param name="message">Some message.</param>
-		public void PostMessage(string message)
+		public void ClearMessages()
 		{
-			messages.Add(message);
+			string lastMessage = messages.Last();
+			messages.Clear();
+			PostMessage(lastMessage);
 		}
-		/// <summary>
-		/// Adds an formatted message to message list.
-		/// </summary>
-		/// <param name="formatProvider">Some format provider.</param>
-		/// <param name="format">Simple format for message.</param>
-		/// <param name="args">Arguments that should be replaced in format.</param>
-		public void PostMessage(IFormatProvider formatProvider, string format, params object[] args)
-		{
-			PostMessage(string.Format(formatProvider, format, args));
-		}
+
 		/// <summary>
 		/// Execute an action which has arguments first item as key. Otherwise check in scene itself.
 		/// </summary>
@@ -139,14 +139,35 @@ namespace TextAdventure.Scenes
 			}
 			return false;
 		}
+
 		/// <summary>
-		/// Just clear every message except last.
+		/// Adds a message to current messages list.
 		/// </summary>
-		public void ClearMessages()
+		/// <param name="message">Some message.</param>
+		public void PostMessage(string message)
 		{
-			string lastMessage = messages.Last();
-			messages.Clear();
-			PostMessage(lastMessage);
+			messages.Add(message);
+		}
+
+		/// <summary>
+		/// Adds an formatted message to message list.
+		/// </summary>
+		/// <param name="formatProvider">Some format provider.</param>
+		/// <param name="format">Simple format for message.</param>
+		/// <param name="args">Arguments that should be replaced in format.</param>
+		public void PostMessage(IFormatProvider formatProvider, string format, params object[] args)
+		{
+			PostMessage(string.Format(formatProvider, format, args));
+		}
+
+		/// <summary>
+		/// Handles not recognized input.
+		/// </summary>
+		/// <param name="arguments">Some arguments.</param>
+		/// <returns>Whether this has been successful.</returns>
+		protected virtual bool HandleInput(IList<string> arguments)
+		{
+			return false;
 		}
 
 		/// <summary>
@@ -163,15 +184,6 @@ namespace TextAdventure.Scenes
 					actions[key] = method;
 				}
 			}
-		}
-		/// <summary>
-		/// Handles not recognized input.
-		/// </summary>
-		/// <param name="arguments">Some arguments.</param>
-		/// <returns>Whether this has been successful.</returns>
-		protected virtual bool HandleInput(IList<string> arguments)
-		{
-			return false;
 		}
 	}
 }

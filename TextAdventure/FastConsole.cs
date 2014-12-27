@@ -14,9 +14,9 @@ namespace TextAdventure
 	{
 		private const char Empty = '\0';
 
-		private static int bufferWidth;
-		private static int bufferHeight;
 		private static char[] buffer;
+		private static int bufferHeight;
+		private static int bufferWidth;
 
 		/// <summary>
 		/// <para>Initializes internal buffer with consoles buffer width and height.</para>
@@ -26,6 +26,15 @@ namespace TextAdventure
 			bufferWidth = Console.BufferWidth;
 			bufferHeight = Console.BufferHeight;
 			buffer = new char[bufferWidth * (bufferHeight - 1)]; // exclude last row in buffer to avoid funny effects.
+		}
+
+		/// <summary>
+		/// <para>Prints current buffer beginning at (0|0).</para>
+		/// </summary>
+		public static void Print()
+		{
+			Console.SetCursorPosition(0, 0);
+			Console.Write(buffer, 0, buffer.Length);
 		}
 
 		/// <summary>
@@ -45,15 +54,6 @@ namespace TextAdventure
 			{
 				buffer[index] = Empty;
 			}
-		}
-
-		/// <summary>
-		/// <para>Prints current buffer beginning at (0|0).</para>
-		/// </summary>
-		public static void Print()
-		{
-			Console.SetCursorPosition(0, 0);
-			Console.Write(buffer, 0, buffer.Length);
 		}
 
 		/// <summary>

@@ -14,7 +14,10 @@ namespace TextAdventure.Scenes.Components.Items
 		/// <summary>
 		/// Default constructor for lifepotion.
 		/// </summary>
-		public LifePotion() : base("lifepotion") { }
+		public LifePotion()
+			: base("lifepotion")
+		{
+		}
 
 		/// <summary>
 		/// Increases maxhealth of caller.

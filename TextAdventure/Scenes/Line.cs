@@ -2,33 +2,33 @@
  * Author: Jöran Malek
  */
 
-using System.Linq;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace TextAdventure.Scenes
 {
 	/// <summary>
-	/// 
 	/// </summary>
 	public struct Line
 	{
 		private string key;
-		private int startX;
 		private List<string> lines;
+		private int startX;
 
 		/// <summary>
 		/// Returns current key.
 		/// </summary>
 		public string Key { get { return key; } }
-		/// <summary>
-		/// Returns X-axis offset.
-		/// </summary>
-		public int StartX { get { return startX; } }
+
 		/// <summary>
 		/// A collection of every line.
 		/// </summary>
 		public IList<string> Lines { get { return lines; } }
+
+		/// <summary>
+		/// Returns X-axis offset.
+		/// </summary>
+		public int StartX { get { return startX; } }
 
 		/// <summary>
 		/// Constructor for setting some properties (except lines).
@@ -43,24 +43,6 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
-		/// Returns a (hopefully) unique HashCode.
-		/// </summary>
-		/// <returns>The HashCode.</returns>
-		public override int GetHashCode()
-		{
-			return key.GetHashCode() ^ StartX ^ lines.Aggregate<string, int, int>(0, (previous, current) => previous ^ current.GetHashCode(), last => last);
-		}
-
-		/// <summary>
-		/// Does this equal with something else?
-		/// </summary>
-		/// <param name="obj">Object to be compared.</param>
-		/// <returns>Whether these objects are equal.</returns>
-		public override bool Equals(object obj)
-		{
-			return base.Equals(obj);
-		}
-		/// <summary>
 		/// Inequality operator.
 		/// </summary>
 		/// <param name="left">First line.</param>
@@ -72,6 +54,7 @@ namespace TextAdventure.Scenes
 				|| left.startX != right.startX
 				|| !left.lines.Equals(right.lines);
 		}
+
 		/// <summary>
 		/// Equality operator.
 		/// </summary>
@@ -83,6 +66,25 @@ namespace TextAdventure.Scenes
 			return left.key == right.key
 				&& left.startX == right.startX
 				&& left.lines.Equals(right.lines);
+		}
+
+		/// <summary>
+		/// Does this equal with something else?
+		/// </summary>
+		/// <param name="obj">Object to be compared.</param>
+		/// <returns>Whether these objects are equal.</returns>
+		public override bool Equals(object obj)
+		{
+			return base.Equals(obj);
+		}
+
+		/// <summary>
+		/// Returns a (hopefully) unique HashCode.
+		/// </summary>
+		/// <returns>The HashCode.</returns>
+		public override int GetHashCode()
+		{
+			return key.GetHashCode() ^ StartX ^ lines.Aggregate<string, int, int>(0, (previous, current) => previous ^ current.GetHashCode(), last => last);
 		}
 	}
 }

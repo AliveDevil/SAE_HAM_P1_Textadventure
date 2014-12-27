@@ -18,71 +18,103 @@ namespace TextAdventure.Scenes
 	public static class SceneManager
 	{
 		/// <summary>
-		/// Games ratio is 16/9. So 64 is a multiple of 16.
-		/// </summary>
-		public const int GameWidth = 64;
-		/// <summary>
-		/// Games ratio is 16/9. So 36 is a multiple of 9.
-		/// </summary>
-		public const int GameHeight = 36;
-		/// <summary>
-		/// There are borders around the game. Please consider them in the buffer.
-		/// </summary>
-		public const int BufferWidth = GameWidth + 2;
-		/// <summary>
-		/// There are borders around the game. Please consider them in the buffer.
-		/// </summary>
-		public const int BufferHeight = GameHeight + 4;
-		/// <summary>
-		/// This is nothing.
-		/// </summary>
-		public const char EmptyChar = ' ';
-		/// <summary>
-		/// Char for four corners.
-		/// </summary>
-		public const char CornerChar = '+';
-		/// <summary>
 		/// Horizontal lines on border.
 		/// </summary>
 		public const char BorderHorizontalChar = '-';
+
 		/// <summary>
 		/// Vertical lines on border.
 		/// </summary>
 		public const char BorderVerticalChar = '|';
 
 		/// <summary>
-		/// Components that are globally registered (like the player).
+		/// There are borders around the game. Please consider them in the buffer.
 		/// </summary>
-		private static List<Component> registeredComponents = new List<Component>();
+		public const int BufferHeight = GameHeight + 4;
+
 		/// <summary>
-		/// Do we want to exit?
+		/// There are borders around the game. Please consider them in the buffer.
 		/// </summary>
-		private static bool exit = false;
+		public const int BufferWidth = GameWidth + 2;
+
 		/// <summary>
-		/// Y-axis offset for messages (default after Title and Description before Actions, right there in the middle.).
+		/// Char for four corners.
 		/// </summary>
-		private static int messageY = 0;
+		public const char CornerChar = '+';
+
+		/// <summary>
+		/// This is nothing.
+		/// </summary>
+		public const char EmptyChar = ' ';
+
+		/// <summary>
+		/// Games ratio is 16/9. So 36 is a multiple of 9.
+		/// </summary>
+		public const int GameHeight = 36;
+
+		/// <summary>
+		/// Games ratio is 16/9. So 64 is a multiple of 16.
+		/// </summary>
+		public const int GameWidth = 64;
+
 		/// <summary>
 		/// Store for current scene.
 		/// </summary>
 		private static Scene currentScene;
+
+		/// <summary>
+		/// Do we want to exit?
+		/// </summary>
+		private static bool exit = false;
+
+		/// <summary>
+		/// Y-axis offset for messages (default after Title and Description before Actions, right
+		/// there in the middle.).
+		/// </summary>
+		private static int messageY = 0;
+
 		/// <summary>
 		/// A simple random number generator.
 		/// </summary>
 		private static Random randomNumberGenerator = new Random();
 
 		/// <summary>
+		/// Components that are globally registered (like the player).
+		/// </summary>
+		private static List<Component> registeredComponents = new List<Component>();
+
+		/// <summary>
 		/// Gives readonly access to current scene.
 		/// </summary>
 		public static Scene CurrentScene { get { return currentScene; } }
+
 		/// <summary>
 		/// Gives readonly access to random number generator.
 		/// </summary>
 		public static Random RandomNumberGenerator { get { return randomNumberGenerator; } }
+
 		/// <summary>
 		/// Gives readonly access to registered components.
 		/// </summary>
 		public static ReadOnlyCollection<Component> RegisteredComponents { get { return registeredComponents.AsReadOnly(); } }
+
+		/// <summary>
+		/// Prepare for exit.
+		/// </summary>
+		public static void Exit()
+		{
+			exit = true;
+		}
+
+		/// <summary>
+		/// Find a component by given generic type.
+		/// </summary>
+		/// <typeparam name="T">Some component type.</typeparam>
+		/// <returns>First found component or null.</returns>
+		public static T GetComponentByType<T>() where T : Component
+		{
+			return RegisteredComponents.OfType<T>().FirstOrDefault();
+		}
 
 		/// <summary>
 		/// Generically load a scene.
@@ -95,6 +127,19 @@ namespace TextAdventure.Scenes
 			currentScene = (T)Activator.CreateInstance(typeof(T), arguments);
 			return true;
 		}
+
+		/// <summary>
+		/// Register a global component.
+		/// </summary>
+		/// <param name="component">Component to be registered.</param>
+		public static void RegisterGlobalComponent(Component component)
+		{
+			if (!registeredComponents.Contains(component))
+			{
+				registeredComponents.Add(component);
+			}
+		}
+
 		/// <summary>
 		/// Infinite loop.
 		/// </summary>
@@ -108,6 +153,7 @@ namespace TextAdventure.Scenes
 				PerformInput();
 			}
 		}
+
 		/// <summary>
 		/// Just write everything. This is publicly available and only calls PerformWrite (which is private).
 		/// </summary>
@@ -115,55 +161,9 @@ namespace TextAdventure.Scenes
 		{
 			PerformWrite();
 		}
-		/// <summary>
-		/// Prepare for exit.
-		/// </summary>
-		public static void Exit()
-		{
-			exit = true;
-		}
-		/// <summary>
-		/// Register a global component.
-		/// </summary>
-		/// <param name="component">Component to be registered.</param>
-		public static void RegisterGlobalComponent(Component component)
-		{
-			if (!registeredComponents.Contains(component))
-			{
-				registeredComponents.Add(component);
-			}
-		}
-		/// <summary>
-		/// Find a component by given generic type.
-		/// </summary>
-		/// <typeparam name="T">Some component type.</typeparam>
-		/// <returns>First found component or null.</returns>
-		public static T GetComponentByType<T>() where T : Component
-		{
-			return RegisteredComponents.OfType<T>().FirstOrDefault();
-		}
 
 		#region Draw Stuff
-		/// <summary>
-		/// Set console dimension to specified buffer.
-		/// </summary>
-		private static void SetResolution()
-		{
-			Console.SetWindowSize(1, 1);
-			Console.SetBufferSize(BufferWidth, BufferHeight);
-			Console.SetWindowSize(BufferWidth, BufferHeight);
-		}
-		/// <summary>
-		/// Hide cursor and draw the scene.
-		/// </summary>
-		private static void PerformWrite()
-		{
-			using (HideCursor hideCursor = new HideCursor())
-			{
-				ClearConsole();
-				DrawScene();
-			}
-		}
+
 		/// <summary>
 		/// Fills FastConsole with some empty content.
 		/// </summary>
@@ -193,43 +193,7 @@ namespace TextAdventure.Scenes
 				}
 			}
 		}
-		/// <summary>
-		/// Draws every single text area.
-		/// </summary>
-		private static void DrawScene()
-		{
-			DrawTitle();
-			DrawDescription();
-			DrawMessages();
-			DrawActions();
-			FastConsole.Print();
-		}
-		/// <summary>
-		/// Draws a title. Top. Centered.
-		/// </summary>
-		private static void DrawTitle()
-		{
-			Console.Title = currentScene.Title;
-			DrawCenteredText(currentScene.Title, 0);
-			messageY++;
-		}
-		/// <summary>
-		/// Draws the description. Right below the title.
-		/// </summary>
-		private static void DrawDescription()
-		{
-			messageY += DrawTextBlock(currentScene.Description, 1);
-		}
-		/// <summary>
-		/// Draw every scenes message. After description.
-		/// </summary>
-		private static void DrawMessages()
-		{
-			foreach (string message in currentScene.Messages)
-			{
-				messageY += DrawTextBlock(message, messageY);
-			}
-		}
+
 		/// <summary>
 		/// Draw every registered action (if actions should be drawn). Anchored at bottom.
 		/// </summary>
@@ -262,6 +226,22 @@ namespace TextAdventure.Scenes
 				DrawCenteredText(Resources.Generic_Actions, GameHeight - maxHeight - 1);
 			}
 		}
+
+		/// <summary>
+		/// Draws a text centered at current y-location.
+		/// </summary>
+		/// <param name="text">Some text.</param>
+		/// <param name="y">Some y-offset.</param>
+		private static void DrawCenteredText(string text, int y)
+		{
+			int centeredLength = text.Length / 2;
+			int centeredX = GameWidth / 2 - centeredLength;
+			for (int i = 0; i < text.Length; i++)
+			{
+				DrawChar(centeredX + i, y, text[i]);
+			}
+		}
+
 		/// <summary>
 		/// Draws a single char at given position to FastConsole.
 		/// </summary>
@@ -272,6 +252,68 @@ namespace TextAdventure.Scenes
 		{
 			FastConsole.Write(ResolveX(x), ResolveY(y), @char);
 		}
+
+		/// <summary>
+		/// Draws the description. Right below the title.
+		/// </summary>
+		private static void DrawDescription()
+		{
+			messageY += DrawTextBlock(currentScene.Description, 1);
+		}
+
+		/// <summary>
+		/// Draw every scenes message. After description.
+		/// </summary>
+		private static void DrawMessages()
+		{
+			foreach (string message in currentScene.Messages)
+			{
+				messageY += DrawTextBlock(message, messageY);
+			}
+		}
+
+		/// <summary>
+		/// Draws every single text area.
+		/// </summary>
+		private static void DrawScene()
+		{
+			DrawTitle();
+			DrawDescription();
+			DrawMessages();
+			DrawActions();
+			FastConsole.Print();
+		}
+
+		/// <summary>
+		/// Draws a block of text.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="y"></param>
+		/// <returns>Lines that are used.</returns>
+		private static int DrawTextBlock(string text, int y)
+		{
+			string[] lines = SplitLines(text);
+			foreach (string line in lines)
+			{
+				for (int i = 0; i < line.Length; i++)
+				{
+					DrawChar(i, y, line[i]);
+				}
+				y += 1;
+			}
+			return lines.Length;
+		}
+
+		/// <summary>
+		/// Draws a title. Top. Centered.
+		/// </summary>
+		private static void DrawTitle()
+		{
+			Console.Title = currentScene.Title;
+			DrawCenteredText(currentScene.Title, 0);
+			messageY++;
+		}
+
 		/// <summary>
 		/// Enumerates
 		/// </summary>
@@ -292,6 +334,7 @@ namespace TextAdventure.Scenes
 
 			return lines;
 		}
+
 		private static void ExportActionLines(Dictionary<string, string> actions, List<Line> lines, int startX, int maxLength)
 		{
 			foreach (KeyValuePair<string, string> pair in actions)
@@ -317,39 +360,29 @@ namespace TextAdventure.Scenes
 				lines.Add(line);
 			}
 		}
+
 		/// <summary>
-		/// Draws a text centered at current y-location.
+		/// Hide cursor and draw the scene.
 		/// </summary>
-		/// <param name="text">Some text.</param>
-		/// <param name="y">Some y-offset.</param>
-		private static void DrawCenteredText(string text, int y)
+		private static void PerformWrite()
 		{
-			int centeredLength = text.Length / 2;
-			int centeredX = GameWidth / 2 - centeredLength;
-			for (int i = 0; i < text.Length; i++)
+			using (HideCursor hideCursor = new HideCursor())
 			{
-				DrawChar(centeredX + i, y, text[i]);
+				ClearConsole();
+				DrawScene();
 			}
 		}
+
 		/// <summary>
-		/// Draws a block of text.
+		/// Set console dimension to specified buffer.
 		/// </summary>
-		/// <param name="text"></param>
-		/// <param name="y"></param>
-		/// <returns>Lines that are used.</returns>
-		private static int DrawTextBlock(string text, int y)
+		private static void SetResolution()
 		{
-			string[] lines = SplitLines(text);
-			foreach (string line in lines)
-			{
-				for (int i = 0; i < line.Length; i++)
-				{
-					DrawChar(i, y, line[i]);
-				}
-				y += 1;
-			}
-			return lines.Length;
+			Console.SetWindowSize(1, 1);
+			Console.SetBufferSize(BufferWidth, BufferHeight);
+			Console.SetWindowSize(BufferWidth, BufferHeight);
 		}
+
 		/// <summary>
 		/// Splits lines by width and \n.
 		/// </summary>
@@ -384,6 +417,7 @@ namespace TextAdventure.Scenes
 
 			return lines.ToArray();
 		}
+
 		/// <summary>
 		/// Appends StringBuilders content to a list of string and clears it.
 		/// </summary>
@@ -394,13 +428,16 @@ namespace TextAdventure.Scenes
 			lines.Add(builder.ToString());
 			builder.Clear();
 		}
-		#endregion
+
+		#endregion Draw Stuff
 
 		#region Postioning Stuff
-		private static void SetCursorPosition(int x, int y)
+
+		private static int Clamp(int val, int min, int max)
 		{
-			Console.SetCursorPosition(ResolveX(x), ResolveY(y));
+			return val > min ? val < max ? val : max : min;
 		}
+
 		private static CellType ResolveCellType(int x, int y)
 		{
 			if ((x == -1 && y == -1)
@@ -420,41 +457,49 @@ namespace TextAdventure.Scenes
 			}
 			return CellType.Content;
 		}
+
 		/// <summary>
 		/// </summary>
 		private static int ResolveX(int x)
 		{
 			return Clamp(x + 1, 0, BufferWidth - 1);
 		}
+
 		/// <summary>
 		/// </summary>
 		private static int ResolveY(int y)
 		{
 			return Clamp(y + 1, 0, BufferHeight - 1);
 		}
-		private static int Clamp(int val, int min, int max)
+
+		private static void SetCursorPosition(int x, int y)
 		{
-			return val > min ? val < max ? val : max : min;
+			Console.SetCursorPosition(ResolveX(x), ResolveY(y));
 		}
-		#endregion
+
+		#endregion Postioning Stuff
 
 		#region Input Stuff
-		private static void PerformInput()
-		{
-			SetCursorPosition(-1, GameHeight + 1);
-			Console.Write(Resources.Generic_InputFormat, Resources.Generic_Action);
-			string input = Console.ReadLine();
 
-			List<string> arguments = ExtractArguments(input);
-			if (!currentScene.PerformAction(arguments))
+		private static void AddToArguments(ref string argument, List<string> exclude, List<string> arguments)
+		{
+			bool inExcluded = false;
+			foreach (var item in exclude)
 			{
-				GlobalComponentInput(arguments);
+				inExcluded = inExcluded | argument.Equals(item, StringComparison.OrdinalIgnoreCase);
 			}
+			if (!inExcluded)
+			{
+				arguments.Add(argument.ToUpperInvariant());
+			}
+			argument = "";
 		}
+
 		private static List<string> ExcludedParts()
 		{
 			return Resources.StrikeWords.Split(',').ToList();
 		}
+
 		private static List<string> ExtractArguments(string input)
 		{
 			List<string> excludedArguments = ExcludedParts();
@@ -480,23 +525,7 @@ namespace TextAdventure.Scenes
 
 			return arguments;
 		}
-		private static void AddToArguments(ref string argument, List<string> exclude, List<string> arguments)
-		{
-			bool inExcluded = false;
-			foreach (var item in exclude)
-			{
-				inExcluded = inExcluded | argument.Equals(item, StringComparison.OrdinalIgnoreCase);
-			}
-			if (!inExcluded)
-			{
-				arguments.Add(argument.ToUpperInvariant());
-			}
-			argument = "";
-		}
-		private static bool IsArgumentPart(char c)
-		{
-			return !(char.IsControl(c) || char.IsPunctuation(c) || char.IsSymbol(c) || char.IsWhiteSpace(c));
-		}
+
 		private static void GlobalComponentInput(List<string> arguments)
 		{
 			if (arguments.Count > 0)
@@ -510,6 +539,25 @@ namespace TextAdventure.Scenes
 				}
 			}
 		}
-		#endregion
+
+		private static bool IsArgumentPart(char c)
+		{
+			return !(char.IsControl(c) || char.IsPunctuation(c) || char.IsSymbol(c) || char.IsWhiteSpace(c));
+		}
+
+		private static void PerformInput()
+		{
+			SetCursorPosition(-1, GameHeight + 1);
+			Console.Write(Resources.Generic_InputFormat, Resources.Generic_Action);
+			string input = Console.ReadLine();
+
+			List<string> arguments = ExtractArguments(input);
+			if (!currentScene.PerformAction(arguments))
+			{
+				GlobalComponentInput(arguments);
+			}
+		}
+
+		#endregion Input Stuff
 	}
 }

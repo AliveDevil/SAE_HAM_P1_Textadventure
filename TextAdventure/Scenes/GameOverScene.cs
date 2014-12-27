@@ -14,10 +14,6 @@ namespace TextAdventure.Scenes
 	public sealed class GameOverScene : Scene
 	{
 		/// <summary>
-		/// Returns a title. Think it's "Game finished".
-		/// </summary>
-		public override string Title { get { return Resources.GameOver_Title; } }
-		/// <summary>
 		/// A message that current game is finished and player exited with given arguments.
 		/// </summary>
 		public override string Description
@@ -31,6 +27,11 @@ namespace TextAdventure.Scenes
 					: Resources.GameOver_Default);
 			}
 		}
+
+		/// <summary>
+		/// Returns a title. Think it's "Game finished".
+		/// </summary>
+		public override string Title { get { return Resources.GameOver_Title; } }
 
 		/// <summary>
 		/// Default constructor.
@@ -52,6 +53,7 @@ namespace TextAdventure.Scenes
 			SceneManager.LoadScene<MainMenuScene>();
 			return false;
 		}
+
 		/// <summary>
 		/// Quits current application.
 		/// </summary>

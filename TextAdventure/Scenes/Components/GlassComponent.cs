@@ -12,13 +12,14 @@ namespace TextAdventure.Scenes.Components
 	public sealed class GlassComponent : Component
 	{
 		/// <summary>
-		/// Raised on take.
-		/// </summary>
-		public event EventHandler<ComponentEventArgs> Take;
-		/// <summary>
 		/// Raised on drink or use.
 		/// </summary>
 		public event EventHandler<ComponentEventArgs> Drink;
+
+		/// <summary>
+		/// Raised on take.
+		/// </summary>
+		public event EventHandler<ComponentEventArgs> Take;
 
 		/// <summary>
 		/// Default constructor.
@@ -43,6 +44,7 @@ namespace TextAdventure.Scenes.Components
 				Drink(sender, e);
 			}
 		}
+
 		/// <summary>
 		/// Used on take.
 		/// </summary>

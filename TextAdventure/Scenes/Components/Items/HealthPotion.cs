@@ -14,7 +14,10 @@ namespace TextAdventure.Scenes.Components.Items
 		/// <summary>
 		/// Default constructor for potions.
 		/// </summary>
-		public HealthPotion() : base("healthpotion") { }
+		public HealthPotion()
+			: base("healthpotion")
+		{
+		}
 
 		/// <summary>
 		/// Applies healing effect.

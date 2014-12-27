@@ -15,13 +15,14 @@ namespace TextAdventure.Scenes
 	public sealed class MainMenuScene : Scene
 	{
 		/// <summary>
-		/// Main Menus Title.
-		/// </summary>
-		public override string Title { get { return Resources.MainMenu_Title; } }
-		/// <summary>
 		/// Main Menus Description.
 		/// </summary>
 		public override string Description { get { return Resources.MainMenu_Description; } }
+
+		/// <summary>
+		/// Main Menus Title.
+		/// </summary>
+		public override string Title { get { return Resources.MainMenu_Title; } }
 
 		/// <summary>
 		/// Default constructor.
@@ -35,17 +36,6 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
-		/// Starts the adventure.
-		/// </summary>
-		/// <returns>True.</returns>
-		[Action("start", "MainMenu_Start")]
-		private bool StartAdventureAction()
-		{
-			SceneManager.RegisterGlobalComponent(new Player(true));
-			SceneManager.LoadScene<TextAdventure.Scenes.Levels.Tower.EntryRoom>();
-			return true;
-		}
-		/// <summary>
 		/// Opens credits.
 		/// </summary>
 		/// <returns>True.</returns>
@@ -55,6 +45,7 @@ namespace TextAdventure.Scenes
 			SceneManager.LoadScene<CreditsScene>();
 			return true;
 		}
+
 		/// <summary>
 		/// Quits application.
 		/// </summary>
@@ -63,6 +54,18 @@ namespace TextAdventure.Scenes
 		private bool ExitAction()
 		{
 			SceneManager.Exit();
+			return true;
+		}
+
+		/// <summary>
+		/// Starts the adventure.
+		/// </summary>
+		/// <returns>True.</returns>
+		[Action("start", "MainMenu_Start")]
+		private bool StartAdventureAction()
+		{
+			SceneManager.RegisterGlobalComponent(new Player(true));
+			SceneManager.LoadScene<TextAdventure.Scenes.Levels.Tower.EntryRoom>();
 			return true;
 		}
 	}

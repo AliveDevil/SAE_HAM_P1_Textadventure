@@ -31,14 +31,6 @@ namespace TextAdventure.Scenes.Levels
 		protected ReadOnlyCollection<Component> Components { get { return components.AsReadOnly(); } }
 
 		/// <summary>
-		/// Removes a component from components.
-		/// </summary>
-		/// <param name="component">Component that should be removed.</param>
-		public void RemoveComponent(Component component)
-		{
-			components.Remove(component);
-		}
-		/// <summary>
 		/// Tries to find a component by name.
 		/// </summary>
 		/// <param name="name">String to search for.</param>
@@ -47,6 +39,7 @@ namespace TextAdventure.Scenes.Levels
 		{
 			return components.Where(component => component.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 		}
+
 		/// <summary>
 		/// Tries to find a component by Type.
 		/// </summary>
@@ -58,13 +51,23 @@ namespace TextAdventure.Scenes.Levels
 		}
 
 		/// <summary>
-		/// Adds a component to 
+		/// Removes a component from components.
+		/// </summary>
+		/// <param name="component">Component that should be removed.</param>
+		public void RemoveComponent(Component component)
+		{
+			components.Remove(component);
+		}
+
+		/// <summary>
+		/// Adds a component to
 		/// </summary>
 		/// <param name="component">Component to be added.</param>
 		protected void AddComponent(Component component)
 		{
 			components.Add(component);
 		}
+
 		/// <summary>
 		/// Handle every other input.
 		/// </summary>

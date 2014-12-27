@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using System.Runtime.InteropServices;
+﻿using System;
+using System.Reflection;
 using System.Resources;
-using System;
+using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("TextAdventure")]
 [assembly: AssemblyDescription("")]

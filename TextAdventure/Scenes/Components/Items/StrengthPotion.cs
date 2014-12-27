@@ -14,7 +14,10 @@ namespace TextAdventure.Scenes.Components.Items
 		/// <summary>
 		/// Default constructor for strengthpotion.
 		/// </summary>
-		public StrengthPotion() : base("strengthpotion") { }
+		public StrengthPotion()
+			: base("strengthpotion")
+		{
+		}
 
 		/// <summary>
 		/// Increases strength of caller.

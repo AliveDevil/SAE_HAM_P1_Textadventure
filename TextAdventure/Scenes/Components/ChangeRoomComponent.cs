@@ -17,7 +17,7 @@ namespace TextAdventure.Scenes.Components
 		public event EventHandler<ComponentEventArgs> Follow;
 
 		/// <summary>
-		/// Single constructor for 
+		/// Single constructor for
 		/// </summary>
 		/// <param name="name">Current components name.</param>
 		/// <param name="enabled">Is this component enabled.</param>

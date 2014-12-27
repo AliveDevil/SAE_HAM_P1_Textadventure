@@ -15,7 +15,10 @@ namespace TextAdventure.Scenes.Components.Items
 		/// Some constructor for potions. Just passes on the name.
 		/// </summary>
 		/// <param name="name">Potions name.</param>
-		protected Potion(string name) : base(name) { }
+		protected Potion(string name)
+			: base(name)
+		{
+		}
 
 		/// <summary>
 		/// Applies to entities only.
