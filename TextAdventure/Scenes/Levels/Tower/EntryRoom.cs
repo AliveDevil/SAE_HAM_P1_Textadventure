@@ -6,12 +6,12 @@ using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 
-namespace TextAdventure.Scenes.Levels
+namespace TextAdventure.Scenes.Levels.Tower
 {
 	/// <summary>
 	/// First scene the player will see.
 	/// </summary>
-	public sealed class Level01Scene : LevelScene
+	public sealed class EntryRoom : LevelScene
 	{
 		public override string Title { get { return Resources.Room1_Title; } }
 		public override string Description
@@ -26,7 +26,7 @@ namespace TextAdventure.Scenes.Levels
 			}
 		}
 
-		public Level01Scene()
+		public EntryRoom()
 		{
 			SwitchComponent lightSwitch = new SwitchComponent("switch", true, false);
 			lightSwitch.Switch += TurnLightSwitch;
@@ -42,7 +42,7 @@ namespace TextAdventure.Scenes.Levels
 
 		private void OnFollow(object sender, ComponentEventArgs e)
 		{
-			SceneManager.LoadScene<Level02Scene>();
+			SceneManager.LoadScene<Hall>();
 			e.Handled = true;
 		}
 		private void TurnLightSwitch(object sender, ComponentEventArgs e)

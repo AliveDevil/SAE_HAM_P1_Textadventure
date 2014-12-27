@@ -5,17 +5,17 @@
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 
-namespace TextAdventure.Scenes.Levels
+namespace TextAdventure.Scenes.Levels.Tower
 {
 	/// <summary>
 	/// The hall into the mages room.
 	/// </summary>
-	public sealed class Level02Scene : LevelScene
+	public sealed class Hall : LevelScene
 	{
 		public override string Title { get { return Resources.Room2_Title; } }
 		public override string Description { get { return Resources.Room2_Description; } }
 
-		public Level02Scene()
+		public Hall()
 		{
 			ChangeRoomComponent door = new ChangeRoomComponent("door", true);
 			door.Follow += OpenDoor;
@@ -24,7 +24,7 @@ namespace TextAdventure.Scenes.Levels
 
 		private void OpenDoor(object sender, ComponentEventArgs e)
 		{
-			SceneManager.LoadScene<Level03Scene>();
+			SceneManager.LoadScene<MageRoom>();
 			e.Handled = true;
 		}
 	}

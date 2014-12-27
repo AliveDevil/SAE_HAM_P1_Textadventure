@@ -6,7 +6,6 @@ using System;
 using TextAdventure.Attributes;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components.Entities;
-using TextAdventure.Scenes.Levels;
 
 namespace TextAdventure.Scenes
 {
@@ -29,7 +28,7 @@ namespace TextAdventure.Scenes
 		private bool StartAdventureAction()
 		{
 			SceneManager.RegisterGlobalComponent(new Player(true));
-			SceneManager.LoadScene<Level01Scene>();
+			SceneManager.LoadScene<TextAdventure.Scenes.Levels.Tower.EntryRoom>();
 			return true;
 		}
 

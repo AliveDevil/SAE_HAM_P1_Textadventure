@@ -6,14 +6,14 @@ using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
 
-namespace TextAdventure.Scenes.Levels
+namespace TextAdventure.Scenes.Levels.Tower
 {
-	public sealed class Level04Scene : LevelScene
+	public sealed class TowerEntrance : LevelScene
 	{
 		public override string Title { get { return Resources.Room4_Title; } }
 		public override string Description { get { return Resources.Room4_Description; } }
 
-		public Level04Scene()
+		public TowerEntrance()
 		{
 			SceneManager.GetComponentByType<Player>().Attack += PlayerAttack;
 			Goblin goblin = Goblin.SmallGoblin("goblin");

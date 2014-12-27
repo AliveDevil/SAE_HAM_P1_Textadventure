@@ -8,9 +8,9 @@ using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
 using TextAdventure.Scenes.Components.Items;
 
-namespace TextAdventure.Scenes.Levels
+namespace TextAdventure.Scenes.Levels.Tower
 {
-	public sealed class Level03Scene : LevelScene
+	public sealed class MageRoom : LevelScene
 	{
 		public override string Title { get { return Resources.Room3_Title; } }
 		public override string Description
@@ -25,7 +25,7 @@ namespace TextAdventure.Scenes.Levels
 			}
 		}
 
-		public Level03Scene()
+		public MageRoom()
 		{
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
 			ChangeRoomComponent stairs = new ChangeRoomComponent("stairs", false);
@@ -54,7 +54,7 @@ namespace TextAdventure.Scenes.Levels
 				SceneManager.GetComponentByType<Player>().AddItem(new StrengthPotion());
 			}
 			//SceneManager.GetComponentByType<Player>().AddItem(new )
-			SceneManager.LoadScene<Level04Scene>();
+			SceneManager.LoadScene<TowerEntrance>();
 			e.Handled = true;
 		}
 	}
