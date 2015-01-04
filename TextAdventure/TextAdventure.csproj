@@ -74,7 +74,7 @@
     <Compile Include="Scenes\Levels\Tower\Hall.cs" />
     <Compile Include="Scenes\Levels\Tower\MageRoom.cs" />
     <Compile Include="Scenes\Levels\Tower\TowerEntrance.cs" />
-    <Compile Include="Scenes\Levels\Forest\ForestFirst.cs" />
+    <Compile Include="Scenes\Levels\Forest\Glade.cs" />
     <Compile Include="Scenes\Levels\LevelScene.cs" />
     <Compile Include="Scenes\Line.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
@@ -89,6 +89,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

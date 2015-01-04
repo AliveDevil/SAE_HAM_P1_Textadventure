@@ -22,16 +22,16 @@ namespace TextAdventure.Scenes.Levels.Tower
 			{
 				if (Components.OfType<SwitchComponent>().First().Switched)
 				{
-					return Resources.Room1_Description_Light;
+					return Resources.Tower_Entry_Description_Light;
 				}
-				return Resources.Room1_Description_Dark;
+				return Resources.Tower_Entry_Description_Dark;
 			}
 		}
 
 		/// <summary>
-		/// Entry rooms title. Used from Resources. See Room1_Title.
+		/// Entry rooms title. Used from Resources. See Tower_Entry_Title.
 		/// </summary>
-		public override string Title { get { return Resources.Room1_Title; } }
+		public override string Title { get { return Resources.Tower_Entry_Title; } }
 
 		/// <summary>
 		/// Default constructor.
@@ -55,7 +55,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 		/// </summary>
 		private void DrinkGlass(object sender, ComponentEventArgs e)
 		{
-			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_DrankGlass);
+			SceneManager.LoadScene<GameOverScene>(Resources.Tower_Entry_Died_DrankGlass);
 			e.Handled = true;
 		}
 
@@ -73,7 +73,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 		/// </summary>
 		private void TakeGlass(object sender, ComponentEventArgs e)
 		{
-			SceneManager.LoadScene<GameOverScene>(Resources.Room1_Died_TookGlass);
+			SceneManager.LoadScene<GameOverScene>(Resources.Tower_Entry_Died_TookGlass);
 			e.Handled = true;
 		}
 
@@ -85,7 +85,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 			SwitchComponent @switch = sender as SwitchComponent;
 			@switch.Switched = true;
 			@switch.Enabled = false;
-			PostMessage(Resources.Room1_LightSwitch_TurnOn);
+			PostMessage(Resources.Tower_Entry_LightSwitch_TurnOn);
 			FindComponent<GlassComponent>().Enabled = true;
 			e.Handled = true;
 		}

@@ -2,9 +2,9 @@
  * Author: Jöran Malek
  */
 
-namespace TextAdventure.Scenes.Levels
+namespace TextAdventure.Scenes.Levels.Forest
 {
-	public sealed class Level05Scene : LevelScene
+	public sealed class Glade : LevelScene
 	{
 		public override string Description { get { return base.Description; } }
 

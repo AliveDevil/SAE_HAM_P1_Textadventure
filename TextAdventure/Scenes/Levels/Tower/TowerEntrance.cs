@@ -14,14 +14,14 @@ namespace TextAdventure.Scenes.Levels.Tower
 	public sealed class TowerEntrance : LevelScene
 	{
 		/// <summary>
-		/// Returns some description in this scene. See Room4_Description in Resources.
+		/// Returns some description in this scene. See Tower_Entrance_Description in Resources.
 		/// </summary>
-		public override string Description { get { return Resources.Room4_Description; } }
+		public override string Description { get { return Resources.Tower_Entrance_Description; } }
 
 		/// <summary>
-		/// Returns tower ground. See Room4_Title in Resources.
+		/// Returns tower ground. See Tower_Entrance_Title in Resources.
 		/// </summary>
-		public override string Title { get { return Resources.Room4_Title; } }
+		public override string Title { get { return Resources.Tower_Entrance_Title; } }
 
 		/// <summary>
 		/// Default constructor.
@@ -42,7 +42,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 		/// </summary>
 		private void FollowPath(object sender, ComponentEventArgs e)
 		{
-			SceneManager.LoadScene<Level05Scene>();
+			SceneManager.LoadScene<Forest.Glade>();
 			e.Handled = true;
 		}
 
@@ -55,7 +55,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 			if (component != null)
 			{
 				PostMessage(Resources.Goblin_Died);
-				PostMessage(Resources.Room4_Progress);
+				PostMessage(Resources.Tower_Entrance_Progress);
 				RemoveComponent(component);
 				FindComponent<ChangeRoomComponent>().Enabled = true;
 			}

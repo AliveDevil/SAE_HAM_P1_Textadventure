@@ -243,80 +243,80 @@ Programming: Jöran Malek</value>
     <value>Your {0} has been increased to {1}.</value>
     <comment>Potion message. Property and amount.</comment>
   </data>
-  <data name="Room1_Description_Dark" xml:space="preserve">
-    <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>
-    <comment>Dark first room description.</comment>
-  </data>
-  <data name="Room1_Description_Light" xml:space="preserve">
+  <data name="Tower_Entry_Description_Light" xml:space="preserve">
     <value>You switched on the light. You are able to see every corner of this room. It is not large. There is a door on the other side. The round silhouette turns out to be a table. There is a glass with a red fluid inside on the table.</value>
     <comment>Bright first room description.</comment>
   </data>
-  <data name="Room1_Died_DrankGlass" xml:space="preserve">
+  <data name="Tower_Entry_Died_DrankGlass" xml:space="preserve">
     <value>You drunk the glass with red content. You do not feel well and slowly start faltering.</value>
     <comment>Player died by drinking the glass.</comment>
   </data>
-  <data name="Room1_Died_TookGlass" xml:space="preserve">
+  <data name="Tower_Entry_Died_TookGlass" xml:space="preserve">
     <value>You took the glass and you smell something intense. </value>
     <comment>Player died by taking the glass.</comment>
   </data>
-  <data name="Room1_Fail" xml:space="preserve">
+  <data name="Tower_Entry_Fail" xml:space="preserve">
     <value>You tried everything, but nothing happened.</value>
     <comment>Unused.</comment>
   </data>
-  <data name="Room1_LightSwitch_TurnOn" xml:space="preserve">
+  <data name="Tower_Entry_LightSwitch_TurnOn" xml:space="preserve">
     <value>You have toggled the light switch.</value>
     <comment>Message on turning light switch in first room.</comment>
   </data>
-  <data name="Room1_Title" xml:space="preserve">
+  <data name="Tower_Entry_Title" xml:space="preserve">
     <value>Entry Room</value>
     <comment>First rooms title.</comment>
   </data>
-  <data name="Room2_Description" xml:space="preserve">
+  <data name="Tower_Hall_Description" xml:space="preserve">
     <value>You opened the door and went through it. Something got your attention. It's a small, grey thing. There in a corner of this room. After some time you recognize a mice in it. Right next to it is a door. On this door stands "Mage" in magical letters.</value>
     <comment>Second rooms description.</comment>
   </data>
-  <data name="Room2_Fail" xml:space="preserve">
+  <data name="Tower_Hall_Fail" xml:space="preserve">
     <value>Maybe .. "attack" or "sneak" are what you want to try?</value>
     <comment>Unused.</comment>
   </data>
-  <data name="Room2_Title" xml:space="preserve">
+  <data name="Tower_Hall_Title" xml:space="preserve">
     <value>Long Hall</value>
     <comment>Second rooms title.</comment>
   </data>
-  <data name="Room3_Description_AskForName" xml:space="preserve">
+  <data name="Tower_Mage_Description_AskForName" xml:space="preserve">
     <value>You enter the room called "Mages room". It is bright and filled with lots of books and wood and stuff. Under a huge amount of books you see a long, blue hat. You move the books away and a mage sees into your eyes.
 "Hey, you must be"</value>
     <comment>How is the player named?</comment>
   </data>
-  <data name="Room3_Description_Quest" xml:space="preserve">
+  <data name="Tower_Mage_Description_Quest" xml:space="preserve">
     <value>"Okay {0}. There are some rumors that goblins are in the western forests. Please take a look and tell me if they are true."
 You ask him why you are here and where he comes from but the mage answers "You will find out, hopefully".
 "Now go down the stairs. It will bring you straight to the forest. And .. before I forget: You might want to open your inventory and revisit your stats some time."</value>
     <comment>First quest.</comment>
   </data>
-  <data name="Room3_Fail" xml:space="preserve">
+  <data name="Tower_Mage_Fail" xml:space="preserve">
     <value>The mage did not understand you.</value>
     <comment>Unused.</comment>
   </data>
-  <data name="Room3_Title" xml:space="preserve">
+  <data name="Tower_Mage_Title" xml:space="preserve">
     <value>Mages Room</value>
     <comment>Title of third room.</comment>
   </data>
-  <data name="Room4_Description" xml:space="preserve">
+  <data name="Tower_Entrance_Description" xml:space="preserve">
     <value>On your way down to the forest you pass some weapons. Some letters are on the wall telling, that you should take them.
 Right after you leave the tower a small goblin falls on your feet. He stands up, takes his sword and swings it in front of you.</value>
     <comment>Fourth room description.</comment>
   </data>
-  <data name="Room4_Progress" xml:space="preserve">
+  <data name="Tower_Entrance_Progress" xml:space="preserve">
     <value>After the goblin died you see a path into the forest which you have not seen before.</value>
     <comment>Player killed goblin.</comment>
   </data>
-  <data name="Room4_Title" xml:space="preserve">
+  <data name="Tower_Entrance_Title" xml:space="preserve">
     <value>Tower Ground</value>
     <comment>Title of fourth room.</comment>
   </data>
   <data name="StrikeWords" xml:space="preserve">
     <value>with,me</value>
     <comment>Some words that should be left out.</comment>
+  </data>
+  <data name="Tower_Entry_Description_Dark" xml:space="preserve">
+    <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>
+    <comment>Dark first room description.</comment>
   </data>
 </root>

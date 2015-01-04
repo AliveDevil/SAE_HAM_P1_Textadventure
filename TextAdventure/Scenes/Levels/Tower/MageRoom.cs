@@ -24,16 +24,16 @@ namespace TextAdventure.Scenes.Levels.Tower
 			{
 				if (!SceneManager.GetComponentByType<Player>().HasName)
 				{
-					return Resources.Room3_Description_AskForName;
+					return Resources.Tower_Mage_Description_AskForName;
 				}
-				return string.Format(CultureInfo.CurrentCulture, Resources.Room3_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
+				return string.Format(CultureInfo.CurrentCulture, Resources.Tower_Mage_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
 			}
 		}
 
 		/// <summary>
-		/// Mages room title. See Room3_Title in Resources.
+		/// Mages room title. See Tower_Mage_Title in Resources.
 		/// </summary>
-		public override string Title { get { return Resources.Room3_Title; } }
+		public override string Title { get { return Resources.Tower_Mage_Title; } }
 
 		/// <summary>
 		/// Default constructor.
