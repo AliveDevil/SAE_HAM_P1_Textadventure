@@ -21,13 +21,23 @@ namespace TextAdventure.Scenes.Components.Entities
 		}
 
 		/// <summary>
+		/// Static factory function for a medium goblin.
+		/// </summary>
+		/// <param name="name">Name for this entity.</param>
+		/// <returns>A medium goblin with constant values.</returns>
+		public static Goblin MediumGoblin(string name)
+		{
+			return new Goblin(name, 21, 29);
+		}
+
+		/// <summary>
 		/// Static factory function for a small goblin.
 		/// </summary>
 		/// <param name="name">What is this goblins name?</param>
 		/// <returns>A small goblin.</returns>
 		public static Goblin SmallGoblin(string name)
 		{
-			return new Goblin(name, 1, 10);
+			return new Goblin(name, 6, 13);
 		}
 
 		/// <summary>

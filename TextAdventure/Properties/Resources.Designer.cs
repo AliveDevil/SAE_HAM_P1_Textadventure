@@ -110,6 +110,78 @@ namespace TextAdventure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You walk quickly over the path. You move past tall, green trees to brown, smaller trees into a glade where everything has been burned down. Even the grass is just a gray. In the middle of the glade you see a tent. It is big and its entrance is decorated with a sign. This sign shows a tree - the Tree of Life - in a circle of flames. Two goblins stand in front of this tent holding their weapons in your direction. There is a chest next to you which might help you to get into the tent. The only way into the ten [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Forest_BurnedGlade_Description {
+            get {
+                return ResourceManager.GetString("Forest_BurnedGlade_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You defeated both goblin. Now take the entrance to complete your quest. ähnelt.
+        /// </summary>
+        internal static string Forest_BurnedGlade_LeftDied {
+            get {
+                return ResourceManager.GetString("Forest_BurnedGlade_LeftDied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You defeated the right goblin. Now defeat the next goblin. ähnelt.
+        /// </summary>
+        internal static string Forest_BurnedGlade_RightDied {
+            get {
+                return ResourceManager.GetString("Forest_BurnedGlade_RightDied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Burned Glade ähnelt.
+        /// </summary>
+        internal static string Forest_BurnedGlade_Title {
+            get {
+                return ResourceManager.GetString("Forest_BurnedGlade_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The path is now open. Follow deeper into the forest. ähnelt.
+        /// </summary>
+        internal static string Forest_Glade_Description_Finish {
+            get {
+                return ResourceManager.GetString("Forest_Glade_Description_Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die After you defeated the goblin you see another one, trying to protect a door you should not pass. The only way to this door might be a fight. ähnelt.
+        /// </summary>
+        internal static string Forest_Glade_Description_MediumGoblin {
+            get {
+                return ResourceManager.GetString("Forest_Glade_Description_MediumGoblin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You entered the glade and found a small goblin lying around on the ground. You tried to sneak around him but he woke up by some noises sees you and alerts another goblin. He takes his sword and forces you to fight with him. ähnelt.
+        /// </summary>
+        internal static string Forest_Glade_Description_SmallGoblin {
+            get {
+                return ResourceManager.GetString("Forest_Glade_Description_SmallGoblin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Forest Glade ähnelt.
+        /// </summary>
+        internal static string Forest_Glade_Title {
+            get {
+                return ResourceManager.GetString("Forest_Glade_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Start over in main menu. ähnelt.
         /// </summary>
         internal static string GameOver_Back {

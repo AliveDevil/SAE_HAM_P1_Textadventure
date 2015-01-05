@@ -70,6 +70,8 @@
     <Compile Include="Scenes\Components\SwitchComponent.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\GameOverScene.cs" />
+    <Compile Include="Scenes\Levels\Forest\BurnedGlade.cs" />
+    <Compile Include="Scenes\Levels\Forest\Tent.cs" />
     <Compile Include="Scenes\Levels\Tower\EntryRoom.cs" />
     <Compile Include="Scenes\Levels\Tower\Hall.cs" />
     <Compile Include="Scenes\Levels\Tower\MageRoom.cs" />

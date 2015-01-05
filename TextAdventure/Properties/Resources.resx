@@ -319,4 +319,33 @@ Right after you leave the tower a small goblin falls on your feet. He stands up,
     <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>
     <comment>Dark first room description.</comment>
   </data>
+  <data name="Forest_Glade_Description_MediumGoblin" xml:space="preserve">
+    <value>After you defeated the goblin you see another one, trying to protect a door you should not pass. The only way to this door might be a fight.</value>
+  </data>
+  <data name="Forest_Glade_Description_SmallGoblin" xml:space="preserve">
+    <value>You entered the glade and found a small goblin lying around on the ground. You tried to sneak around him but he woke up by some noises sees you and alerts another goblin. He takes his sword and forces you to fight with him.</value>
+    <comment>The first message to see.</comment>
+  </data>
+  <data name="Forest_Glade_Title" xml:space="preserve">
+    <value>Forest Glade</value>
+    <comment>Some glade in a forest.</comment>
+  </data>
+  <data name="Forest_Glade_Description_Finish" xml:space="preserve">
+    <value>The path is now open. Follow deeper into the forest.</value>
+    <comment>Finished the glade.</comment>
+  </data>
+  <data name="Forest_BurnedGlade_Description" xml:space="preserve">
+    <value>You walk quickly over the path. You move past tall, green trees to brown, smaller trees into a glade where everything has been burned down. Even the grass is just a gray. In the middle of the glade you see a tent. It is big and its entrance is decorated with a sign. This sign shows a tree - the Tree of Life - in a circle of flames. Two goblins stand in front of this tent holding their weapons in your direction. There is a chest next to you which might help you to get into the tent. The only way into the tent you see is to defeat both goblins.</value>
+    <comment>Glade burned with tent.</comment>
+  </data>
+  <data name="Forest_BurnedGlade_Title" xml:space="preserve">
+    <value>Burned Glade</value>
+    <comment>Some title.</comment>
+  </data>
+  <data name="Forest_BurnedGlade_LeftDied" xml:space="preserve">
+    <value>You defeated both goblin. Now take the entrance to complete your quest.</value>
+  </data>
+  <data name="Forest_BurnedGlade_RightDied" xml:space="preserve">
+    <value>You defeated the right goblin. Now defeat the next goblin.</value>
+  </data>
 </root>

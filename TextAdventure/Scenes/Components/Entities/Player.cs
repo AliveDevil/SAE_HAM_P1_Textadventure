@@ -61,7 +61,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		protected override void ReceiveDamage(Entity attacker)
 		{
 			base.ReceiveDamage(attacker);
-			if (IsDead())
+			if (attacker != null && IsDead())
 			{
 				SceneManager.LoadScene<GameOverScene>(string.Format(CultureInfo.CurrentCulture, Resources.Player_Died, attacker.Name, SceneManager.CurrentScene.Title));
 			}
@@ -87,15 +87,18 @@ namespace TextAdventure.Scenes.Components.Entities
 		{
 			// anonymous types incoming.
 
-			var groupedInventory = inventory.GroupBy(
-				entry => entry.GetType(), // what should be grouped
-				(key, enumerable) => new // what is the result after grouping
+			var groupedInventory = inventory.GroupBy(		// group the inventory.
+				keySelector: entry => entry.GetType(),		// what should be grouped
+				resultSelector: (key, enumerable) => new	// what is the result after grouping
 				{
-					Key = key.Name, // get Types name.
-					Count = enumerable.Count() // just return an enumerable with key and count.
+					Key = key.Name,							// get Types name.
+					Count = enumerable.Count()				// just return an enumerable with key and count.
 				});
+
+			// Build generic output.
 			StringBuilder builder = new StringBuilder();
 			builder.AppendLine(string.Format(CultureInfo.CurrentCulture, HeaderFormat, Resources.Generic_Inventory));
+			// Output every line in 
 			foreach (var group in groupedInventory)
 			{
 				builder.AppendFormat(CultureInfo.CurrentCulture, InventoryFormat, group.Key, group.Count);
@@ -108,15 +111,14 @@ namespace TextAdventure.Scenes.Components.Entities
 		private void ShowStats(object sender, ComponentEventArgs e)
 		{
 			SceneManager.CurrentScene.PostMessage(
-				string.Format(
-					CultureInfo.CurrentCulture,
-					Resources.Generic_StatsFormat,
-					Resources.Generic_Stats,
-					Resources.Generic_Health,
-					Health,
-					Resources.Generic_Strength,
-					Strength)
-				);
+				CultureInfo.CurrentCulture,
+				Resources.Generic_StatsFormat,
+				Resources.Generic_Stats,
+				Resources.Generic_Health,
+				Health,
+				Resources.Generic_Strength,
+				Strength
+			);
 			e.Handled = true;
 		}
 
