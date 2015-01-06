@@ -19,7 +19,7 @@ namespace TextAdventure
 		/// <summary>
 		/// Returns all actions from one scene and returns a dictionary of Key &lt;-&gt; Description.
 		/// </summary>
-		/// <param name="scene">Some scene.</param>
+		/// <param id="scene">Some scene.</param>
 		/// <returns>A dictionary for every single action as Key &lt;-&gt; Description.</returns>
 		public static Dictionary<string, string> GetActions(this Scene scene)
 		{

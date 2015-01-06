@@ -32,9 +32,9 @@ namespace TextAdventure.Scenes.Components.Entities
 
 		private List<Item> inventory;
 
-		public bool HasName { get { return !string.IsNullOrEmpty(Name); } }
+		public bool HasName { get { return !string.IsNullOrEmpty(Id); } }
 
-		protected override bool CheckName { get { return false; } }
+		protected override bool CheckActivators { get { return false; } }
 
 		public Player(bool enabled)
 			: base(null, enabled, baseDamage, baseHealth)
@@ -55,7 +55,7 @@ namespace TextAdventure.Scenes.Components.Entities
 
 		public void SetName(string name)
 		{
-			Name = name;
+			Id = name;
 		}
 
 		protected override void ReceiveDamage(Entity attacker)
@@ -63,7 +63,7 @@ namespace TextAdventure.Scenes.Components.Entities
 			base.ReceiveDamage(attacker);
 			if (attacker != null && IsDead())
 			{
-				SceneManager.LoadScene<GameOverScene>(string.Format(CultureInfo.CurrentCulture, Resources.Player_Died, attacker.Name, SceneManager.CurrentScene.Title));
+				SceneManager.LoadScene<GameOverScene>(string.Format(CultureInfo.CurrentCulture, Resources.Player_Died, attacker.Id, SceneManager.CurrentScene.Title));
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace TextAdventure.Scenes.Components.Entities
 				keySelector: entry => entry.GetType(),		// what should be grouped
 				resultSelector: (key, enumerable) => new	// what is the result after grouping
 				{
-					Key = key.Name,							// get Types name.
+					Key = key.Name,							// get Types id.
 					Count = enumerable.Count()				// just return an enumerable with key and count.
 				});
 
@@ -126,7 +126,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		{
 			if (!string.IsNullOrEmpty(e.Parameter))
 			{
-				var query = inventory.Where(entry => entry.Name.Equals(e.Parameter, StringComparison.OrdinalIgnoreCase));
+				var query = inventory.Where(entry => entry.Id.Equals(e.Parameter, StringComparison.OrdinalIgnoreCase));
 				if (query.Any())
 				{
 					Item first = query.First();

@@ -29,8 +29,8 @@ namespace TextAdventure.Attributes
 		/// <summary>
 		/// Creates a new instance of ActionAttribute.
 		/// </summary>
-		/// <param name="key">Which keyword should invoke assigned method.</param>
-		/// <param name="description">ResourceKey for description.</param>
+		/// <param id="key">Which keyword should invoke assigned method.</param>
+		/// <param id="description">ResourceKey for description.</param>
 		public ActionAttribute(string key, string description)
 		{
 			this.key = key;

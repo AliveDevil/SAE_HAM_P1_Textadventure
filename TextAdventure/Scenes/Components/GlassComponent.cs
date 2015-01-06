@@ -24,10 +24,10 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Default constructor.
 		/// </summary>
-		/// <param name="name">Current components name.</param>
-		/// <param name="enabled">Is this component enabled?</param>
-		public GlassComponent(string name, bool enabled)
-			: base(name, enabled)
+		/// <param id="id">Current components id.</param>
+		/// <param id="enabled">Is this component enabled?</param>
+		public GlassComponent(string name, bool enabled, params Activator[] activators)
+			: base(name, enabled, activators)
 		{
 			RegisterCallback("take", OnTake);
 			RegisterCallback("drink", OnDrink);

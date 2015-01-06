@@ -12,9 +12,9 @@ namespace TextAdventure.Scenes.Components.Items
 	public abstract class Potion : Item
 	{
 		/// <summary>
-		/// Some constructor for potions. Just passes on the name.
+		/// Some constructor for potions. Just passes on the id.
 		/// </summary>
-		/// <param name="name">Potions name.</param>
+		/// <param id="id">Potions id.</param>
 		protected Potion(string name)
 			: base(name)
 		{
@@ -23,7 +23,7 @@ namespace TextAdventure.Scenes.Components.Items
 		/// <summary>
 		/// Applies to entities only.
 		/// </summary>
-		/// <param name="caller">The caller should get current potions effect.</param>
+		/// <param id="caller">The caller should get current potions effect.</param>
 		public abstract void Apply(Entity caller);
 	}
 }

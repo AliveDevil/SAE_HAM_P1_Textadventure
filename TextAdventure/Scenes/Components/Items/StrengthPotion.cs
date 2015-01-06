@@ -22,7 +22,7 @@ namespace TextAdventure.Scenes.Components.Items
 		/// <summary>
 		/// Increases strength of caller.
 		/// </summary>
-		/// <param name="caller">Some caller entity.</param>
+		/// <param id="caller">Some caller entity.</param>
 		public override void Apply(Entity caller)
 		{
 			if (caller != null)

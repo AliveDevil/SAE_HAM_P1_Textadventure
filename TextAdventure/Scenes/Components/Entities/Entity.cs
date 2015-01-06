@@ -36,10 +36,10 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Abstract protected constructor.
 		/// </summary>
-		/// <param name="name">Components name</param>
-		/// <param name="enabled">Is this component enabled?</param>
-		/// <param name="strength">Current strength</param>
-		/// <param name="health">Current max health and health.</param>
+		/// <param id="id">Components id</param>
+		/// <param id="enabled">Is this component enabled?</param>
+		/// <param id="strength">Current strength</param>
+		/// <param id="health">Current max health and health.</param>
 		protected Entity(string name, bool enabled, int strength, int health)
 			: base(name, enabled)
 		{
@@ -51,7 +51,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Attacks an entity.
 		/// </summary>
-		/// <param name="enemy">The enemy.</param>
+		/// <param id="enemy">The enemy.</param>
 		/// <returns>Whether this attack has been successful.</returns>
 		public bool Attack(Entity enemy)
 		{
@@ -66,7 +66,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Heals current entity by given amount.
 		/// </summary>
-		/// <param name="amount">The amount added to current health.</param>
+		/// <param id="amount">The amount added to current health.</param>
 		public void Heal(int amount)
 		{
 			Health = Clamp(Health + amount, 0, MaxHealth);
@@ -76,7 +76,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Inreases max health and heals previous health to maxhealth ratio.
 		/// </summary>
-		/// <param name="amount"></param>
+		/// <param id="amount"></param>
 		public void IncreaseHealth(int amount)
 		{
 			float oldAmount = MaxHealth;
@@ -89,7 +89,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Increases strength by given amount.
 		/// </summary>
-		/// <param name="amount">Value added to strength.</param>
+		/// <param id="amount">Value added to strength.</param>
 		public void IncreaseStrength(int amount)
 		{
 			Strength += amount;
@@ -108,14 +108,14 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Decreases health by given attackers strength with a range from 0.5 to 1.5.
 		/// </summary>
-		/// <param name="attacker">The attacking entity</param>
+		/// <param id="attacker">The attacking entity</param>
 		protected virtual void ReceiveDamage(Entity attacker)
 		{
 			if (attacker != null)
 			{
 				int damage = (int)Math.Ceiling(attacker.Strength * (SceneManager.RandomNumberGenerator.NextDouble() + 0.5));
 				this.Health -= damage;
-				SceneManager.CurrentScene.PostMessage(CultureInfo.CurrentCulture, Resources.Generic_GotDamage, Name, damage, this.Health);
+				SceneManager.CurrentScene.PostMessage(CultureInfo.CurrentCulture, Resources.Generic_GotDamage, Id, damage, this.Health);
 			}
 			CheckDeath();
 		}
@@ -123,9 +123,9 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Clamps given value to min and max.
 		/// </summary>
-		/// <param name="value">Current value.</param>
-		/// <param name="min">Minimum value.</param>
-		/// <param name="max">Maximum value.</param>
+		/// <param id="value">Current value.</param>
+		/// <param id="min">Minimum value.</param>
+		/// <param id="max">Maximum value.</param>
 		/// <returns>Clamped value.</returns>
 		private static int Clamp(float value, int min, int max)
 		{
@@ -135,8 +135,8 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Posts a mesage to current scene.
 		/// </summary>
-		/// <param name="title">Changed property</param>
-		/// <param name="amount">Change amount.</param>
+		/// <param id="title">Changed property</param>
+		/// <param id="amount">Change amount.</param>
 		private static void PostMessage(string title, int amount)
 		{
 			SceneManager.CurrentScene.PostMessage(CultureInfo.CurrentCulture, Resources.Potion_Message, title, amount);

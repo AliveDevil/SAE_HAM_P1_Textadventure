@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
 
@@ -13,7 +14,7 @@ namespace TextAdventure.Scenes.Levels.Forest
 
 		private Goblin smallGoblin, mediumGoblin;
 
-		public override string Description { get { return base.Description; } }
+		public override string Description { get { return Resources.Forest_Glade_Description_SmallGoblin; } }
 
 		public override string Title { get { return base.Title; } }
 

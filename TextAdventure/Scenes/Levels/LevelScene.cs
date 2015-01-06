@@ -31,19 +31,19 @@ namespace TextAdventure.Scenes.Levels
 		protected ReadOnlyCollection<Component> Components { get { return components.AsReadOnly(); } }
 
 		/// <summary>
-		/// Tries to find a component by name.
+		/// Tries to find a component by id.
 		/// </summary>
-		/// <param name="name">String to search for.</param>
+		/// <param id="id">String to search for.</param>
 		/// <returns>Found component (or null if none found).</returns>
 		public Component FindComponent(string name)
 		{
-			return components.Where(component => component.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+			return components.Where(component => component.Id.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 		}
 
 		/// <summary>
 		/// Tries to find a component by Type.
 		/// </summary>
-		/// <typeparam name="T">Component Generic Type.</typeparam>
+		/// <typeparam id="T">Component Generic Type.</typeparam>
 		/// <returns>Found component (or null if none found).</returns>
 		public T FindComponent<T>() where T : Component
 		{
@@ -53,7 +53,7 @@ namespace TextAdventure.Scenes.Levels
 		/// <summary>
 		/// Removes a component from components.
 		/// </summary>
-		/// <param name="component">Component that should be removed.</param>
+		/// <param id="component">Component that should be removed.</param>
 		public void RemoveComponent(Component component)
 		{
 			components.Remove(component);
@@ -62,7 +62,7 @@ namespace TextAdventure.Scenes.Levels
 		/// <summary>
 		/// Adds a component to
 		/// </summary>
-		/// <param name="component">Component to be added.</param>
+		/// <param id="component">Component to be added.</param>
 		protected void AddComponent(Component component)
 		{
 			components.Add(component);
@@ -71,7 +71,7 @@ namespace TextAdventure.Scenes.Levels
 		/// <summary>
 		/// Handle every other input.
 		/// </summary>
-		/// <param name="arguments">Additional parameters.</param>
+		/// <param id="arguments">Additional parameters.</param>
 		/// <returns>If an action has been found and run.</returns>
 		protected override bool HandleInput(IList<string> arguments)
 		{
@@ -87,7 +87,7 @@ namespace TextAdventure.Scenes.Levels
 				else if (arguments.Count == 1)
 				{
 					interactComponent = InteractableComponents(component =>
-						component.Name.Equals(arguments[0], StringComparison.OrdinalIgnoreCase));
+						component.Id.Equals(arguments[0], StringComparison.OrdinalIgnoreCase));
 				}
 			}
 
@@ -102,7 +102,7 @@ namespace TextAdventure.Scenes.Levels
 		/// <summary>
 		/// Returns every component that matches comparer.
 		/// </summary>
-		/// <param name="comparer">Comparer to evaluate components.</param>
+		/// <param id="comparer">Comparer to evaluate components.</param>
 		/// <returns>First found component or null.</returns>
 		private Component InteractableComponents(Predicate<Component> comparer)
 		{

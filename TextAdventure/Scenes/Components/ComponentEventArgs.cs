@@ -23,7 +23,7 @@ namespace TextAdventure.Scenes.Components
 
 		/// <summary>
 		/// </summary>
-		/// <param name="parameter"></param>
+		/// <param id="parameter"></param>
 		public ComponentEventArgs(string parameter)
 		{
 			Handled = false;

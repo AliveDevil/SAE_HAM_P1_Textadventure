@@ -19,10 +19,10 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Single constructor for
 		/// </summary>
-		/// <param name="name">Current components name.</param>
-		/// <param name="enabled">Is this component enabled.</param>
-		public ChangeRoomComponent(string name, bool enabled)
-			: base(name, enabled)
+		/// <param id="id">Current components id.</param>
+		/// <param id="enabled">Is this component enabled.</param>
+		public ChangeRoomComponent(string name, bool enabled, params Activator[] activators)
+			: base(name, enabled, activators)
 		{
 			RegisterCallback("open", OnFollow);
 			RegisterCallback("use", OnFollow);

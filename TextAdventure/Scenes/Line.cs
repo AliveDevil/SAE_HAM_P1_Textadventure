@@ -33,8 +33,8 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Constructor for setting some properties (except lines).
 		/// </summary>
-		/// <param name="key">The specified key.</param>
-		/// <param name="startX">Some X-Offset.</param>
+		/// <param id="key">The specified key.</param>
+		/// <param id="startX">Some X-Offset.</param>
 		public Line(string key, int startX)
 		{
 			this.key = key;
@@ -45,8 +45,8 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Inequality operator.
 		/// </summary>
-		/// <param name="left">First line.</param>
-		/// <param name="right">Second line.</param>
+		/// <param id="left">First line.</param>
+		/// <param id="right">Second line.</param>
 		/// <returns>Whether these are not equal.</returns>
 		public static bool operator !=(Line left, Line right)
 		{
@@ -58,8 +58,8 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Equality operator.
 		/// </summary>
-		/// <param name="left">First line.</param>
-		/// <param name="right">Second line.</param>
+		/// <param id="left">First line.</param>
+		/// <param id="right">Second line.</param>
 		/// <returns>Whether these are equal.</returns>
 		public static bool operator ==(Line left, Line right)
 		{
@@ -71,7 +71,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Does this equal with something else?
 		/// </summary>
-		/// <param name="obj">Object to be compared.</param>
+		/// <param id="obj">Object to be compared.</param>
 		/// <returns>Whether these objects are equal.</returns>
 		public override bool Equals(object obj)
 		{

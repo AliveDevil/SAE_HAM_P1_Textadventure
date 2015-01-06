@@ -5,17 +5,24 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace TextAdventure.Scenes.Components
 {
 	/// <summary>
 	/// <para>Base class for interacting components.</para>
-	/// <para>Default usage in case-insensitive input is [Action] [Name].</para>
+	/// <para>Default usage in case-insensitive input is [Action] [Id].</para>
 	/// <para>Example: open door</para>
 	/// </summary>
 	public abstract class Component
 	{
+		delegate void EnumerableArrayAction<TElement, TRefElement>(TElement element, ref TRefElement refElement);
+
+		private Activator[] activators;
 		private Dictionary<string, EventHandler<ComponentEventArgs>> callbacks;
+
+		private IEnumerable<Activator> optionalActivators;
+		private IEnumerable<Activator> requiredActivators;
 
 		/// <summary>
 		/// Is this component enabled?
@@ -23,46 +30,69 @@ namespace TextAdventure.Scenes.Components
 		public bool Enabled { get; set; }
 
 		/// <summary>
-		/// Returns current components name.
+		/// Returns current components id.
 		/// </summary>
-		public string Name { get; protected set; }
+		public string Id { get; protected set; }
 
 		/// <summary>
-		/// Should name be checked?
+		/// Should id be checked?
 		/// </summary>
-		protected virtual bool CheckName { get { return true; } }
+		protected virtual bool CheckActivators { get { return true; } }
 
 		/// <summary>
 		/// Default constructor.
 		/// </summary>
-		/// <param name="name">Lookup name.</param>
-		/// <param name="enabled">Is this component enabled.</param>
-		protected Component(string name, bool enabled)
+		/// <param id="id">Lookup id.</param>
+		/// <param id="enabled">Is this component enabled.</param>
+		protected Component(string id, bool enabled, params Activator[] activators)
 		{
-			this.Name = name;
+			this.Id = id;
 			this.Enabled = enabled;
+			this.activators = activators ?? new Activator[] { };
 			this.callbacks = new Dictionary<string, EventHandler<ComponentEventArgs>>();
+			this.requiredActivators = this.activators.Where(activator => activator.Required);
+			this.optionalActivators = this.activators.Where(activator => !activator.Required);
 		}
 
 		/// <summary>
 		/// Checks whether provided parameters match current component.
 		/// </summary>
-		/// <param name="action"></param>
-		/// <param name="name"></param>
+		/// <param id="action"></param>
+		/// <param id="id"></param>
 		/// <returns></returns>
-		public bool CanInteract(string action, string name)
+		public bool CanInteract(string action, params string[] activators)
 		{
-			/*
-			 * Return true if
-			 *	Enabled
-			 *	and either
-			 *		not CheckName
-			 *		or components name equals given name invariant culture ignore case.
-			 *	and if callbacks contain given key.
-			 */
-			return Enabled &&
-				(!CheckName || (!string.IsNullOrEmpty(name) && name.Equals(Name, StringComparison.OrdinalIgnoreCase))) &&
-				(!string.IsNullOrEmpty(action) && callbacks.ContainsKey(action.ToUpper(CultureInfo.InvariantCulture)));
+			if (!Enabled)
+			{
+				return false;
+			}
+			if (string.IsNullOrEmpty(action))
+			{
+				return false;
+			}
+			bool actionFound = callbacks.ContainsKey(action.ToUpper(CultureInfo.InvariantCulture));
+			bool requiredFound = false;
+			bool optionalRequired = false;
+			bool optionalFound = true;
+			if (CheckActivators && activators != null && activators.Length > 0)
+			{
+				EnumerableAction(requiredActivators, activators, (Activator activator, ref string search) =>
+				{
+					requiredFound |= string.Equals(activator.Key, search, StringComparison.InvariantCultureIgnoreCase);
+					search = null;
+				});
+				EnumerableAction(optionalActivators, activators, (Activator activator, ref string search) =>
+				{
+					if (!string.IsNullOrEmpty(search))
+					{
+						optionalRequired = true;
+						optionalFound &= string.Equals(activator.Key, search, StringComparison.InvariantCultureIgnoreCase);
+						search = null;
+					}
+				});
+			}
+
+			return actionFound && requiredFound && (!optionalRequired || optionalFound);
 		}
 
 		/// <summary>
@@ -84,8 +114,8 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Adds callback to callbacks.
 		/// </summary>
-		/// <param name="action">Action key.</param>
-		/// <param name="callback">Function called.</param>
+		/// <param id="action">Action key.</param>
+		/// <param id="callback">Function called.</param>
 		/// <returns>Current component.</returns>
 		protected Component RegisterCallback(string action, EventHandler<ComponentEventArgs> callback)
 		{
@@ -98,6 +128,21 @@ namespace TextAdventure.Scenes.Components
 				}
 			}
 			return this;
+		}
+
+
+		private void EnumerableAction<TEnumerable, TArray>(IEnumerable<TEnumerable> source, TArray[] elements, EnumerableArrayAction<TEnumerable, TArray> action) where TArray : class
+		{
+			foreach (var item in source)
+			{
+				for (int i = 0; i < elements.Length; i++)
+				{
+					if (elements[i] != null)
+					{
+						action(item, ref elements[i]);
+					}
+				}
+			}
 		}
 	}
 }

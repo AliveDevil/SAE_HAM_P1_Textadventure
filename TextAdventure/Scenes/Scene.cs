@@ -98,7 +98,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Abstract constructor.
 		/// </summary>
-		/// <param name="arguments"></param>
+		/// <param id="arguments"></param>
 		protected Scene(params string[] arguments)
 		{
 			actions = new Dictionary<string, ExecuteAction>();
@@ -121,7 +121,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Execute an action which has arguments first item as key. Otherwise check in scene itself.
 		/// </summary>
-		/// <param name="arguments"></param>
+		/// <param id="arguments"></param>
 		/// <returns></returns>
 		public bool PerformAction(IList<string> arguments)
 		{
@@ -143,7 +143,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Adds a message to current messages list.
 		/// </summary>
-		/// <param name="message">Some message.</param>
+		/// <param id="message">Some message.</param>
 		public void PostMessage(string message)
 		{
 			messages.Add(message);
@@ -152,9 +152,9 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Adds an formatted message to message list.
 		/// </summary>
-		/// <param name="formatProvider">Some format provider.</param>
-		/// <param name="format">Simple format for message.</param>
-		/// <param name="args">Arguments that should be replaced in format.</param>
+		/// <param id="formatProvider">Some format provider.</param>
+		/// <param id="format">Simple format for message.</param>
+		/// <param id="args">Arguments that should be replaced in format.</param>
 		public void PostMessage(IFormatProvider formatProvider, string format, params object[] args)
 		{
 			PostMessage(string.Format(formatProvider, format, args));
@@ -163,7 +163,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Handles not recognized input.
 		/// </summary>
-		/// <param name="arguments">Some arguments.</param>
+		/// <param id="arguments">Some arguments.</param>
 		/// <returns>Whether this has been successful.</returns>
 		protected virtual bool HandleInput(IList<string> arguments)
 		{
@@ -173,7 +173,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Registers provided method.
 		/// </summary>
-		/// <param name="method">Some executeaction.</param>
+		/// <param id="method">Some executeaction.</param>
 		protected void RegisterAction(ExecuteAction method)
 		{
 			if (method != null)

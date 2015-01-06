@@ -24,11 +24,11 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Constructor for switch.
 		/// </summary>
-		/// <param name="name">Lookup name.</param>
-		/// <param name="enabled">Is this component enabled?</param>
-		/// <param name="switched">Is this switch switched on?</param>
-		public SwitchComponent(string name, bool enabled, bool switched)
-			: base(name, enabled)
+		/// <param id="id">Lookup id.</param>
+		/// <param id="enabled">Is this component enabled?</param>
+		/// <param id="switched">Is this switch switched on?</param>
+		public SwitchComponent(string name, bool enabled, bool switched, params Activator[] activators)
+			: base(name, enabled, activators)
 		{
 			Switched = switched;
 			RegisterCallback("use", OnSwitch);

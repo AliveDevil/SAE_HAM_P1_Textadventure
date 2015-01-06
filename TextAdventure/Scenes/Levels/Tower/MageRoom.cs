@@ -16,7 +16,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 	public sealed class MageRoom : LevelScene
 	{
 		/// <summary>
-		/// Asks player for name and gives first quest.
+		/// Asks player for id and gives first quest.
 		/// </summary>
 		public override string Description
 		{
@@ -26,7 +26,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 				{
 					return Resources.Tower_Mage_Description_AskForName;
 				}
-				return string.Format(CultureInfo.CurrentCulture, Resources.Tower_Mage_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
+				return string.Format(CultureInfo.CurrentCulture, Resources.Tower_Mage_Description_Quest, SceneManager.GetComponentByType<Player>().Id);
 			}
 		}
 
@@ -53,7 +53,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 		{
 			Player player = sender as Player;
 
-			if (string.IsNullOrEmpty(player.Name))
+			if (string.IsNullOrEmpty(player.Id))
 			{
 				player.SetName(e.Parameter);
 				FindComponent<ChangeRoomComponent>().Enabled = true;

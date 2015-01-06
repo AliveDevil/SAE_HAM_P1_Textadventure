@@ -22,7 +22,7 @@ namespace TextAdventure.Scenes.Components.Items
 		/// <summary>
 		/// Increases maxhealth of caller.
 		/// </summary>
-		/// <param name="caller"></param>
+		/// <param id="caller"></param>
 		public override void Apply(Entity caller)
 		{
 			if (caller != null)

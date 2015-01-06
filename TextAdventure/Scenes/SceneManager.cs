@@ -109,7 +109,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Find a component by given generic type.
 		/// </summary>
-		/// <typeparam name="T">Some component type.</typeparam>
+		/// <typeparam id="T">Some component type.</typeparam>
 		/// <returns>First found component or null.</returns>
 		public static T GetComponentByType<T>() where T : Component
 		{
@@ -119,19 +119,19 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Generically load a scene.
 		/// </summary>
-		/// <typeparam name="T">Scene to be loaded.</typeparam>
-		/// <param name="arguments">Some arguments passed to the constructor of the scene.</param>
+		/// <typeparam id="T">Scene to be loaded.</typeparam>
+		/// <param id="arguments">Some arguments passed to the constructor of the scene.</param>
 		/// <returns>True</returns>
 		public static bool LoadScene<T>(params string[] arguments) where T : Scene
 		{
-			currentScene = (T)Activator.CreateInstance(typeof(T), arguments);
+			currentScene = (T)System.Activator.CreateInstance(typeof(T), arguments);
 			return true;
 		}
 
 		/// <summary>
 		/// Register a global component.
 		/// </summary>
-		/// <param name="component">Component to be registered.</param>
+		/// <param id="component">Component to be registered.</param>
 		public static void RegisterGlobalComponent(Component component)
 		{
 			if (!registeredComponents.Contains(component))
@@ -230,8 +230,8 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Draws a text centered at current y-location.
 		/// </summary>
-		/// <param name="text">Some text.</param>
-		/// <param name="y">Some y-offset.</param>
+		/// <param id="text">Some text.</param>
+		/// <param id="y">Some y-offset.</param>
 		private static void DrawCenteredText(string text, int y)
 		{
 			int centeredLength = text.Length / 2;
@@ -245,9 +245,9 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Draws a single char at given position to FastConsole.
 		/// </summary>
-		/// <param name="x">X-location</param>
-		/// <param name="y">Y-location</param>
-		/// <param name="char">Some char.</param>
+		/// <param id="x">X-location</param>
+		/// <param id="y">Y-location</param>
+		/// <param id="char">Some char.</param>
 		private static void DrawChar(int x, int y, char @char)
 		{
 			FastConsole.Write(ResolveX(x), ResolveY(y), @char);
@@ -287,8 +287,8 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Draws a block of text.
 		/// </summary>
-		/// <param name="text"></param>
-		/// <param name="y"></param>
+		/// <param id="text"></param>
+		/// <param id="y"></param>
 		/// <returns>Lines that are used.</returns>
 		private static int DrawTextBlock(string text, int y)
 		{
@@ -386,7 +386,7 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Splits lines by width and \n.
 		/// </summary>
-		/// <param name="text">Some text.</param>
+		/// <param id="text">Some text.</param>
 		/// <returns>Every single line.</returns>
 		private static string[] SplitLines(string text)
 		{
@@ -421,8 +421,8 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Appends StringBuilders content to a list of string and clears it.
 		/// </summary>
-		/// <param name="lines">Collection of string the builder content should be added to.</param>
-		/// <param name="builder">Some stringbuilder.</param>
+		/// <param id="lines">Collection of string the builder content should be added to.</param>
+		/// <param id="builder">Some stringbuilder.</param>
 		private static void WriteLineToStringBuilder(ICollection<string> lines, StringBuilder builder)
 		{
 			lines.Add(builder.ToString());
