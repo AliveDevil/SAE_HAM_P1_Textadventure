@@ -24,7 +24,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 
 		public Hall()
 		{
-			ChangeRoomComponent door = new ChangeRoomComponent("door", true);
+			ChangeRoomComponent door = new ChangeRoomComponent("door", true, new Activator("door", true));
 			door.Follow += OpenDoor;
 			AddComponent(door);
 		}

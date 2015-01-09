@@ -342,10 +342,25 @@ Right after you leave the tower a small goblin falls on your feet. He stands up,
     <value>Burned Glade</value>
     <comment>Some title.</comment>
   </data>
-  <data name="Forest_BurnedGlade_LeftDied" xml:space="preserve">
-    <value>You defeated both goblin. Now take the entrance to complete your quest.</value>
+  <data name="Forest_BurnedGlade_GoblinDied" xml:space="preserve">
+    <value>You defeated a goblin.</value>
   </data>
-  <data name="Forest_BurnedGlade_RightDied" xml:space="preserve">
-    <value>You defeated the right goblin. Now defeat the next goblin.</value>
+  <data name="Forest_BurnedGlade_OpenedChest" xml:space="preserve">
+    <value>Both goblins are dead. You are now able to enter the tent.</value>
+  </data>
+  <data name="Forest_BurnedGlade_FreeEntrance" xml:space="preserve">
+    <value>Both goblins are dead. You are now able to enter the tent.</value>
+  </data>
+  <data name="Forest_Tent_Title" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Forest_Tent_Description" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Forest_Tent_" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Forest_Tent_" xml:space="preserve">
+    <value></value>
   </data>
 </root>
