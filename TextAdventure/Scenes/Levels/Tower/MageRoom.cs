@@ -41,7 +41,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 		public MageRoom()
 		{
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
-			ChangeRoomComponent stairs = new ChangeRoomComponent("stairs", false);
+			ChangeRoomComponent stairs = new ChangeRoomComponent("stairs", false, new Activator("stairs", true));
 			stairs.Follow += TakeStairs;
 			AddComponent(stairs);
 		}

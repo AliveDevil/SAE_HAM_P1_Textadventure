@@ -50,6 +50,13 @@ namespace TextAdventure.Scenes.Levels
 			return components.OfType<T>().FirstOrDefault();
 		}
 
+		public T FindComponent<T>(string name) where T : Component
+		{
+			return components.OfType<T>()
+				.Where(component => component.Id.Equals(name, StringComparison.OrdinalIgnoreCase))
+				.FirstOrDefault();
+		}
+
 		/// <summary>
 		/// Removes a component from components.
 		/// </summary>

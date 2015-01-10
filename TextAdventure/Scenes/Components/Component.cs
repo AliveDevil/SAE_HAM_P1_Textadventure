@@ -78,7 +78,7 @@ namespace TextAdventure.Scenes.Components
 			{
 				EnumerableAction(requiredActivators, activators, (Activator activator, ref string search) =>
 				{
-					requiredFound |= string.Equals(activator.Key, search, StringComparison.InvariantCultureIgnoreCase);
+					requiredFound |= string.Equals(activator.Key, search, StringComparison.OrdinalIgnoreCase);
 					search = null;
 				});
 				EnumerableAction(optionalActivators, activators, (Activator activator, ref string search) =>
@@ -86,7 +86,7 @@ namespace TextAdventure.Scenes.Components
 					if (!string.IsNullOrEmpty(search))
 					{
 						optionalRequired = true;
-						optionalFound &= string.Equals(activator.Key, search, StringComparison.InvariantCultureIgnoreCase);
+						optionalFound &= string.Equals(activator.Key, search, StringComparison.OrdinalIgnoreCase);
 						search = null;
 					}
 				});
@@ -131,7 +131,7 @@ namespace TextAdventure.Scenes.Components
 		}
 
 
-		private void EnumerableAction<TEnumerable, TArray>(IEnumerable<TEnumerable> source, TArray[] elements, EnumerableArrayAction<TEnumerable, TArray> action) where TArray : class
+		private static void EnumerableAction<TEnumerable, TArray>(IEnumerable<TEnumerable> source, TArray[] elements, EnumerableArrayAction<TEnumerable, TArray> action) where TArray : class
 		{
 			foreach (var item in source)
 			{

@@ -40,8 +40,8 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <param id="enabled">Is this component enabled?</param>
 		/// <param id="strength">Current strength</param>
 		/// <param id="health">Current max health and health.</param>
-		protected Entity(string name, bool enabled, int strength, int health)
-			: base(name, enabled)
+		protected Entity(string name, bool enabled, int strength, int health, params Activator[] activators)
+			: base(name, enabled, activators)
 		{
 			this.Strength = strength;
 			this.MaxHealth = health;

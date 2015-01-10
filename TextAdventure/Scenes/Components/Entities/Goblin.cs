@@ -15,8 +15,8 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <param id="id">Components id.</param>
 		/// <param id="damage">Entities damage.</param>
 		/// <param id="health">Entities health.</param>
-		private Goblin(string name, int damage, int health)
-			: base(name, true, damage, health)
+		private Goblin(string name, int damage, int health, params Activator[] activators)
+			: base(name, true, damage, health, activators)
 		{
 		}
 
@@ -25,9 +25,9 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// </summary>
 		/// <param id="id">Id for this entity.</param>
 		/// <returns>A medium goblin with constant values.</returns>
-		public static Goblin MediumGoblin(string name)
+		public static Goblin MediumGoblin(string name, params Activator[] activators)
 		{
-			return new Goblin(name, 21, 29);
+			return new Goblin(name, 21, 29, activators);
 		}
 
 		/// <summary>
@@ -35,9 +35,9 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// </summary>
 		/// <param id="id">What is this goblins id?</param>
 		/// <returns>A small goblin.</returns>
-		public static Goblin SmallGoblin(string name)
+		public static Goblin SmallGoblin(string name, params Activator[] activators)
 		{
-			return new Goblin(name, 6, 13);
+			return new Goblin(name, 6, 13, activators);
 		}
 
 		/// <summary>

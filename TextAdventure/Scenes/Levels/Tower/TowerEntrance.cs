@@ -29,10 +29,10 @@ namespace TextAdventure.Scenes.Levels.Tower
 		public TowerEntrance()
 		{
 			SceneManager.GetComponentByType<Player>().Attack += PlayerAttack;
-			Goblin goblin = Goblin.SmallGoblin("goblin");
+			Goblin goblin = Goblin.SmallGoblin("goblin", new Activator("goblin", true), new Activator("small", false));
 			goblin.Died += GoblinDied;
 			AddComponent(goblin);
-			ChangeRoomComponent path = new ChangeRoomComponent("path", false);
+			ChangeRoomComponent path = new ChangeRoomComponent("path", false, new Activator("path", true));
 			path.Follow += FollowPath;
 			AddComponent(path);
 		}

@@ -38,13 +38,13 @@ namespace TextAdventure.Scenes.Levels.Tower
 		/// </summary>
 		public EntryRoom()
 		{
-			SwitchComponent lightSwitch = new SwitchComponent("switch", true, false);
+			SwitchComponent lightSwitch = new SwitchComponent("switch", true, false, new Activator("switch", true));
 			lightSwitch.Switch += TurnLightSwitch;
 			AddComponent(lightSwitch);
-			ChangeRoomComponent door = new ChangeRoomComponent("door", true);
+			ChangeRoomComponent door = new ChangeRoomComponent("door", true, new Activator("door", true));
 			door.Follow += OnFollow;
 			AddComponent(door);
-			GlassComponent glass = new GlassComponent("glass", false);
+			GlassComponent glass = new GlassComponent("glass", false, new Activator("glass", true), new Activator("red", false));
 			glass.Drink += DrinkGlass;
 			glass.Take += TakeGlass;
 			AddComponent(glass);
