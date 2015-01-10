@@ -58,6 +58,26 @@ namespace TextAdventure.Scenes.Levels
 		}
 
 		/// <summary>
+		/// Tries to find all components by id.
+		/// </summary>
+		/// <param id="id">String to search for.</param>
+		/// <returns>Found component (or null if none found).</returns>
+		public IEnumerable<Component> FindComponents(string name)
+		{
+			return components.Where(component => component.Id.Equals(name, StringComparison.OrdinalIgnoreCase));
+		}
+
+		/// <summary>
+		/// Tries to find all components by Type.
+		/// </summary>
+		/// <typeparam id="T">Component Generic Type.</typeparam>
+		/// <returns>Found component (or null if none found).</returns>
+		public IEnumerable<T> FindComponents<T>() where T : Component
+		{
+			return components.OfType<T>();
+		}
+
+		/// <summary>
 		/// Removes a component from components.
 		/// </summary>
 		/// <param id="component">Component that should be removed.</param>
