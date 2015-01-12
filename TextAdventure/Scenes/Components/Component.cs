@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace TextAdventure.Scenes.Components
@@ -17,6 +16,7 @@ namespace TextAdventure.Scenes.Components
 	public abstract class Component : IDisposable
 	{
 		private delegate void EnumerableArrayAction<TRefElement>(ref TRefElement refElement);
+
 		private delegate void EnumerableArrayAction<TElement, TRefElement>(TElement element, ref TRefElement refElement);
 
 		private Activator[] activators;
@@ -116,6 +116,10 @@ namespace TextAdventure.Scenes.Components
 			return actionFound && requiredFound && (!optionalRequired || optionalFound);
 		}
 
+		public virtual void Dispose()
+		{
+		}
+
 		/// <summary>
 		/// Executes current callback.
 		/// </summary>
@@ -177,7 +181,5 @@ namespace TextAdventure.Scenes.Components
 				}
 			}
 		}
-
-		public virtual void Dispose() { }
 	}
 }
