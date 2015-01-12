@@ -532,7 +532,7 @@ namespace TextAdventure.Scenes
 			{
 				foreach (var item in registeredComponents)
 				{
-					if (item.CanInteract(arguments[0], null) && item.Interact(arguments[0], string.Join(", ", arguments.Skip(1))))
+					if (item.CanInteract(arguments[0], null) && item.Interact(arguments[0], arguments.Skip(1).ToArray()))
 					{
 						break;
 					}

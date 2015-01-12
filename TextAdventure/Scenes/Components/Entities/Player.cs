@@ -124,9 +124,9 @@ namespace TextAdventure.Scenes.Components.Entities
 
 		private void UseInventory(object sender, ComponentEventArgs e)
 		{
-			if (!string.IsNullOrEmpty(e.Parameter))
+			if (e.Parameter.Length > 0)
 			{
-				var query = inventory.Where(entry => entry.Id.Equals(e.Parameter, StringComparison.OrdinalIgnoreCase));
+				var query = inventory.Where(entry => e.Parameter.Contains(entry.Id));
 				if (query.Any())
 				{
 					Item first = query.First();

@@ -19,15 +19,15 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Additional parameter.
 		/// </summary>
-		public string Parameter { get; private set; }
+		public string[] Parameter { get; private set; }
 
 		/// <summary>
 		/// </summary>
 		/// <param id="parameter"></param>
-		public ComponentEventArgs(string parameter)
+		public ComponentEventArgs(params string[] parameter)
 		{
 			Handled = false;
-			Parameter = parameter;
+			Parameter = parameter ?? new string[] { };
 		}
 	}
 }

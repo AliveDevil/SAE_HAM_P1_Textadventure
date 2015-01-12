@@ -109,7 +109,7 @@ namespace TextAdventure.Scenes.Levels
 				if (arguments.Count > 1)
 				{
 					interactComponent = InteractableComponents(component =>
-						component.CanInteract(arguments[0], arguments[1]));
+						component.CanInteract(arguments[0], arguments.Skip(1).ToArray()));
 				}
 				else if (arguments.Count == 1)
 				{
@@ -120,7 +120,7 @@ namespace TextAdventure.Scenes.Levels
 
 			if (interactComponent != null)
 			{
-				return interactComponent.Interact(arguments[0], string.Join(" ", arguments.Skip(1)));
+				return interactComponent.Interact(arguments[0], arguments.Skip(1).ToArray());
 			}
 
 			return false;

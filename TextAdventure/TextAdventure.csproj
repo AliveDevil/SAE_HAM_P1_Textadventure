@@ -69,6 +69,7 @@
     <Compile Include="Scenes\Components\Items\Potion.cs" />
     <Compile Include="Scenes\Components\Items\StrengthPotion.cs" />
     <Compile Include="Scenes\Components\SwitchComponent.cs" />
+    <Compile Include="Scenes\Components\TakeableComponent.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\GameOverScene.cs" />
     <Compile Include="Scenes\Levels\Forest\BurnedGlade.cs" />

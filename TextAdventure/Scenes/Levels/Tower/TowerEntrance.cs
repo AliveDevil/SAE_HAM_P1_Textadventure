@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
@@ -66,7 +67,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 		/// </summary>
 		private void PlayerAttack(object sender, ComponentEventArgs e)
 		{
-			(sender as Entity).Attack(FindComponent(e.Parameter) as Entity);
+			(sender as Entity).Attack(FindComponent(e.Parameter.Last()) as Entity);
 			e.Handled = true;
 		}
 	}

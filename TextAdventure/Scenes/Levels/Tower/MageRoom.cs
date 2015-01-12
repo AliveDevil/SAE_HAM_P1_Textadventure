@@ -55,7 +55,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 
 			if (string.IsNullOrEmpty(player.Id))
 			{
-				player.SetName(e.Parameter);
+				player.SetName(e.Parameter[0]);
 				FindComponent<ChangeRoomComponent>().Enabled = true;
 				e.Handled = true;
 			}

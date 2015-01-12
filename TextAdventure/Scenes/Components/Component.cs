@@ -16,11 +16,11 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public abstract class Component
 	{
-		delegate void EnumerableArrayAction<TElement, TRefElement>(TElement element, ref TRefElement refElement);
+		private delegate void EnumerableArrayAction<TElement, TRefElement>(TElement element, ref TRefElement refElement);
 
 		private Activator[] activators;
 		private Dictionary<string, EventHandler<ComponentEventArgs>> callbacks;
-
+		private string id;
 		private IEnumerable<Activator> optionalActivators;
 		private IEnumerable<Activator> requiredActivators;
 
@@ -32,7 +32,11 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Returns current components id.
 		/// </summary>
-		public string Id { get; protected set; }
+		public string Id
+		{
+			get { return id; }
+			protected set { id = (value ?? "").ToUpperInvariant(); }
+		}
 
 		/// <summary>
 		/// Should id be checked?
@@ -91,6 +95,10 @@ namespace TextAdventure.Scenes.Components
 					}
 				});
 			}
+			else
+			{
+				requiredFound = true;
+			}
 
 			return actionFound && requiredFound && (!optionalRequired || optionalFound);
 		}
@@ -98,7 +106,7 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Executes current callback.
 		/// </summary>
-		public bool Interact(string action, string parameter)
+		public bool Interact(string action, params string[] parameter)
 		{
 			EventHandler<ComponentEventArgs> callback;
 			ComponentEventArgs args = new ComponentEventArgs(parameter);
@@ -129,7 +137,6 @@ namespace TextAdventure.Scenes.Components
 			}
 			return this;
 		}
-
 
 		private static void EnumerableAction<TEnumerable, TArray>(IEnumerable<TEnumerable> source, TArray[] elements, EnumerableArrayAction<TEnumerable, TArray> action) where TArray : class
 		{

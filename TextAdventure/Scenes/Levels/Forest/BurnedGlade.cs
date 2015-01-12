@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
@@ -18,7 +19,7 @@ namespace TextAdventure.Scenes.Levels.Forest
 
 		public BurnedGlade()
 		{
-			TakeableComponent chest = new TakeableComponent("chest", true, new Activator("chest"));
+			TakeableComponent chest = new TakeableComponent("chest", true, new Activator("chest", true));
 			chest.Interact += chest_Interact;
 			AddComponent(chest);
 
@@ -29,7 +30,7 @@ namespace TextAdventure.Scenes.Levels.Forest
 			Goblin leftGoblin = Goblin.MediumGoblin("leftGoblin", new Activator("goblin", true), new Activator("left", false));
 			leftGoblin.Died += goblin_Died;
 			AddComponent(leftGoblin);
-			
+
 			Goblin rightGoblin = Goblin.MediumGoblin("rightGoblin", new Activator("goblin", true), new Activator("right", false));
 			rightGoblin.Died += goblin_Died;
 			AddComponent(rightGoblin);
@@ -39,14 +40,14 @@ namespace TextAdventure.Scenes.Levels.Forest
 		{
 			RemoveComponent(sender as Component);
 			PostMessage(Resources.Forest_BurnedGlade_Chest);
-			SceneManager.FindComponent<Player>().IncreaseStrength(7);
+			SceneManager.GetComponentByType<Player>().IncreaseStrength(7);
 			e.Handled = true;
 		}
 
 		private void goblin_Died(object sender, ComponentEventArgs e)
 		{
 			RemoveComponent(sender as Component);
-			PostMessage(Resources.Forest_BurnedGlade_GoblinDefeated);
+			PostMessage(Resources.Forest_BurnedGlade_GoblinDied);
 			if (!FindComponents<Goblin>().Any())
 			{
 				PostMessage(Resources.Forest_BurnedGlade_FreeEntrance);
