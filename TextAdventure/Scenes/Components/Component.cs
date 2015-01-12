@@ -16,6 +16,7 @@ namespace TextAdventure.Scenes.Components
 	/// </summary>
 	public abstract class Component : IDisposable
 	{
+		private delegate void EnumerableArrayAction<TRefElement>(ref TRefElement refElement);
 		private delegate void EnumerableArrayAction<TElement, TRefElement>(TElement element, ref TRefElement refElement);
 
 		private Activator[] activators;
@@ -64,35 +65,47 @@ namespace TextAdventure.Scenes.Components
 		/// <param id="action"></param>
 		/// <param id="id"></param>
 		/// <returns></returns>
-		public bool CanInteract(string action, params string[] activators)
+		public bool CanInteract(string[] activators)
 		{
 			if (!Enabled)
 			{
 				return false;
 			}
-			if (string.IsNullOrEmpty(action))
+			if (activators == null || activators.Length == 0)
 			{
 				return false;
 			}
-			bool actionFound = callbacks.ContainsKey(action.ToUpper(CultureInfo.InvariantCulture));
+
+			bool actionFound = false;
+			EnumerableAction(activators, (ref string element) =>
+			{
+				if (callbacks.ContainsKey(element))
+				{
+					actionFound = true;
+					element = null;
+				}
+			});
+
 			bool requiredFound = false;
 			bool optionalRequired = false;
 			bool optionalFound = true;
-			if (CheckActivators && activators != null && activators.Length > 0)
+
+			if (CheckActivators)
 			{
 				EnumerableAction(requiredActivators, activators, (Activator activator, ref string search) =>
 				{
-					requiredFound |= string.Equals(activator.Key, search, StringComparison.OrdinalIgnoreCase);
-					search = null;
+					bool found = string.Equals(activator.Key, search, StringComparison.OrdinalIgnoreCase);
+					if (found)
+					{
+						requiredFound |= string.Equals(activator.Key, search, StringComparison.OrdinalIgnoreCase);
+						search = null;
+					}
 				});
 				EnumerableAction(optionalActivators, activators, (Activator activator, ref string search) =>
 				{
-					if (!string.IsNullOrEmpty(search))
-					{
-						optionalRequired = true;
-						optionalFound &= string.Equals(activator.Key, search, StringComparison.OrdinalIgnoreCase);
-						search = null;
-					}
+					optionalRequired = true;
+					optionalFound &= string.Equals(activator.Key, search, StringComparison.OrdinalIgnoreCase);
+					search = null;
 				});
 			}
 			else
@@ -106,14 +119,16 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Executes current callback.
 		/// </summary>
-		public bool Interact(string action, params string[] parameter)
+		public bool Interact(string[] parameter)
 		{
-			EventHandler<ComponentEventArgs> callback;
+			IEnumerable<EventHandler<ComponentEventArgs>> callback = callbacks
+				.Where(element => parameter.Contains(element.Key))
+				.Select(element => element.Value);
 			ComponentEventArgs args = new ComponentEventArgs(parameter);
 
-			if (!string.IsNullOrEmpty(action) && callbacks.TryGetValue(action.ToUpperInvariant(), out callback))
+			if (callback.Any())
 			{
-				callback(this, args);
+				callback.First()(this, args);
 			}
 
 			return args.Handled;
@@ -148,6 +163,17 @@ namespace TextAdventure.Scenes.Components
 					{
 						action(item, ref elements[i]);
 					}
+				}
+			}
+		}
+
+		private static void EnumerableAction<TArray>(TArray[] elements, EnumerableArrayAction<TArray> action) where TArray : class
+		{
+			for (int i = 0; i < elements.Length; i++)
+			{
+				if (elements[i] != null)
+				{
+					action(ref elements[i]);
 				}
 			}
 		}

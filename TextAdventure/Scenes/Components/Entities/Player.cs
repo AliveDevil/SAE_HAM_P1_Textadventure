@@ -131,7 +131,7 @@ namespace TextAdventure.Scenes.Components.Entities
 
 		private void UseInventory(object sender, ComponentEventArgs e)
 		{
-			if (e.Parameter.Length > 0)
+			if (e.Parameter.Count > 0)
 			{
 				var query = inventory.Where(entry => e.Parameter.Contains(entry.Id));
 				if (query.Any())

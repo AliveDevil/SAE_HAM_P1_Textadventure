@@ -110,18 +110,18 @@ namespace TextAdventure.Scenes.Levels
 				if (arguments.Count > 1)
 				{
 					interactComponent = InteractableComponents(component =>
-						component.CanInteract(arguments[0], arguments.Skip(1).ToArray()));
+						component.CanInteract(arguments.ToArray())).FirstOrDefault();
 				}
 				else if (arguments.Count == 1)
 				{
 					interactComponent = InteractableComponents(component =>
-						component.Id.Equals(arguments[0], StringComparison.OrdinalIgnoreCase));
+						component.Id.Equals(arguments[0], StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 				}
 			}
 
 			if (interactComponent != null)
 			{
-				return interactComponent.Interact(arguments[0], arguments.Skip(1).ToArray());
+				return interactComponent.Interact(arguments.ToArray());
 			}
 
 			return false;
@@ -137,10 +137,13 @@ namespace TextAdventure.Scenes.Levels
 			return components.Where(item => item.Enabled && comparer(item));
 		}
 
-		protected Component FindComponentByActivator(params string[] activators)
-		{
-			IEnumerable<Component> components = InteractableComponents(component => activators.Contains(component.Id));
-
-		}
+		//protected Component FindComponentByActivator(params string[] activators)
+		//{
+		//	InteractableComponents(component => component.CanInteract(activators));
+		//	List<Component> componentList = new List<Component>();
+		//	for (int i = 0; i < activators.Length; i++)
+		//	{
+		//	}
+		//}
 	}
 }

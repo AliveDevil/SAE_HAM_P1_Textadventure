@@ -526,13 +526,13 @@ namespace TextAdventure.Scenes
 			return arguments;
 		}
 
-		private static void GlobalComponentInput(List<string> arguments)
+		private static void GlobalComponentInput(IList<string> arguments)
 		{
 			if (arguments.Count > 0)
 			{
 				foreach (var item in registeredComponents)
 				{
-					if (item.CanInteract(arguments[0], null) && item.Interact(arguments[0], arguments.Skip(1).ToArray()))
+					if (item.CanInteract(arguments.ToArray()) && item.Interact(arguments.ToArray()))
 					{
 						break;
 					}
@@ -551,7 +551,7 @@ namespace TextAdventure.Scenes
 			Console.Write(Resources.Generic_InputFormat, Resources.Generic_Action);
 			string input = Console.ReadLine();
 
-			List<string> arguments = ExtractArguments(input);
+			IList<string> arguments = ExtractArguments(input);
 			if (!currentScene.PerformAction(arguments))
 			{
 				GlobalComponentInput(arguments);

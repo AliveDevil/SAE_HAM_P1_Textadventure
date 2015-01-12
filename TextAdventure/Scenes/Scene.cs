@@ -128,7 +128,7 @@ namespace TextAdventure.Scenes
 			if (arguments != null && arguments.Count > 0)
 			{
 				ExecuteAction executeAction;
-				if (actions.TryGetValue(arguments[0], out executeAction))
+				if (TryGetAction(arguments, out executeAction))
 				{
 					return executeAction();
 				}
@@ -178,7 +178,11 @@ namespace TextAdventure.Scenes
 		{
 			if (method != null)
 			{
-				string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToUpperInvariant();
+				string key = method.GetMethodInfo()
+					.GetCustomAttributes<ActionAttribute>()
+					.Select(attribute => attribute.Key)
+					.FirstOrDefault()
+					.ToUpperInvariant();
 				if (!string.IsNullOrEmpty(key))
 				{
 					actions[key] = method;
@@ -188,6 +192,19 @@ namespace TextAdventure.Scenes
 
 		public virtual void Dispose()
 		{
+		}
+
+		private bool TryGetAction(IList<string> arguments, out ExecuteAction result)
+		{
+			for (int i = 0; i < arguments.Count; i++)
+			{
+				if (actions.TryGetValue(arguments[i], out result))
+				{
+					return true;
+				}
+			}
+			result = null;
+			return false;
 		}
 	}
 }
