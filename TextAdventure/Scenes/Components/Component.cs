@@ -14,7 +14,7 @@ namespace TextAdventure.Scenes.Components
 	/// <para>Default usage in case-insensitive input is [Action] [Id].</para>
 	/// <para>Example: open door</para>
 	/// </summary>
-	public abstract class Component
+	public abstract class Component : IDisposable
 	{
 		private delegate void EnumerableArrayAction<TElement, TRefElement>(TElement element, ref TRefElement refElement);
 
@@ -151,5 +151,7 @@ namespace TextAdventure.Scenes.Components
 				}
 			}
 		}
+
+		public virtual void Dispose() { }
 	}
 }

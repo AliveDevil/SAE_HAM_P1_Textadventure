@@ -40,5 +40,10 @@ namespace TextAdventure.Scenes.Components
 				Follow(sender, e);
 			}
 		}
+		public override void Dispose()
+		{
+			Follow = null;
+			base.Dispose();
+		}
 	}
 }

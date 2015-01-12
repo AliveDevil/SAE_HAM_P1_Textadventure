@@ -53,6 +53,13 @@ namespace TextAdventure.Scenes.Components.Entities
 			inventory.Add(item);
 		}
 
+		public override void Dispose()
+		{
+			Attack = null;
+			Rename = null;
+			base.Dispose();
+		}
+
 		public void SetName(string name)
 		{
 			Id = name;
@@ -98,7 +105,7 @@ namespace TextAdventure.Scenes.Components.Entities
 			// Build generic output.
 			StringBuilder builder = new StringBuilder();
 			builder.AppendLine(string.Format(CultureInfo.CurrentCulture, HeaderFormat, Resources.Generic_Inventory));
-			// Output every line in 
+			// Output every line in
 			foreach (var group in groupedInventory)
 			{
 				builder.AppendFormat(CultureInfo.CurrentCulture, InventoryFormat, group.Key, group.Count);

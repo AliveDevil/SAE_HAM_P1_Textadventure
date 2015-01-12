@@ -55,5 +55,11 @@ namespace TextAdventure.Scenes.Components
 				Take(sender, e);
 			}
 		}
+		public override void Dispose()
+		{
+			Take = null;
+			Drink = null;
+			base.Dispose();
+		}
 	}
 }

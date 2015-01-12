@@ -75,5 +75,11 @@ namespace TextAdventure.Scenes.Levels.Tower
 			SceneManager.LoadScene<TowerEntrance>();
 			e.Handled = true;
 		}
+
+		public override void Dispose()
+		{
+			SceneManager.GetComponentByType<Player>().Rename -= PlayerRename;
+			base.Dispose();
+		}
 	}
 }

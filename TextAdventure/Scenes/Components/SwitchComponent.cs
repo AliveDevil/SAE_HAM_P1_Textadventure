@@ -47,5 +47,11 @@ namespace TextAdventure.Scenes.Components
 				Switch(sender, e);
 			}
 		}
+
+		public override void Dispose()
+		{
+			Switch = null;
+			base.Dispose();
+		}
 	}
 }

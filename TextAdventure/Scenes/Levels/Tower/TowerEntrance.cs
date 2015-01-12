@@ -70,5 +70,11 @@ namespace TextAdventure.Scenes.Levels.Tower
 			(sender as Entity).Attack(FindComponent(e.Parameter.Last()) as Entity);
 			e.Handled = true;
 		}
+
+		public override void Dispose()
+		{
+			SceneManager.GetComponentByType<Player>().Attack -= PlayerAttack;
+			base.Dispose();
+		}
 	}
 }

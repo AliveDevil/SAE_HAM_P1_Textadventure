@@ -83,6 +83,7 @@ namespace TextAdventure.Scenes.Levels
 		/// <param id="component">Component that should be removed.</param>
 		public void RemoveComponent(Component component)
 		{
+			component.Dispose();
 			components.Remove(component);
 		}
 
@@ -131,9 +132,15 @@ namespace TextAdventure.Scenes.Levels
 		/// </summary>
 		/// <param id="comparer">Comparer to evaluate components.</param>
 		/// <returns>First found component or null.</returns>
-		private Component InteractableComponents(Predicate<Component> comparer)
+		private IEnumerable<Component> InteractableComponents(Predicate<Component> comparer)
 		{
-			return components.Where(item => item.Enabled && comparer(item)).FirstOrDefault();
+			return components.Where(item => item.Enabled && comparer(item));
+		}
+
+		protected Component FindComponentByActivator(params string[] activators)
+		{
+			IEnumerable<Component> components = InteractableComponents(component => activators.Contains(component.Id));
+
 		}
 	}
 }

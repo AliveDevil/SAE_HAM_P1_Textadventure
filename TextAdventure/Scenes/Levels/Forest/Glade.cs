@@ -17,6 +17,8 @@ namespace TextAdventure.Scenes.Levels.Forest
 
 		public Glade()
 		{
+			SceneManager.GetComponentByType<Player>().Attack += PlayerAttack;
+
 			Goblin smallGoblin = Goblin.SmallGoblin("smallGoblin", new Activator("goblin", true), new Activator("small", false));
 			smallGoblin.Enabled = true;
 			smallGoblin.Died += goblin_Died;
@@ -44,6 +46,15 @@ namespace TextAdventure.Scenes.Levels.Forest
 		private void path_Follow(object sender, ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<BurnedGlade>();
+		}
+
+		/// <summary>
+		/// Attack that goblin!
+		/// </summary>
+		private void PlayerAttack(object sender, ComponentEventArgs e)
+		{
+			(sender as Entity).Attack(FindComponent(e.Parameter.Last()) as Entity);
+			e.Handled = true;
 		}
 	}
 }

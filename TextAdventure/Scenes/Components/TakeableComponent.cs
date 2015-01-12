@@ -39,5 +39,10 @@ namespace TextAdventure.Scenes.Components
 				Interact(sender, e);
 			}
 		}
+		public override void Dispose()
+		{
+			Interact = null; 
+			base.Dispose();
+		}
 	}
 }

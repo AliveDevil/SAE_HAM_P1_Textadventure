@@ -163,5 +163,11 @@ namespace TextAdventure.Scenes.Components.Entities
 				Died(this, null);
 			}
 		}
+
+		public override void Dispose()
+		{
+			Died = null;
+			base.Dispose();
+		}
 	}
 }
