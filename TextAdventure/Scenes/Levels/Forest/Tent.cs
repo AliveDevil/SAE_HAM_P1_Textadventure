@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using TextAdventure.Properties;
 namespace TextAdventure.Scenes.Levels.Forest
 {
 	public sealed class Tent : LevelScene
