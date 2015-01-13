@@ -47,7 +47,17 @@ namespace TextAdventure.Scenes.Levels
 		/// <returns>Found component (or null if none found).</returns>
 		public T FindComponent<T>() where T : Component
 		{
-			return components.OfType<T>().FirstOrDefault();
+			return FindComponents<T>().FirstOrDefault();
+		}
+
+		/// <summary>
+		/// Tries to find a component by Type.
+		/// </summary>
+		/// <typeparam name="T">Component Generic Type.</typeparam>
+		/// <returns>Found component (or null if none found).</returns>
+		public IEnumerable<T> FindComponents<T>() where T : Component
+		{
+			return components.OfType<T>();
 		}
 
 		/// <summary>

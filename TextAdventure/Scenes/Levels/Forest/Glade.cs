@@ -1,11 +1,7 @@
 ﻿/*
  * Author: Jöran Malek
  */
-
-<<<<<<< HEAD
-=======
 using System.Linq;
->>>>>>> fb91a10af3973d1d141ab3e491fef019eee3fd81
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
@@ -16,30 +12,23 @@ namespace TextAdventure.Scenes.Levels.Forest
 	{
 		public override string Description { get { return Resources.Forest_Glade_Description_SmallGoblin; } }
 
-<<<<<<< HEAD
-		private Goblin smallGoblin, mediumGoblin;
-
-		public override string Description { get { return Resources.Forest_Glade_Description_SmallGoblin; } }
-
-=======
->>>>>>> fb91a10af3973d1d141ab3e491fef019eee3fd81
 		public override string Title { get { return Resources.Forest_Glade_Title; } }
 
 		public Glade()
 		{
 			SceneManager.GetComponentByType<Player>().Attack += PlayerAttack;
 
-			Goblin smallGoblin = Goblin.SmallGoblin("smallGoblin", new Activator("goblin", true), new Activator("small", false));
+			Goblin smallGoblin = Goblin.SmallGoblin("goblin");
 			smallGoblin.Enabled = true;
 			smallGoblin.Died += goblin_Died;
 			AddComponent(smallGoblin);
 
-			Goblin mediumGoblin = Goblin.MediumGoblin("mediumGoblin", new Activator("goblin", true), new Activator("medium", false));
+			Goblin mediumGoblin = Goblin.MediumGoblin("goblin");
 			mediumGoblin.Enabled = true;
 			mediumGoblin.Died += goblin_Died;
 			AddComponent(mediumGoblin);
 
-			ChangeRoomComponent path = new ChangeRoomComponent("door", false, new Activator("door", true));
+			ChangeRoomComponent path = new ChangeRoomComponent("door", false);
 			path.Follow += path_Follow;
 			AddComponent(path);
 		}
@@ -63,7 +52,7 @@ namespace TextAdventure.Scenes.Levels.Forest
 		/// </summary>
 		private void PlayerAttack(object sender, ComponentEventArgs e)
 		{
-			(sender as Entity).Attack(FindComponent(e.Parameter.Last()) as Entity);
+			(sender as Entity).Attack(FindComponent(e.Parameter) as Entity);
 			e.Handled = true;
 		}
 	}
