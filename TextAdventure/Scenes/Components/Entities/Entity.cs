@@ -160,7 +160,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		{
 			if (Died != null)
 			{
-				Died(this, null);
+				Died(this, new ComponentEventArgs(null));
 			}
 		}
 	}

@@ -342,10 +342,13 @@ Right after you leave the tower a small goblin falls on your feet. He stands up,
     <value>Burned Glade</value>
     <comment>Some title.</comment>
   </data>
-  <data name="Forest_BurnedGlade_LeftDied" xml:space="preserve">
-    <value>You defeated both goblin. Now take the entrance to complete your quest.</value>
+  <data name="Forest_BurnedGlade_Goblin" xml:space="preserve">
+    <value>You defeated a goblin.</value>
   </data>
-  <data name="Forest_BurnedGlade_RightDied" xml:space="preserve">
-    <value>You defeated the right goblin. Now defeat the next goblin.</value>
+  <data name="Forest_BurnedGlade_GoToTent" xml:space="preserve">
+    <value>You defeated both goblins. You may now go into the tent.</value>
+  </data>
+  <data name="Forest_BurnedGlade_Chest" xml:space="preserve">
+    <value>You opened the chest and found a new sword and some potions. They might be useful.</value>
   </data>
 </root>
