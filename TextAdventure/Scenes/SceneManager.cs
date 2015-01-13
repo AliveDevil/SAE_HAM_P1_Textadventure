@@ -521,7 +521,6 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
-		/// 
 		/// </summary>
 		private static List<string> ExcludedParts()
 		{
@@ -559,7 +558,6 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
-		/// 
 		/// </summary>
 		private static void GlobalComponentInput(List<string> arguments)
 		{
@@ -584,7 +582,7 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
-		/// Writes "Action>" and invokes methods for executing these arguments.
+		/// Writes "Action&gt;" and invokes methods for executing these arguments.
 		/// </summary>
 		private static void PerformInput()
 		{

@@ -31,6 +31,7 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// Constant values the player should have or are used in formatting.
 		/// </summary>
 		private const int baseDamage = 5;
+
 		private const int baseHealth = 100;
 		private const string HeaderFormat = "= {0} =";
 		private const string InventoryFormat = "{0}: {1}x\n";

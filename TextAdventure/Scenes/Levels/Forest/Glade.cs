@@ -24,7 +24,6 @@ namespace TextAdventure.Scenes.Levels.Forest
 		/// </summary>
 		public override string Title { get { return Resources.Forest_Glade_Title; } }
 
-
 		/// <summary>
 		/// Default constructor.
 		/// </summary>

@@ -32,7 +32,7 @@ namespace TextAdventure.Scenes.Levels.Forest
 		{
 			SceneManager.GetComponentByType<Player>().Attack += player_Attack;
 
-			ChangeRoomComponent tentEntrance = new ChangeRoomComponent("entrance", false);
+			ChangeRoomComponent tentEntrance = new ChangeRoomComponent("tent", false);
 			tentEntrance.Follow += tentEntrance_Follow;
 			AddComponent(tentEntrance);
 

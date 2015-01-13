@@ -351,4 +351,19 @@ Right after you leave the tower a small goblin falls on your feet. He stands up,
   <data name="Forest_BurnedGlade_Chest" xml:space="preserve">
     <value>You opened the chest and found a new sword and some potions. They might be useful.</value>
   </data>
+  <data name="Forest_Tent_Description" xml:space="preserve">
+    <value>You enter the tent and find several goblins surrounding you. In the middle sits an orc delegating every goblin in the tent. He shouts something and the goblins take out their weapons.</value>
+  </data>
+  <data name="Forest_Tent_Discussion" xml:space="preserve">
+    <value>You realize that every try for a talk would be impossible and make the orc get up to fight you.</value>
+  </data>
+  <data name="Forest_Tent_Finished" xml:space="preserve">
+    <value>You went back to the mage and told him what happened in the forest. After your report he explains how you came here and takes you up in the tower for some mage training.</value>
+  </data>
+  <data name="Forest_Tent_GoblinDied" xml:space="preserve">
+    <value>You defeated one goblin. {0} remaining.</value>
+  </data>
+  <data name="Forest_Tent_Title" xml:space="preserve">
+    <value>Goblins Head</value>
+  </data>
 </root>

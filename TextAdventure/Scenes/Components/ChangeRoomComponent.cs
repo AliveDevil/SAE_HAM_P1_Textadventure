@@ -24,9 +24,10 @@ namespace TextAdventure.Scenes.Components
 		public ChangeRoomComponent(string name, bool enabled)
 			: base(name, enabled)
 		{
-			RegisterCallback("open", OnFollow);
 			RegisterCallback("use", OnFollow);
 			RegisterCallback("take", OnFollow);
+			RegisterCallback("open", OnFollow);
+			RegisterCallback("enter", OnFollow);
 			RegisterCallback("follow", OnFollow);
 		}
 
