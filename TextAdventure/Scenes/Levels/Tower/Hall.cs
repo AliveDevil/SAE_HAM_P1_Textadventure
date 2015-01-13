@@ -22,6 +22,9 @@ namespace TextAdventure.Scenes.Levels.Tower
 		/// </summary>
 		public override string Title { get { return Resources.Tower_Hall_Title; } }
 
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
 		public Hall()
 		{
 			ChangeRoomComponent door = new ChangeRoomComponent("door", true);
@@ -29,6 +32,9 @@ namespace TextAdventure.Scenes.Levels.Tower
 			AddComponent(door);
 		}
 
+		/// <summary>
+		/// Loads next scene.
+		/// </summary>
 		private void OpenDoor(object sender, ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<MageRoom>();

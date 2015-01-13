@@ -39,6 +39,9 @@ namespace TextAdventure.Scenes.Levels.Tower
 			AddComponent(path);
 		}
 
+		/// <summary>
+		/// Clean up of resources.
+		/// </summary>
 		public override void Dispose()
 		{
 			SceneManager.GetComponentByType<Player>().Attack -= playerAttack;

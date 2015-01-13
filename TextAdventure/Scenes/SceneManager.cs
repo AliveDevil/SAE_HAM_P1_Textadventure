@@ -437,11 +437,24 @@ namespace TextAdventure.Scenes
 
 		#region Postioning Stuff
 
+		/// <summary>
+		/// Clamps val into min and max.
+		/// </summary>
+		/// <param name="val">Current value.</param>
+		/// <param name="min">Minimum value.</param>
+		/// <param name="max">Maximum value.</param>
+		/// <returns>Value between min and max.</returns>
 		private static int Clamp(int val, int min, int max)
 		{
 			return val > min ? val < max ? val : max : min;
 		}
 
+		/// <summary>
+		/// Determins which celltype given position holds.
+		/// </summary>
+		/// <param name="x">X-Location (starting left from 0)</param>
+		/// <param name="y">Y-Location (starting top from 0)</param>
+		/// <returns>A celltype.</returns>
 		private static CellType ResolveCellType(int x, int y)
 		{
 			if ((x == -1 && y == -1)
@@ -463,6 +476,7 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
+		/// Tries to resolve GameCoordinates to window coordinates.
 		/// </summary>
 		private static int ResolveX(int x)
 		{
@@ -470,12 +484,16 @@ namespace TextAdventure.Scenes
 		}
 
 		/// <summary>
+		/// Tries to resolve GameCoordinates to window coordinates.
 		/// </summary>
 		private static int ResolveY(int y)
 		{
 			return Clamp(y + 1, 0, BufferHeight - 1);
 		}
 
+		/// <summary>
+		/// Sets cursor position in gamecoordinate.
+		/// </summary>
 		private static void SetCursorPosition(int x, int y)
 		{
 			Console.SetCursorPosition(ResolveX(x), ResolveY(y));
@@ -485,6 +503,9 @@ namespace TextAdventure.Scenes
 
 		#region Input Stuff
 
+		/// <summary>
+		/// Removes every occurence of given argument and exclude list.
+		/// </summary>
 		private static void AddToArguments(ref string argument, List<string> exclude, List<string> arguments)
 		{
 			bool inExcluded = false;
@@ -499,11 +520,18 @@ namespace TextAdventure.Scenes
 			argument = "";
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private static List<string> ExcludedParts()
 		{
 			return Resources.StrikeWords.Split(',').ToList();
 		}
 
+		/// <summary>
+		/// Splits input space separated.
+		/// </summary>
+		/// <param name="input">Some command line.</param>
 		private static List<string> ExtractArguments(string input)
 		{
 			List<string> excludedArguments = ExcludedParts();
@@ -530,6 +558,9 @@ namespace TextAdventure.Scenes
 			return arguments;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private static void GlobalComponentInput(List<string> arguments)
 		{
 			if (arguments.Count > 0)
@@ -544,11 +575,17 @@ namespace TextAdventure.Scenes
 			}
 		}
 
+		/// <summary>
+		/// Returns whether given char is not control, punctuation, symbol or whitespace.
+		/// </summary>
 		private static bool IsArgumentPart(char c)
 		{
 			return !(char.IsControl(c) || char.IsPunctuation(c) || char.IsSymbol(c) || char.IsWhiteSpace(c));
 		}
 
+		/// <summary>
+		/// Writes "Action>" and invokes methods for executing these arguments.
+		/// </summary>
 		private static void PerformInput()
 		{
 			SetCursorPosition(-1, GameHeight + 1);

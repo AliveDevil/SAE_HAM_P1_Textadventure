@@ -12,8 +12,6 @@ namespace TextAdventure
 {
 	internal static class Program
 	{
-		//public static readonly Random Random = new Random();
-
 		#region Helper Methods
 
 		/// <summary>

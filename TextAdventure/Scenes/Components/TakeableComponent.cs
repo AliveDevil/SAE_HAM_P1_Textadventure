@@ -12,9 +12,9 @@ namespace TextAdventure.Scenes.Components
 	public sealed class TakeableComponent : Component
 	{
 		/// <summary>
-		/// Thrown if this component is called.
+		/// Thrown if this component is called. Should be on this instance. Base "Interact" is method.
 		/// </summary>
-		public event EventHandler<ComponentEventArgs> Interact;
+		public new event EventHandler<ComponentEventArgs> Interact;
 
 		/// <summary>
 		/// Single constructor for

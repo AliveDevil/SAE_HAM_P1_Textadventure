@@ -8,6 +8,7 @@ using System.Linq;
 namespace TextAdventure.Scenes
 {
 	/// <summary>
+	/// Measuring unit for text in console.
 	/// </summary>
 	public struct Line
 	{

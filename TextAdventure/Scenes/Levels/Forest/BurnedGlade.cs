@@ -10,12 +10,24 @@ using TextAdventure.Scenes.Components.Items;
 
 namespace TextAdventure.Scenes.Levels.Forest
 {
+	/// <summary>
+	/// The burned glade.
+	/// </summary>
 	public sealed class BurnedGlade : LevelScene
 	{
+		/// <summary>
+		/// The default description.
+		/// </summary>
 		public override string Description { get { return Resources.Forest_BurnedGlade_Description; } }
 
+		/// <summary>
+		/// The scenes title.
+		/// </summary>
 		public override string Title { get { return Resources.Forest_BurnedGlade_Title; } }
 
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
 		public BurnedGlade()
 		{
 			SceneManager.GetComponentByType<Player>().Attack += player_Attack;
@@ -39,12 +51,18 @@ namespace TextAdventure.Scenes.Levels.Forest
 			AddComponent(chest);
 		}
 
+		/// <summary>
+		/// Dispose things.
+		/// </summary>
 		public override void Dispose()
 		{
 			SceneManager.GetComponentByType<Player>().Attack -= player_Attack;
 			base.Dispose();
 		}
 
+		/// <summary>
+		/// Add things to players inventory.
+		/// </summary>
 		private void chest_Interact(object sender, ComponentEventArgs e)
 		{
 			RemoveComponent(sender as Component);
@@ -59,6 +77,9 @@ namespace TextAdventure.Scenes.Levels.Forest
 			e.Handled = true;
 		}
 
+		/// <summary>
+		/// Executed on death of any goblin.
+		/// </summary>
 		private void goblin_Died(object sender, ComponentEventArgs e)
 		{
 			RemoveComponent(sender as Component);
@@ -72,12 +93,18 @@ namespace TextAdventure.Scenes.Levels.Forest
 			e.Handled = true;
 		}
 
+		/// <summary>
+		/// Executed on attack of player.
+		/// </summary>
 		private void player_Attack(object sender, ComponentEventArgs e)
 		{
 			(sender as Entity).Attack(FindComponent(e.Parameter) as Entity);
 			e.Handled = true;
 		}
 
+		/// <summary>
+		/// Progression.
+		/// </summary>
 		private void tentEntrance_Follow(object sender, ComponentEventArgs e)
 		{
 			SceneManager.LoadScene<Tent>();
