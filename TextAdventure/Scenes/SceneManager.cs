@@ -124,6 +124,10 @@ namespace TextAdventure.Scenes
 		/// <returns>True</returns>
 		public static bool LoadScene<T>(params string[] arguments) where T : Scene
 		{
+			if (currentScene != null)
+			{
+				currentScene.Dispose();
+			}
 			currentScene = (T)Activator.CreateInstance(typeof(T), arguments);
 			return true;
 		}

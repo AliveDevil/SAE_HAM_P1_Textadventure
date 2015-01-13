@@ -319,10 +319,10 @@ Right after you leave the tower a small goblin falls on your feet. He stands up,
     <value>You wake up in a dark room. You can see the silhouette of some objects. One looks like a switch. Another is mid-high and has a round shape.</value>
     <comment>Dark first room description.</comment>
   </data>
-  <data name="Forest_Glade_Description_MediumGoblin" xml:space="preserve">
-    <value>After you defeated the goblin you see another one, trying to protect a door you should not pass. The only way to this door might be a fight.</value>
+  <data name="Forest_Glade_GoblinDefeated" xml:space="preserve">
+    <value>You defeated a goblin.</value>
   </data>
-  <data name="Forest_Glade_Description_SmallGoblin" xml:space="preserve">
+  <data name="Forest_Glade_Description" xml:space="preserve">
     <value>You entered the glade and found a small goblin lying around on the ground. You tried to sneak around him but he woke up by some noises sees you and alerts another goblin. He takes his sword and forces you to fight with him.</value>
     <comment>The first message to see.</comment>
   </data>
@@ -330,7 +330,7 @@ Right after you leave the tower a small goblin falls on your feet. He stands up,
     <value>Forest Glade</value>
     <comment>Some glade in a forest.</comment>
   </data>
-  <data name="Forest_Glade_Description_Finish" xml:space="preserve">
+  <data name="Forest_Glade_FreeEntrance" xml:space="preserve">
     <value>The path is now open. Follow deeper into the forest.</value>
     <comment>Finished the glade.</comment>
   </data>
