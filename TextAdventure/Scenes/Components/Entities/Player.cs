@@ -98,7 +98,7 @@ namespace TextAdventure.Scenes.Components.Entities
 			// Build generic output.
 			StringBuilder builder = new StringBuilder();
 			builder.AppendLine(string.Format(CultureInfo.CurrentCulture, HeaderFormat, Resources.Generic_Inventory));
-			// Output every line in 
+			// Output every line in
 			foreach (var group in groupedInventory)
 			{
 				builder.AppendFormat(CultureInfo.CurrentCulture, InventoryFormat, group.Key, group.Count);

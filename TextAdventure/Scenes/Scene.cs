@@ -20,7 +20,7 @@ namespace TextAdventure.Scenes
 	/// <summary>
 	/// Base class for scenes the player might see.
 	/// </summary>
-	public abstract class Scene
+	public abstract class Scene : IDisposable
 	{
 		/// <summary>
 		/// A store for registered actions. Like "back" or somthing like that.
@@ -116,6 +116,10 @@ namespace TextAdventure.Scenes
 			string lastMessage = messages.Last();
 			messages.Clear();
 			PostMessage(lastMessage);
+		}
+
+		public virtual void Dispose()
+		{
 		}
 
 		/// <summary>

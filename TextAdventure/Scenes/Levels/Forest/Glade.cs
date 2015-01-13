@@ -1,6 +1,7 @@
 ﻿/*
  * Author: Jöran Malek
  */
+
 using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
@@ -31,6 +32,12 @@ namespace TextAdventure.Scenes.Levels.Forest
 			ChangeRoomComponent path = new ChangeRoomComponent("door", false);
 			path.Follow += path_Follow;
 			AddComponent(path);
+		}
+
+		public override void Dispose()
+		{
+			SceneManager.GetComponentByType<Player>().Attack -= PlayerAttack;
+			base.Dispose();
 		}
 
 		private void goblin_Died(object sender, ComponentEventArgs e)

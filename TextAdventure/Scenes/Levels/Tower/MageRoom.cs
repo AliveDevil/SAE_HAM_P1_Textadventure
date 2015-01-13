@@ -46,6 +46,12 @@ namespace TextAdventure.Scenes.Levels.Tower
 			AddComponent(stairs);
 		}
 
+		public override void Dispose()
+		{
+			SceneManager.GetComponentByType<Player>().Rename -= PlayerRename;
+			base.Dispose();
+		}
+
 		/// <summary>
 		/// Renames current player (using Players Rename Event).
 		/// </summary>

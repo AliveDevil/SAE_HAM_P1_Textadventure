@@ -37,6 +37,12 @@ namespace TextAdventure.Scenes.Levels.Tower
 			AddComponent(path);
 		}
 
+		public override void Dispose()
+		{
+			SceneManager.GetComponentByType<Player>().Attack -= PlayerAttack;
+			base.Dispose();
+		}
+
 		/// <summary>
 		/// Loads next scene in forest.
 		/// </summary>
