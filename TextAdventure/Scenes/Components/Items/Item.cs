@@ -12,7 +12,7 @@ namespace TextAdventure.Scenes.Components.Items
 		/// <summary>
 		/// Basic abstract constructor
 		/// </summary>
-		/// <param name="name">Components name.</param>
+		/// <param id="id">Components id.</param>
 		protected Item(string name)
 			: base(name, true)
 		{

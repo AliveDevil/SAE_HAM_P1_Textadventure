@@ -40,9 +40,9 @@ namespace TextAdventure
 		/// <summary>
 		/// <para>Buffers given char at given position.</para>
 		/// </summary>
-		/// <param name="positionX">X coordinate (from left, starting from 0)</param>
-		/// <param name="positionY">Y coordinate (from top, starting from 0)</param>
-		/// <param name="value">Saved char</param>
+		/// <param id="positionX">X coordinate (from left, starting from 0)</param>
+		/// <param id="positionY">Y coordinate (from top, starting from 0)</param>
+		/// <param id="value">Saved char</param>
 		public static void Write(int positionX, int positionY, char value)
 		{
 			int index = GetIndex(positionX, positionY);
@@ -59,8 +59,8 @@ namespace TextAdventure
 		/// <summary>
 		/// Returns one dimensional index for two dimensional position.
 		/// </summary>
-		/// <param name="positionX">X coordinate (from left, starting from 0)</param>
-		/// <param name="positionY">Y coordinate (from top, starting from 0)</param>
+		/// <param id="positionX">X coordinate (from left, starting from 0)</param>
+		/// <param id="positionY">Y coordinate (from top, starting from 0)</param>
 		/// <returns>One dimensional index for given position.</returns>
 		private static int GetIndex(int positionX, int positionY)
 		{

@@ -26,7 +26,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 				{
 					return Resources.Tower_Mage_Description_AskForName;
 				}
-				return string.Format(CultureInfo.CurrentCulture, Resources.Tower_Mage_Description_Quest, SceneManager.GetComponentByType<Player>().Name);
+				return string.Format(CultureInfo.CurrentCulture, Resources.Tower_Mage_Description_Quest, SceneManager.GetComponentByType<Player>().Id);
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace TextAdventure.Scenes.Levels.Tower
 		public MageRoom()
 		{
 			SceneManager.GetComponentByType<Player>().Rename += PlayerRename;
-			ChangeRoomComponent stairs = new ChangeRoomComponent("stairs", false);
+			ChangeRoomComponent stairs = new ChangeRoomComponent("stairs", false, new Activator("stairs", true));
 			stairs.Follow += TakeStairs;
 			AddComponent(stairs);
 		}
@@ -53,9 +53,9 @@ namespace TextAdventure.Scenes.Levels.Tower
 		{
 			Player player = sender as Player;
 
-			if (string.IsNullOrEmpty(player.Name))
+			if (string.IsNullOrEmpty(player.Id))
 			{
-				player.SetName(e.Parameter);
+				player.SetName(e.Parameter[0]);
 				FindComponent<ChangeRoomComponent>().Enabled = true;
 				e.Handled = true;
 			}
@@ -74,6 +74,12 @@ namespace TextAdventure.Scenes.Levels.Tower
 			}
 			SceneManager.LoadScene<TowerEntrance>();
 			e.Handled = true;
+		}
+
+		public override void Dispose()
+		{
+			SceneManager.GetComponentByType<Player>().Rename -= PlayerRename;
+			base.Dispose();
 		}
 	}
 }

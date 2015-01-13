@@ -20,7 +20,7 @@ namespace TextAdventure.Scenes
 	/// <summary>
 	/// Base class for scenes the player might see.
 	/// </summary>
-	public abstract class Scene
+	public abstract class Scene : IDisposable
 	{
 		/// <summary>
 		/// A store for registered actions. Like "back" or somthing like that.
@@ -173,17 +173,38 @@ namespace TextAdventure.Scenes
 		/// <summary>
 		/// Registers provided method.
 		/// </summary>
-		/// <param name="method">Some executeaction.</param>
+		/// <param id="method">Some executeaction.</param>
 		protected void RegisterAction(ExecuteAction method)
 		{
 			if (method != null)
 			{
-				string key = method.GetMethodInfo().GetCustomAttributes<ActionAttribute>().Select(attribute => attribute.Key).FirstOrDefault().ToUpperInvariant();
+				string key = method.GetMethodInfo()
+					.GetCustomAttributes<ActionAttribute>()
+					.Select(attribute => attribute.Key)
+					.FirstOrDefault()
+					.ToUpperInvariant();
 				if (!string.IsNullOrEmpty(key))
 				{
 					actions[key] = method;
 				}
 			}
+		}
+
+		public virtual void Dispose()
+		{
+		}
+
+		private bool TryGetAction(IList<string> arguments, out ExecuteAction result)
+		{
+			for (int i = 0; i < arguments.Count; i++)
+			{
+				if (actions.TryGetValue(arguments[i], out result))
+				{
+					return true;
+				}
+			}
+			result = null;
+			return false;
 		}
 	}
 }

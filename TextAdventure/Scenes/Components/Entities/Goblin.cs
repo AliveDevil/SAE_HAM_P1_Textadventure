@@ -12,38 +12,38 @@ namespace TextAdventure.Scenes.Components.Entities
 		/// <summary>
 		/// Private constructor. Nothing should ever create an instance from this.
 		/// </summary>
-		/// <param name="name">Components name.</param>
-		/// <param name="damage">Entities damage.</param>
-		/// <param name="health">Entities health.</param>
-		private Goblin(string name, int damage, int health)
-			: base(name, true, damage, health)
+		/// <param id="id">Components id.</param>
+		/// <param id="damage">Entities damage.</param>
+		/// <param id="health">Entities health.</param>
+		private Goblin(string name, int damage, int health, params Activator[] activators)
+			: base(name, true, damage, health, activators)
 		{
 		}
 
 		/// <summary>
 		/// Static factory function for a medium goblin.
 		/// </summary>
-		/// <param name="name">Name for this entity.</param>
+		/// <param id="id">Id for this entity.</param>
 		/// <returns>A medium goblin with constant values.</returns>
-		public static Goblin MediumGoblin(string name)
+		public static Goblin MediumGoblin(string name, params Activator[] activators)
 		{
-			return new Goblin(name, 21, 29);
+			return new Goblin(name, 21, 29, activators);
 		}
 
 		/// <summary>
 		/// Static factory function for a small goblin.
 		/// </summary>
-		/// <param name="name">What is this goblins name?</param>
+		/// <param id="id">What is this goblins id?</param>
 		/// <returns>A small goblin.</returns>
-		public static Goblin SmallGoblin(string name)
+		public static Goblin SmallGoblin(string name, params Activator[] activators)
 		{
-			return new Goblin(name, 6, 13);
+			return new Goblin(name, 6, 13, activators);
 		}
 
 		/// <summary>
 		/// Tries to defend against attacker.
 		/// </summary>
-		/// <param name="attacker">Entity attacking current entity.</param>
+		/// <param id="attacker">Entity attacking current entity.</param>
 		protected override void ReceiveDamage(Entity attacker)
 		{
 			base.ReceiveDamage(attacker);

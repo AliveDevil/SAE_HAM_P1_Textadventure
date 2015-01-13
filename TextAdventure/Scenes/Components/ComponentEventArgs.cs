@@ -3,6 +3,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace TextAdventure.Scenes.Components
 {
@@ -19,15 +20,15 @@ namespace TextAdventure.Scenes.Components
 		/// <summary>
 		/// Additional parameter.
 		/// </summary>
-		public string Parameter { get; private set; }
+		public IList<string> Parameter { get; private set; }
 
 		/// <summary>
 		/// </summary>
-		/// <param name="parameter"></param>
-		public ComponentEventArgs(string parameter)
+		/// <param id="parameter"></param>
+		public ComponentEventArgs(IList<string> parameter)
 		{
 			Handled = false;
-			Parameter = parameter;
+			Parameter = parameter ?? new List<string>();
 		}
 	}
 }

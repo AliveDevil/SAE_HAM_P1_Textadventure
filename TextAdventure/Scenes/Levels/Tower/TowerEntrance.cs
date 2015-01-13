@@ -2,6 +2,7 @@
  * Author: Jöran Malek
  */
 
+using System.Linq;
 using TextAdventure.Properties;
 using TextAdventure.Scenes.Components;
 using TextAdventure.Scenes.Components.Entities;
@@ -29,10 +30,10 @@ namespace TextAdventure.Scenes.Levels.Tower
 		public TowerEntrance()
 		{
 			SceneManager.GetComponentByType<Player>().Attack += PlayerAttack;
-			Goblin goblin = Goblin.SmallGoblin("goblin");
+			Goblin goblin = Goblin.SmallGoblin("goblin", new Activator("goblin", true), new Activator("small", false));
 			goblin.Died += GoblinDied;
 			AddComponent(goblin);
-			ChangeRoomComponent path = new ChangeRoomComponent("path", false);
+			ChangeRoomComponent path = new ChangeRoomComponent("path", false, new Activator("path", true));
 			path.Follow += FollowPath;
 			AddComponent(path);
 		}
@@ -66,8 +67,14 @@ namespace TextAdventure.Scenes.Levels.Tower
 		/// </summary>
 		private void PlayerAttack(object sender, ComponentEventArgs e)
 		{
-			(sender as Entity).Attack(FindComponent(e.Parameter) as Entity);
+			(sender as Entity).Attack(FindComponent(e.Parameter.Last()) as Entity);
 			e.Handled = true;
+		}
+
+		public override void Dispose()
+		{
+			SceneManager.GetComponentByType<Player>().Attack -= PlayerAttack;
+			base.Dispose();
 		}
 	}
 }

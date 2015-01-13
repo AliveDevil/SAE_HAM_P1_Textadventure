@@ -54,6 +54,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scenes\Activator.cs" />
     <Compile Include="Scenes\CellType.cs" />
     <Compile Include="Scenes\Components\Component.cs" />
     <Compile Include="Scenes\Components\ComponentEventArgs.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Scenes\Components\Items\Potion.cs" />
     <Compile Include="Scenes\Components\Items\StrengthPotion.cs" />
     <Compile Include="Scenes\Components\SwitchComponent.cs" />
+    <Compile Include="Scenes\Components\TakeableComponent.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\GameOverScene.cs" />
     <Compile Include="Scenes\Levels\Forest\BurnedGlade.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\SceneManager.cs" />
+    <Compile Include="UpperCaseStringEqualityComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
