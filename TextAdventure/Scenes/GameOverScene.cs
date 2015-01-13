@@ -58,7 +58,7 @@ namespace TextAdventure.Scenes
 		/// Quits current application.
 		/// </summary>
 		/// <returns>True.</returns>
-		[Action("quit", "GameOver_uit")]
+		[Action("quit", "GameOver_Quit")]
 		private bool QuitAction()
 		{
 			SceneManager.Exit();
